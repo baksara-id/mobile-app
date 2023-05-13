@@ -2,8 +2,25 @@
     <string name="app_name">Baksara</string>
     <string name="home">Home</string>
     <string name="berita">Berita</string>
+    <string name="ikuti">Ikuti</string>
     <string name="scanner">Scanner</string>
     <string name="pustaka">Pustaka</string>
     <string name="profile">Profil</string>
-
+    <string name="exp">150 XP</string>
+    <string name="perintah_soal">Perhatikan aksara ini lalu lanjutkan dengan menekan tombol mulai</string>
+    <string name="perintah_soal_2">Gambarkan aksara berikut ini!</string>
+    <string name="perintah_soal_3">Arti dari aksara berikut ini adalah?</string>
+    <string name="nama_tantangan">Nama Tantangan</string>
+    <string name="hancaraka_placeholder">ꦲ</string>
+    <string name="ha_placeholder">Ha</string>
+    <string name="na_placeholder">Na</string>
+    <string name="ca_placeholder">Ca</string>
+    <string name="ra_placeholder">Ra</string>
+    <string name="hancaraka_lengkap_placeholder">ꦲ ꦤ ꦕ ꦫ ꦏ</string>
+    <string name="hancaraka_translate_placeholder">Ha   Na   Ca   Ra   Ka</string>
+    <string name="pelajaran_placeholder">Pelajaran 1</string>
+    <string name="pelajaran_selanjutnya">Pelajaran Selanjutnya</string>
+    <string name="kembali_kelas">Kembali Ke Kelas</string>
+    <string name="modul_placeholder">Modul 1</string>
+    <string name="modul_deskripsi_placeholder">Carakan Dasar</string>
 </resources>
