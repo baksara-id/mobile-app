@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Baksara</string>
+    <string name="home">Home</string>
+    <string name="berita">Berita</string>
+    <string name="scanner">Scanner</string>
+    <string name="pustaka">Pustaka</string>
+    <string name="profile">Profil</string>
+
 </resources>
