@@ -1,12 +1,20 @@
 <resources>
     <string name="app_name">Baksara</string>
     <string name="home">Home</string>
+    <string name="greeting">Selamat Belajar</string>
+    <string name="greeting_aksara">ꦱꦼ ꦭ ꦩ ꦠ꧀ꦧꦼ ꦭ ꦗꦂ</string>
     <string name="berita">Berita</string>
     <string name="ikuti">Ikuti</string>
     <string name="scanner">Scanner</string>
     <string name="pustaka">Pustaka</string>
     <string name="profile">Profil</string>
     <string name="exp">150 XP</string>
+    <string name="current_exp">1979</string>
+    <string name="max_exp">2500</string>
+    <string name="slash">/</string>
+    <string name="total_xp">Total XP</string>
+    <string name="current_level">13</string>
+    <string name="level_text">Level</string>
     <string name="perintah_soal">Perhatikan aksara ini lalu lanjutkan dengan menekan tombol mulai</string>
     <string name="perintah_soal_2">Gambarkan aksara berikut ini!</string>
     <string name="perintah_soal_3">Arti dari aksara berikut ini adalah?</string>
@@ -23,4 +31,6 @@
     <string name="kembali_kelas">Kembali Ke Kelas</string>
     <string name="modul_placeholder">Modul 1</string>
     <string name="modul_deskripsi_placeholder">Carakan Dasar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

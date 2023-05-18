@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view_module_lock"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="4dp"
+    card_view:cardCornerRadius="12dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tv_total_exp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/poppins_light"
+            android:textColor="@color/main_300"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/total_xp" />
+
+        <TextView
+            android:id="@+id/tv_current_account_exp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/main_300"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_total_exp"
+            tools:text="@string/current_exp" />
+
+        <TextView
+            android:id="@+id/tv_slash_exp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/slash"
+            android:textColor="@color/main_300"
+            card_view:layout_constraintBottom_toBottomOf="@+id/tv_current_account_exp"
+            card_view:layout_constraintStart_toEndOf="@+id/tv_current_account_exp"
+            card_view:layout_constraintTop_toTopOf="@+id/tv_current_account_exp" />
+
+        <TextView
+            android:id="@+id/tv_max_account_exp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text="@string/max_exp"
+            android:textColor="@color/main_300"
+            card_view:layout_constraintBottom_toBottomOf="@+id/tv_current_account_exp"
+            card_view:layout_constraintStart_toEndOf="@+id/tv_slash_exp"
+            card_view:layout_constraintTop_toTopOf="@+id/tv_current_account_exp" />
+
+        <TextView
+            android:id="@+id/tv_current_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/current_level"
+            android:textColor="@color/neutral_300"
+            android:textSize="20sp"
+            card_view:layout_constraintBottom_toTopOf="@+id/expBar"
+            card_view:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/level_text"
+            android:textColor="@color/main_300"
+            android:textSize="12sp"
+            card_view:layout_constraintBottom_toBottomOf="@+id/tv_current_level"
+            card_view:layout_constraintEnd_toStartOf="@+id/tv_current_level"
+            card_view:layout_constraintTop_toTopOf="@+id/tv_current_level" />
+
+        <ProgressBar
+            android:id="@+id/expBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="6dp"
+            android:max="100"
+            android:progress="50"
+            android:progressTint="@color/success"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_current_account_exp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

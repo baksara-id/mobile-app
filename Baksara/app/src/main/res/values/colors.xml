@@ -18,16 +18,16 @@
     <color name="warning">#FDC706</color>
     <color name="danger">#ED2A1C</color>
 <!--  NEUTRAL COLOR  -->
-    <color name="neutral_50">#edebea</color>
-    <color name="neutral_100">#988d82</color>
-    <color name="neutral_200">#6b5c4d</color>
-    <color name="neutral_300">#4d3b28</color>
-    <color name="neutral_400">#36291c</color>
-    <color name="neutral_500">#2f2418</color>
-    <color name="neutral_600">#2f2418</color>
-    <color name="neutral_700">#2f2418</color>
-    <color name="neutral_800">#2f2418</color>
-    <color name="neutral_900">#2f2418</color>
+    <color name="neutral_50">#efefef</color>
+    <color name="neutral_100">#cecece</color>
+    <color name="neutral_200">#b6b6b6</color>
+    <color name="neutral_300">#959595</color>
+    <color name="neutral_400">#818181</color>
+    <color name="neutral_500">#616161</color>
+    <color name="neutral_600">#585858</color>
+    <color name="neutral_700">#454545</color>
+    <color name="neutral_800">#353535</color>
+    <color name="neutral_900">#292929</color>
     <color name="neutral_black">#000000</color>
     <color name="neutral_white">#FFFFFF</color>
 <!--  ACCENT COLOR  -->

@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_home"
-        android:icon="@drawable/berita_icon"
+        android:icon="@drawable/home_icon"
         android:title="@string/home" />
     <item
         android:id="@+id/menu_pustaka"
-        android:icon="@drawable/berita_icon"
+        android:icon="@drawable/pustaka_icon"
         android:title="@string/pustaka" />
-    <item
-        android:id="@+id/menu_scanner"
-        android:title="" />
+    <item android:id="@+id/menu_scanner" />
     <item
         android:id="@+id/menu_berita"
         android:icon="@drawable/berita_icon"
         android:title="@string/berita" />
     <item
         android:id="@+id/menu_profil"
-        android:icon="@drawable/berita_icon"
+        android:icon="@drawable/profil_icon"
         android:title="@string/profile" />
 </menu>

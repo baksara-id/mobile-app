@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view"
+    android:id="@+id/card_view_module_lock"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
@@ -10,34 +10,34 @@
     android:layout_marginTop="4dp"
     android:layout_marginEnd="8dp"
     android:layout_marginBottom="4dp"
-    card_view:cardBackgroundColor="#FFFFFF"
+    card_view:cardBackgroundColor="@color/main_300"
     card_view:cardCornerRadius="12dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradient_module"
+        android:background="@drawable/bg_locked_module"
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/tv_item_name"
+            android:id="@+id/tv_item_name_lock"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="7dp"
             android:layout_marginEnd="84dp"
-            android:layout_toEndOf="@id/tv_item_aksara"
+            android:layout_toEndOf="@id/tv_item_aksara_lock"
             android:fontFamily="@font/poppins_bold"
             android:textColor="@color/neutral_white"
             android:textSize="24sp"
             android:textStyle="bold"
-            card_view:layout_constraintEnd_toStartOf="@id/tv_item_aksara"
+            card_view:layout_constraintEnd_toStartOf="@id/tv_item_aksara_lock"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             tools:text="@string/modul_placeholder" />
 
         <TextView
-            android:id="@+id/tv_item_aksara"
+            android:id="@+id/tv_item_aksara_lock"
             android:layout_width="87dp"
             android:layout_height="0dp"
             android:layout_marginEnd="12dp"
@@ -55,19 +55,19 @@
             tools:text="@string/hancaraka_placeholder" />
 
         <TextView
-            android:id="@+id/tv_item_description"
+            android:id="@+id/tv_item_description_lock"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginBottom="7dp"
-            android:layout_toEndOf="@id/tv_item_aksara"
             android:fontFamily="@font/poppins_bold"
             android:textColor="@color/neutral_white"
             android:textSize="12sp"
             android:textStyle="bold"
+            android:layout_toEndOf="@id/tv_item_aksara_lock"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_name"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_item_name_lock"
             tools:text="@string/modul_deskripsi_placeholder" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

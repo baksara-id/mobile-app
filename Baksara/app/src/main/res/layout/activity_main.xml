@@ -10,34 +10,49 @@
         android:id="@+id/fab_scanner"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/white"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/main_300"
         android:clickable="true"
         android:contentDescription="@string/scanner"
-        android:src="@drawable/berita_icon"
-        app:backgroundTint="@color/purple_200"
+        android:src="@drawable/icon_scanner"
+        app:backgroundTint="@color/accent_white"
         app:borderWidth="6dp"
-        app:elevation="17dp"
+        app:elevation="2dp"
         app:fabCustomSize="64dp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottom_nav"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:size="auto" />
+        app:maxImageSize="48dp"
+        app:size="auto"
+        app:tint="@color/accent_white" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_navigation_menu"
-        app:elevation="12dp"
+        app:elevation="1dp"
+        app:itemIconTint="@color/main_300"
+        app:itemTextColor="@color/main_300"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bottom_navigation">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/menu_bottom_navigation" />
+
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_kelas"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
