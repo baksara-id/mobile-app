@@ -31,6 +31,19 @@
     <string name="kembali_kelas">Kembali Ke Kelas</string>
     <string name="modul_placeholder">Modul 1</string>
     <string name="modul_deskripsi_placeholder">Carakan Dasar</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!--Onboarding Text-->
+    <string name="title_menu_1">Belajar Aksara \n Dengan Mudah</string>
+    <string name="title_menu_2">Kenali Cerita Wayang \n Dengan Aksara</string>
+    <string name="title_menu_3">Scan Aksara \n Untuk Transliterasi</string>
+    <string name="title_menu_4">Selesaikan Tantangan \n Yang Tersedia</string>
+    <string name="title_menu_5">Tingkatkan Level \n dan Raih Lencana</string>
+    <string name="desc_menu_1">Belajar aksara di mana saja \n dan kapan saja melalui \n smartphone Anda.</string>
+    <string name="desc_menu_2">Belajar aksara dengan \n membaca cerita wayang.</string>
+    <string name="desc_menu_3">Transliterasi aksara melalui \n kamera dengan scanning.</string>
+    <string name="desc_menu_4">Uji pemahaman aksara \n anda pada tantangan yang \n tersedia.</string>
+    <string name="desc_menu_5">Selesaikan modul untuk \n tingkatkan level dan \n dapatkan lencana.</string>
+
+    !-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
