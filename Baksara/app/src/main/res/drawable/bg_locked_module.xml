@@ -12,7 +12,7 @@
     <!-- Custom icon in the middle -->
     <item android:gravity="center">
         <bitmap
-            android:src="@drawable/lock_icon"
+            android:src="@drawable/lock_icon2"
             android:gravity="center" />
     </item>
 

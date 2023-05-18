@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_400"
+    tools:context=".ui.LoginActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="134dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtLoginPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:fontFamily="@font/poppins_bold"
+                android:letterSpacing="0"
+                android:text="Login"
+                android:textColor="@color/neutral_700"
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtLoginPage2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:letterSpacing="0"
+                android:text=" Masuk kedalam akun anda"
+                android:textColor="@color/neutral_200"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtLoginPage" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_login_email"
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/bg_input_editor"
+                android:hint="nama lengkap"
+                app:endIconMode="custom"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtLoginPage2"
+                app:startIconDrawable="@drawable/person_icon_300"
+                app:startIconTint="@color/main_300">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_login_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:inputType="textPersonName"
+                    android:letterSpacing="0"
+                    android:textColor="@color/neutral_200"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_login_password"
+                style="@style/TextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/bg_input_editor"
+                android:hint="password"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/main_300"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_login_email"
+                app:startIconDrawable="@drawable/lock_icon"
+                app:startIconTint="@color/main_300">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_login_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:inputType="textPassword"
+                    android:letterSpacing="0"
+                    android:textColor="@color/neutral_200"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_lupa_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="28dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Lupa Password?"
+                android:textColor="@color/main_500"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_login_password" />
+
+            <Button
+                android:id="@+id/btnDaftar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="52dp"
+                android:layout_marginEnd="28dp"
+                android:backgroundTint="@color/main_300"
+                android:fontFamily="@font/poppins_bold"
+                android:letterSpacing="0"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Login"
+                android:textColor="@color/neutral_white"
+                android:textSize="18sp"
+                app:cornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_lupa_password" />
+
+            <View
+                android:id="@+id/line_left"
+                android:layout_width="103.5dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="31dp"
+                android:background="@color/neutral_300"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnDaftar" />
+
+            <View
+                android:id="@+id/line_right"
+                android:layout_width="103.5dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="31dp"
+                android:layout_marginEnd="17dp"
+                android:background="@color/neutral_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnDaftar" />
+
+            <ImageButton
+                android:id="@+id/googleButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="28dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/google_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_atau" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="55dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/googleButton">
+
+                <TextView
+                    android:id="@+id/tv_belumpunyaakun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:gravity="center"
+                    android:letterSpacing="0"
+                    android:text="Belum punya akun?"
+                    android:textColor="@color/neutral_300"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_toregister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:letterSpacing="0"
+                    android:text="Register"
+                    android:textColor="@color/main_100"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_atau"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="Atau Login Melalui"
+                android:textColor="@color/neutral_300"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/line_right"
+                app:layout_constraintStart_toEndOf="@+id/line_left"
+                app:layout_constraintTop_toBottomOf="@+id/btnDaftar" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textAppRegisterHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:fontFamily="@font/poppins_bold"
+        android:letterSpacing="0"
+        android:text="Baksara"
+        android:textColor="@color/accent_white"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewLogin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
