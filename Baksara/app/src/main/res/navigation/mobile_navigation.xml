@@ -7,26 +7,31 @@
 
     <fragment
         android:id="@+id/navigation_kelas"
+        android:name="com.baksara.app.ui.KelasFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_kelas"
         />
     <fragment
-        android:id="@+id/navigation_berita"
+        android:id="@+id/navigation_artikel"
+        android:name="com.baksara.app.ui.ArtikelFragment"
         android:label="@string/berita"
-        tools:layout="@layout/fragment_berita"
+        tools:layout="@layout/fragment_artikel"
         />
     <fragment
         android:id="@+id/navigation_scanner"
+        android:name="com.baksara.app.ui.ScannerFragment"
         android:label="@string/scanner"
         tools:layout="@layout/fragment_scanner"
         />
     <fragment
         android:id="@+id/navigation_pustaka"
+        android:name="com.baksara.app.ui.PustakaFragment"
         android:label="@string/pustaka"
         tools:layout="@layout/fragment_pustaka"
         />
     <fragment
         android:id="@+id/navigation_profil"
+        android:name="com.baksara.app.ui.ProfilFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profil"
         />
