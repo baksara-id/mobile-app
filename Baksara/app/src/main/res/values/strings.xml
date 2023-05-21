@@ -44,6 +44,11 @@
     <string name="desc_menu_4">Uji pemahaman aksara\nanda pada tantangan yang \n tersedia.</string>
     <string name="desc_menu_5">Selesaikan modul untuk\ntingkatkan level dan \n dapatkan lencana.</string>
 
+    <!--Pustaka Text-->
+    <string name="tab_cerita">Cerita</string>
+    <string name="tab_kamus">Kamus</string>
+    <string name="tab_translator">Translator</string>
+
     !-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

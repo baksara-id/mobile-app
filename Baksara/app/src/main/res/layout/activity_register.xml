@@ -187,7 +187,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_konfirmasi_password" />
 
             <Button
-                android:id="@+id/btnDaftar"
+                android:id="@+id/btn_login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
@@ -216,7 +216,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnDaftar">
+                app:layout_constraintTop_toBottomOf="@+id/btn_login">
 
                 <TextView
                     android:id="@+id/tv_sudahpunyaakun"

@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bottomNavigationSetup(){
-        val navView: BottomNavigationView = findViewById(R.id.bottom_nav)
+        val navView: BottomNavigationView = binding.bottomNav
 
         val navController = findNavController(R.id.nav_host_fragment)
 
