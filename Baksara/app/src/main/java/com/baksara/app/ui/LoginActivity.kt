@@ -14,6 +14,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         binding.btnLogin.setOnClickListener {
             //sementara langsung nembak ke main activity

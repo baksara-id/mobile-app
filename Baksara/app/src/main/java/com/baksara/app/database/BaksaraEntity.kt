@@ -124,3 +124,9 @@ data class KamusAndPenggunaan(
     )
     val penggunaan : List<Penggunaan>
 )
+
+data class Tantangan(
+    val id:Int,
+    val nama: String,
+    val jumlahExp: Int,
+)

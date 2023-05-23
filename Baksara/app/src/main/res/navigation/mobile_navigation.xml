@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_kelas"
-        android:name="com.baksara.app.ui.KelasFragment"
+        android:name="com.baksara.app.ui.kelas.KelasFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_kelas"
         />

@@ -5,6 +5,7 @@ import com.baksara.app.database.Pelajaran
 import com.baksara.app.database.SoalBaca
 import com.baksara.app.database.SoalGambar
 import com.baksara.app.database.SoalPilihan
+import com.baksara.app.database.Tantangan
 
 object InitialDataSource {
     fun getModuls(): List<Modul>{
@@ -107,4 +108,11 @@ object InitialDataSource {
         )
     }
 
+    fun getTantangans(): List<Tantangan>{
+        return listOf(
+            Tantangan(1, "Tantangan 1", 150),
+            Tantangan(2, "Tantangan 2", 150),
+            Tantangan(3, "Tantangan 3", 150),
+        )
+    }
 }

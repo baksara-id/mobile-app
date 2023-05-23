@@ -17,6 +17,8 @@ import com.baksara.app.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
+
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         bottomNavigationSetup()
         binding.fabScanner.setOnClickListener {

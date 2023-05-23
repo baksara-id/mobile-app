@@ -14,6 +14,7 @@ class OnBoardingActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         _binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         val preferences = this.getSharedPreferences(PREFNAME, Context.MODE_PRIVATE)
 
@@ -35,9 +36,7 @@ class OnBoardingActivity : AppCompatActivity(){
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-
     }
-
     companion object{
         const val PREFNAME = "onboarding_pref"
         const val IS_SEEN = "is_seen"
