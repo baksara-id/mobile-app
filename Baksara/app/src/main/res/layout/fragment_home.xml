@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.kelas.KelasFragment">
+    tools:context=".ui.home.HomeFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/accent_normal_active">
+            android:background="@color/accent_white_hover">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_header"
@@ -62,9 +62,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="-50dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="8dp"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -81,12 +81,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/poppins_light"
+                        android:text="@string/total_xp"
                         android:textColor="@color/main_300"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        android:text="@string/total_xp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_current_account_exp"
@@ -94,10 +94,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/poppins_bold"
+                        android:text="@string/current_exp"
                         android:textColor="@color/main_300"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:text="@string/current_exp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_total_exp" />
 
