@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.soal.gambar.GambarFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_deskripsi_soal_gambar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="48dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:text="Gambarkan aksara berikut ini"
+            android:textColor="@color/main_300"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_latin_soal_baca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="@string/ha_placeholder"
+            android:textColor="@color/main_300"
+            android:textSize="48sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_deskripsi_soal_gambar"
+            app:layout_constraintStart_toStartOf="@+id/tv_deskripsi_soal_gambar"
+            app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi_soal_gambar" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_latin_soal_baca" />
+
+        <Button
+            android:id="@+id/btn_jawab_soal_gambar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:backgroundTint="@color/main_300"
+            android:fontFamily="@font/poppins_bold"
+            android:letterSpacing="0"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Jawab"
+            android:textAllCaps="false"
+            android:textColor="@color/neutral_white"
+            android:textSize="18sp"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

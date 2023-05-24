@@ -21,12 +21,13 @@ class ListModulAdapter(private val moduls: List<Modul>): RecyclerView.Adapter<Li
             binding.tvItemDetail.text = modul.deskripsi
             binding.tvItemLogo.text = modul.url_background
 
-            if(modul.terkunci){
+            if(modul.terkunci && !modul.selesai){
                 binding.constraintModul.background = ContextCompat.getDrawable(itemView.context, R.drawable.bg_locked_module)
             }else{
                 binding.root.setOnClickListener {
                     val intent = Intent(itemView.context, KelasActivity::class.java)
                     intent.putExtra(KelasActivity.MODUL_ID, modul.id)
+                    intent.putExtra(KelasActivity.MODUL_NAMA, modul.deskripsi)
                     itemView.context.startActivity(intent)
                 }
             }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.soal.baca.BacaFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_deskripsi_soal_gambar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="48dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:text="Perhatikan aksara ini lalu lanjutkan dengan tombol mulai"
+            android:textColor="@color/main_300"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_soal_baca"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="32dp"
+            android:background="@color/main_300"
+            android:padding="4dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi_soal_gambar"
+            app:strokeColor="@color/main_300"
+            app:strokeWidth="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_aksara_soal_baca"
+                    android:layout_width="match_parent"
+                    android:layout_height="176dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center|top"
+                    android:text="@string/hancaraka_placeholder"
+                    android:textColor="@color/main_300"
+                    android:textSize="144sp" />
+
+                <TextView
+                    android:id="@+id/tv_latin_soal_baca"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:text="@string/ha_placeholder"
+                    android:textColor="@color/main_300"
+                    android:textSize="48sp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_mulai_soal_baca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:clickable="true"
+            android:contentDescription="@string/ikuti"
+            android:src="@drawable/baseline_play_arrow_24"
+            app:backgroundTint="@color/main_300"
+            app:layout_constraintEnd_toEndOf="@+id/cv_soal_baca"
+            app:layout_constraintStart_toStartOf="@+id/cv_soal_baca"
+            app:layout_constraintTop_toBottomOf="@+id/cv_soal_baca"
+            app:tint="@android:color/white" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
