@@ -27,10 +27,9 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_soal_baca"
-            android:layout_width="300dp"
+            android:layout_width="350dp"
             android:layout_height="300dp"
             android:layout_marginTop="32dp"
             android:background="@color/main_300"

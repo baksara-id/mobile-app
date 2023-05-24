@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_aksara_soal_baca2"
+            android:id="@+id/tv_aksara_soal_pilihan"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="124dp"
@@ -61,7 +61,7 @@
             app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_aksara_soal_baca2"
+            app:layout_constraintTop_toBottomOf="@+id/tv_aksara_soal_pilihan"
             app:strokeColor="@color/main_300"
             app:strokeWidth="1dp" />
 
