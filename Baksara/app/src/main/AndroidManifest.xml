@@ -19,9 +19,6 @@
             android:name=".ui.soal.SoalActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.pelajaran.PelajaranActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.kelas.KelasActivity"
             android:exported="false" />
         <activity

@@ -7,10 +7,7 @@ import com.baksara.app.ui.KamusFragment
 import com.baksara.app.ui.TranslatorFragment
 
 class PustakaPagerAdapter(fragment : Fragment) : FragmentStateAdapter(fragment){
-    override fun getItemCount(): Int {
-        return 3
-
-    }
+    override fun getItemCount(): Int = 3
 
     override fun createFragment(position: Int): Fragment {
         var fragment: Fragment? = null

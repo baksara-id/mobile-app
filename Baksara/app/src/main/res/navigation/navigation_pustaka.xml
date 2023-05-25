@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_pustaka"
+    app:startDestination="@+id/fragment_cerita">
+
+    <fragment
+        android:id="@+id/fragment_cerita"
+        android:name="com.baksara.app.ui.CeritaFragment"
+        android:label="Cerita Fragment"
+        tools:layout="@layout/fragment_cerita"
+        />
+
+    <fragment
+        android:id="@+id/fragment_kamus"
+        android:name="com.baksara.app.ui.KamusFragment"
+        android:label="Kamus Fragment"
+        tools:layout="@layout/fragment_kamus"
+        />
+
+    <fragment
+        android:id="@+id/fragment_translator"
+        android:name="com.baksara.app.ui.TranslatorFragment"
+        android:label="Translator Fragment"
+        tools:layout="@layout/fragment_translator"
+        />
+
+
+</navigation>
