@@ -20,6 +20,7 @@
             android:layout_margin="18dp"
             android:background="@drawable/bg_tablayout_pustaka"
             android:contentDescription="@string/pustaka"
+            android:elevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

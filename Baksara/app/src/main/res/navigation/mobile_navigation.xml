@@ -27,6 +27,13 @@
         />
 
     <fragment
+        android:id="@+id/navigation_scanner"
+        android:name="com.baksara.app.ui.TranslatorFragment"
+        android:label="@string/pustaka"
+        tools:layout="@layout/activity_scanner"
+        />
+
+    <fragment
         android:id="@+id/navigation_profil"
         android:name="com.baksara.app.ui.ProfilFragment"
         android:label="@string/profile"

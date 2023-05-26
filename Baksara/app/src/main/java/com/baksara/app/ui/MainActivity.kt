@@ -8,19 +8,17 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.navigation.Navigation
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.navigation.ui.NavigationUI
 import com.baksara.app.R
 import com.baksara.app.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-
-
+    private lateinit var navController: NavController
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
@@ -47,44 +45,19 @@ class MainActivity : AppCompatActivity() {
     private fun bottomNavigationSetup(){
         val navView: BottomNavigationView = binding.bottomNav
 
-        val navController = Navigation.findNavController(this,R.id.nav_host_fragment)
+        navController = findNavController(R.id.nav_host_fragment)
 
+        navView.menu.getItem(2).isEnabled = false
         val appBarConfiguration = AppBarConfiguration.Builder(
-            R.id.navigation_kelas, R.id.navigation_pustaka, R.id.navigation_artikel, R.id.navigation_profil
+            R.id.navigation_kelas, R.id.navigation_pustaka, R.id.navigation_scanner, R.id.navigation_artikel, R.id.navigation_profil
         ).build()
 
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
-        NavigationUI.setupWithNavController(navView,navController)
-
-        navView.setOnNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.navigation_kelas -> {
-                    // Handle navigation for R.id.navigation_kelas
-                    showToast("Kelas menu clicked")
-                    true
-                }
-                R.id.navigation_pustaka -> {
-                    // Handle navigation for R.id.navigation_pustaka
-                    showToast("Pustaka menu clicked")
-                    true
-                }
-                R.id.navigation_artikel -> {
-                    // Handle navigation for R.id.navigation_artikel
-                    showToast("Artikel menu clicked")
-                    true
-                }
-                R.id.navigation_profil -> {
-                    // Handle navigation for R.id.navigation_profil
-                    showToast("Profil menu clicked")
-                    true
-                }
-                else -> false
-            }
-        }
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
     private fun startCameraX() {
