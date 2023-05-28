@@ -1,8 +1,14 @@
 package com.baksara.app.adapter
 
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.baksara.app.R
@@ -21,6 +27,9 @@ class ListPelajaranAdapter(private val pelajarans: List<Pelajaran>): RecyclerVie
             if(pelajaran.terkunci && !pelajaran.selesai){
                 binding.constraintPelajaran.alpha = 0.5f
                 binding.fabMulai.isClickable = false
+                binding.root.setOnClickListener {
+                   showLockedPelajaranDialog(itemView.context)
+                }
             }else{
                 binding.fabMulai.backgroundTintList = ContextCompat.getColorStateList(itemView.context, R.color.success)
                 binding.fabMulai.setOnClickListener {
@@ -42,4 +51,30 @@ class ListPelajaranAdapter(private val pelajarans: List<Pelajaran>): RecyclerVie
     }
 
     override fun getItemCount(): Int = pelajarans.size
+
+    private fun showLockedPelajaranDialog(context: Context) {
+        val builder = AlertDialog.Builder(context)
+        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val dialogView: View = inflater.inflate(R.layout.item_dialog_information, null)
+
+
+        val imgInformation: ImageView = dialogView.findViewById(R.id.img_information)
+        val textTitle: TextView = dialogView.findViewById(R.id.tv_information_title)
+        val textDesc: TextView = dialogView.findViewById(R.id.tv_information_description)
+        val buttonInformation: Button = dialogView.findViewById(R.id.btn_information)
+
+        imgInformation.setImageResource(R.drawable.img_logo_information)
+        textTitle.text = "Pesan Informasi"
+
+        textDesc.text = "Selesaikan pelajaran sebelumnya untuk memulai modul ini."
+        buttonInformation.text = "Mengerti"
+
+        builder.setView(dialogView)
+        val dialog: AlertDialog = builder.create()
+        buttonInformation.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
 }

@@ -13,11 +13,12 @@
     <color name="main_300">#4d3b28</color>
     <color name="main_400">#36291c</color>
     <color name="main_500">#2f2418</color>
-<!--  SYSTEM COLOR  -->
+    <!--  SYSTEM COLOR  -->
     <color name="success">#3AA04B</color>
     <color name="warning">#FDC706</color>
     <color name="danger">#ED2A1C</color>
-<!--  NEUTRAL COLOR  -->
+    <color name="information">#3D5CFF</color>
+    <!--  NEUTRAL COLOR  -->
     <color name="neutral_50">#efefef</color>
     <color name="neutral_100">#cecece</color>
     <color name="neutral_200">#b6b6b6</color>

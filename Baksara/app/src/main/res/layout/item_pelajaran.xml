@@ -36,11 +36,11 @@
 
         <TextView
             android:id="@+id/tv_aksara_pelajaran"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins_extrabold"
+            android:fontFamily="@font/poppins_medium"
             android:textAlignment="center"
             android:textColor="@color/main_200"
             android:textSize="18sp"

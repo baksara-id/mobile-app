@@ -54,4 +54,8 @@
     <string name="modul_pembelajaran">Modul pembelajaran</string>
     <string name="selengkapnya">Selengkapnya</string>
     <string name="tantangan">Tantangan</string>
+    <string name="description">Description</string>
+    <string name="information">Information</string>
+    <string name="title">Title</string>
+    <string name="button">Button</string>
 </resources>
