@@ -17,6 +17,7 @@ class GambarFragment : Fragment() {
     private var _binding: FragmentGambarBinding? = null
     private val binding get() = _binding!!
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,17 +34,21 @@ class GambarFragment : Fragment() {
         val soal = soalGambar(pelajaranId, nomorUrutan)
 
         binding.tvLatinSoalGambar.text = soal.latin
+        binding.btnHapusSoalGambar.setOnClickListener {
+            binding.drawViewAksara.clear()
+        }
+
         binding.btnJawabSoalGambar.setOnClickListener {
             if(nomorUrutan != 5){
                 val bundle = Bundle()
                 bundle.putInt(PELAJARAN_ID, pelajaranId)
                 bundle.putInt(URUTAN_SOAL, nomorUrutan + 1)
 
-                val gambarFragment = GambarFragment()
-                gambarFragment.arguments = bundle
+                val bacaFragment = BacaFragment()
+                bacaFragment.arguments = bundle
                 val fragmentManager = parentFragmentManager
                 fragmentManager.beginTransaction().apply {
-                    replace(R.id.frame_pelajaran, gambarFragment, GambarFragment::class.java.simpleName)
+                    replace(R.id.frame_pelajaran, bacaFragment, BacaFragment::class.java.simpleName)
                     commit()
                 }
             }else{

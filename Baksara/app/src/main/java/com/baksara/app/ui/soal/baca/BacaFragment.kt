@@ -34,30 +34,16 @@ class BacaFragment : Fragment() {
         binding.tvAksaraSoalBaca.text = soal.aksara
         binding.tvLatinSoalBaca.text = soal.latin
         binding.fabMulaiSoalBaca.setOnClickListener {
-            if(nomorUrutan != 5){
-                val bundle = Bundle()
-                bundle.putInt(PELAJARAN_ID, pelajaranId)
-                bundle.putInt(URUTAN_SOAL, nomorUrutan + 1)
+            val bundle = Bundle()
+            bundle.putInt(GambarFragment.PELAJARAN_ID, pelajaranId)
+            bundle.putInt(GambarFragment.URUTAN_SOAL, nomorUrutan)
 
-                val bacaFragment = BacaFragment()
-                bacaFragment.arguments = bundle
-                val fragmentManager = parentFragmentManager
-                fragmentManager.beginTransaction().apply {
-                    replace(R.id.frame_pelajaran, bacaFragment, BacaFragment::class.java.simpleName)
-                    commit()
-                }
-            }else{
-                val bundle = Bundle()
-                bundle.putInt(GambarFragment.PELAJARAN_ID, pelajaranId)
-                bundle.putInt(GambarFragment.URUTAN_SOAL, 1)
-
-                val gambarFragment = GambarFragment()
-                gambarFragment.arguments = bundle
-                val fragmentManager = parentFragmentManager
-                fragmentManager.beginTransaction().apply {
-                    replace(R.id.frame_pelajaran, gambarFragment, GambarFragment::class.java.simpleName)
-                    commit()
-                }
+            val gambarFragment = GambarFragment()
+            gambarFragment.arguments = bundle
+            val fragmentManager = parentFragmentManager
+            fragmentManager.beginTransaction().apply {
+                replace(R.id.frame_pelajaran, gambarFragment, GambarFragment::class.java.simpleName)
+                commit()
             }
         }
     }

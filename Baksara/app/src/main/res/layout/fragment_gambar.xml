@@ -40,22 +40,32 @@
             app:layout_constraintStart_toStartOf="@+id/tv_deskripsi_soal_gambar"
             app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi_soal_gambar" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_draw_aksara"
             android:layout_width="0dp"
-            android:layout_height="300dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
+            android:layout_height="350dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            app:cardCornerRadius="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_latin_soal_gambar" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_latin_soal_gambar"
+            app:strokeColor="@color/main_300"
+            app:strokeWidth="5dp">
+
+            <com.baksara.app.CustomView.AksaraDrawingView
+                android:id="@+id/draw_view_aksara"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white" />
+
+        </com.google.android.material.card.MaterialCardView>
 
         <Button
             android:id="@+id/btn_jawab_soal_gambar"
-            android:layout_width="0dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:backgroundTint="@color/main_300"
@@ -69,8 +79,26 @@
             android:textSize="18sp"
             app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_draw_aksara" />
+
+        <Button
+            android:id="@+id/btn_hapus_soal_gambar"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/danger"
+            android:fontFamily="@font/poppins_bold"
+            android:letterSpacing="0"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Hapus"
+            android:textAllCaps="false"
+            android:textColor="@color/neutral_white"
+            android:textSize="18sp"
+            app:cornerRadius="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            app:layout_constraintTop_toBottomOf="@+id/cv_draw_aksara" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

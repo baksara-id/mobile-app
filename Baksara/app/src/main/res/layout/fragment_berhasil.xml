@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.soal.Hasil.HasilFragment">
+    tools:context=".ui.soal.Hasil.BerhasilFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,8 +19,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
-            app:lottie_loop="true"
+            app:lottie_loop="false"
             app:lottie_rawRes="@raw/animation_success" />
+
+        <TextView
+            android:id="@+id/tv_berhasil_exp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="+100XP"
+            android:textColor="@color/success"
+            android:textSize="24sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/animationView"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_berhasil_lencana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="+Lencana Carakan"
+            android:textColor="@color/success"
+            android:textSize="24sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_berhasil_exp"
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/btn_lanjut_kelas"
@@ -40,8 +70,9 @@
             android:textSize="18sp"
             app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/animationView" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_berhasil_lencana" />
 
         <Button
             android:id="@+id/btn_kembali_kelas"
