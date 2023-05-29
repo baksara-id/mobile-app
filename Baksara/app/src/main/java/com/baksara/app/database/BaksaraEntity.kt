@@ -130,3 +130,17 @@ data class Tantangan(
     val nama: String,
     val jumlahExp: Int,
 )
+
+data class Cerita(
+    val id:Int,
+    val judul:String,
+    val deskripsi: String,
+    val url_img: String,
+)
+
+data class Artikel(
+    val id:Int,
+    val judul:String,
+    val deskripsi: String,
+    val url_img: String,
+)
