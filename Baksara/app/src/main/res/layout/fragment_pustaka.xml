@@ -27,6 +27,9 @@
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp"
             app:tabMode="fixed"
+            app:tabPaddingTop="16dp"
+            app:tabPaddingEnd="8dp"
+            app:tabPaddingStart="8dp"
             app:tabRippleColor="@null"
             app:tabTextColor="@color/accent_white" />
 

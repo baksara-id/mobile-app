@@ -27,7 +27,6 @@ class PustakaFragment : Fragment() {
         binding.viewPagerPustaka.adapter = adapter
 
         TabLayoutMediator(binding.tabsPustaka, binding.viewPagerPustaka) { tab, position ->
-            // Customize tab titles based on position
             when (position) {
                 0 -> tab.text = getString(R.string.tab_cerita)
                 1 -> tab.text = getString(R.string.tab_kamus)
@@ -43,11 +42,9 @@ class PustakaFragment : Fragment() {
         return view
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 
 }

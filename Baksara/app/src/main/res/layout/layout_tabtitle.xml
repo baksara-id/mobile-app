@@ -8,5 +8,7 @@
     android:padding="16dp"
     android:background="@drawable/bg_tablayout_selector"
     android:textColor="@color/tablayout_text_color"
+    android:fontFamily="@font/poppins_bold"
+    android:textSize="12sp"
     tools:text="@string/title_menu_1"
     />
