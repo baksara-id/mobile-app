@@ -11,7 +11,7 @@ class ListTantanganAdapter(private val tantangans: List<Tantangan>): RecyclerVie
         fun bind(tantangan: Tantangan, position:Int){
             binding.tvTantanganName.text =tantangan.nama
 
-            val jumlahXp = tantangan.jumlahExp.toString()
+            val jumlahXp = tantangan.exp.toString()
             binding.tvTantanganExp.text = "$jumlahXp XP"
         }
 

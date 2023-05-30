@@ -3,8 +3,7 @@ package com.baksara.app.ui.tantangan
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.baksara.app.adapter.ListTantanganAdapter
-import com.baksara.app.adapter.ListTantanganMainAdapter
+import com.baksara.app.adapter.ListTantanganWideAdapter
 import com.baksara.app.databinding.ActivityTantanganBinding
 import com.baksara.app.helper.InitialDataSource
 
@@ -25,7 +24,7 @@ class TantanganActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         binding.rvTantanganWide.layoutManager = layoutManager
 
-        val adapter = ListTantanganMainAdapter(InitialDataSource.getTantangans())
+        val adapter = ListTantanganWideAdapter(InitialDataSource.getTantangans())
         binding.rvTantanganWide.adapter = adapter
     }
 

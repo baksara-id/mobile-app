@@ -110,9 +110,9 @@ object InitialDataSource {
 
     fun getTantangans(): List<Tantangan>{
         return listOf(
-            Tantangan(1, "Tantangan 1", 150),
-            Tantangan(2, "Tantangan 2", 150),
-            Tantangan(3, "Tantangan 3", 150),
+            Tantangan(1, "Tantangan 1", 150, "ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat", "https://en.wikipedia.org/wiki/File:Kraton_Yogyakarta_Pagelaran.jpg"),
+            Tantangan(2, "Tantangan 2", 150, "ꦮꦼꦢꦁꦧꦸꦧꦸꦏ꧀ꦠꦤ꧀ꦥꦒꦸꦭ", "Wedang Bubuk Tanpa Gula", "https://akcdn.detik.net.id/community/media/visual/2021/06/23/resep-wedang-jahe-susu_43.jpeg?w=700&q=90"),
+            Tantangan(3, "Tantangan 3", 150, "ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu", "https://www.astronauts.id/blog/wp-content/uploads/2022/08/Makanan-Khas-Daerah-tiap-Provinsi-di-Indonesia-Serta-Daerah-Asalnya.jpg"),
         )
     }
 }

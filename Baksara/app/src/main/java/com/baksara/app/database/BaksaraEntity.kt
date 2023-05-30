@@ -128,7 +128,10 @@ data class KamusAndPenggunaan(
 data class Tantangan(
     val id:Int,
     val nama: String,
-    val jumlahExp: Int,
+    val exp: Int,
+    val deskripsi: String,
+    val kunci_jawaban: String,
+    val url_img: String,
 )
 
 data class Cerita(
