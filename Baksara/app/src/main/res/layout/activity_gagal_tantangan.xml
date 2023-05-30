@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.tantangan.hasil.GagalTantanganActivity">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/av_gagal"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/animation_failed" />
+
+    <Button
+        android:id="@+id/btn_kembali_gagal_tantangan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/main_300"
+        android:fontFamily="@font/poppins_bold"
+        android:letterSpacing="0"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Kembali"
+        android:textAllCaps="false"
+        android:textColor="@color/neutral_white"
+        android:textSize="18sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi_gagal_tantangan" />
+
+    <TextView
+        android:id="@+id/tv_deskripsi_gagal_tantangan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:text="Mohon maaf, jawabanmu belum tepat untuk tantangan ini"
+        android:textColor="@color/danger"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/av_gagal"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>

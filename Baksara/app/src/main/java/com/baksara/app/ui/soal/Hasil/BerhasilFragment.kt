@@ -15,8 +15,6 @@ class BerhasilFragment : Fragment() {
 
     private var _binding: FragmentBerhasilBinding? = null
     private val binding get() = _binding!!
-    private lateinit var handler: Handler
-    private lateinit var delayedRunnable: Runnable
     private lateinit var fadeInAnimator: ObjectAnimator
 
     override fun onCreateView(
@@ -41,10 +39,5 @@ class BerhasilFragment : Fragment() {
         binding.btnKembaliKelas.setOnClickListener {
             activity?.finish()
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        handler.removeCallbacks(delayedRunnable)
     }
 }

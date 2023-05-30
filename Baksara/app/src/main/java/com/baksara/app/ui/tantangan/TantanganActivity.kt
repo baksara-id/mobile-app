@@ -49,8 +49,6 @@ class TantanganActivity : AppCompatActivity() {
 
         })
 
-
-
     }
 
 }

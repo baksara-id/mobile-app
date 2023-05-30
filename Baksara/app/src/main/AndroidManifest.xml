@@ -23,6 +23,12 @@
             android:name=".ui.DetailKamusActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.tantangan.hasil.GagalTantanganActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.tantangan.hasil.BerhasilTantanganActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.tantangan.SoalTantanganActivity"
             android:exported="false" />
         <activity
