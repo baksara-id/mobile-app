@@ -155,3 +155,4 @@ data class KamusBelajar(
     val latin: String,
     val judul: String,
 )
+

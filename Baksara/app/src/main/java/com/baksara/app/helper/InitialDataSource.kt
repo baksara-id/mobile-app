@@ -126,8 +126,115 @@ object InitialDataSource {
     fun getListKamus(): List<KamusBelajar>{
         return listOf(
             KamusBelajar(1,"20 Aksara","ꦲ", "Ha", "Carakan"),
-            KamusBelajar(2,"26 Aksara","ꦲ", "Ha","Sandhangan"),
-            KamusBelajar(3,"28 Aksara","ꦲ", "Ha","Pasangan"),
+            KamusBelajar(2,"8 Aksara","ꦲ", "Ha","Sandhangan"),
+            KamusBelajar(3,"20 Aksara","ꦲ", "Ha","Pasangan"),
         )
     }
+
+    fun getAksaraKamus(): List<Kamus>{
+        return listOf(
+            Kamus(1,"ꦲ", "Ha"),
+            Kamus(2, "ꦤ", "Na"),
+            Kamus(3, "ꦕ", "Ca"),
+            Kamus(4, "ꦫ", "Ra"),
+            Kamus(5, "ꦏ", "Ka"),
+
+            Kamus(6, "ꦣ", "Da"),
+            Kamus(7, "ꦠ", "Ta"),
+            Kamus(8, "ꦱ", "Sa"),
+            Kamus(9, "ꦮ", "Wa"),
+            Kamus(10, "ꦭ", "La"),
+
+            Kamus(11, "ꦥ", "Pa"),
+            Kamus(12, "ꦣ", "Dha"),
+            Kamus(13, "ꦗ", "Ja"),
+            Kamus(14, "ꦪ", "Ya"),
+            Kamus(15, "ꦚ", "Nya"),
+
+            Kamus(16, "ꦩ", "Ma"),
+            Kamus(17, "ꦒ", "Ga"),
+            Kamus(18, "ꦧ", "Ba"),
+            Kamus(19, "ꦠ", "Ta"),
+            Kamus(20, "ꦔ", "Nga"),
+
+            Kamus(21,"꧀ꦲ", "Ha"),
+            Kamus(22, "꧀ꦤ", "Na"),
+            Kamus(23, "꧀ꦕ", "Ca"),
+            Kamus(24, "꧀ꦫ", "Ra"),
+            Kamus(25, "꧀ꦏ", "Ka"),
+
+            Kamus(26, "꧀ꦢ", "Da"),
+            Kamus(27, "꧀ꦠ", "Ta"),
+            Kamus(28, "꧀ꦱ", "Sa"),
+            Kamus(29, "꧀ꦮ", "Wa"),
+            Kamus(30, "꧀ꦭ", "La"),
+
+            Kamus(31, "꧀ꦥ", "Pa"),
+            Kamus(32, "꧀ꦣ", "Dha"),
+            Kamus(33, "꧀ꦗ", "Ja"),
+            Kamus(34, "꧀ꦪ", "Ya"),
+            Kamus(35, "꧀ꦚ", "Nya"),
+
+            Kamus(36, "꧀ꦩ", "Ma"),
+            Kamus(37, "꧀ꦒ", "Ga"),
+            Kamus(38, "꧀ꦧ", "Ba"),
+            Kamus(39, "꧀ꦠ", "Ta"),
+            Kamus(40, "꧀ꦔ", "Nga"),
+
+            Kamus(41, "ꦶ", "i"),
+            Kamus(42, "ꦺ", "è"),
+            Kamus(43, "ꦺꦴ", "o"),
+            Kamus(44, "ꦸ", "u"),
+            Kamus(45, "ꦼ", "e"),
+            Kamus(46, "ꦁ", "-ng"),
+            Kamus(47, "ꦂ", "-r"),
+            Kamus(48, "ꦃ", "-h"),
+        )
+    }
+
+    fun getPenggunaanKamus(): List<Penggunaan>{
+        return listOf(
+            Penggunaan(1,1,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(2,1,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(3,2,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(4,2,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(5,3,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(6,3,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(7,4,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(8,4,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(9,5,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(10,5,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(11,6,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(12,6,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(13,7,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(14,7,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(15,8,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(16,8,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(17,9,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(18,9,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(19,10,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(20,10,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(21,11,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(22,11,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(23,12,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(24,12,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(25,13,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(26,13,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(27,14,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(28,14,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(29,15,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(30,15,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(31,16,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(32,16,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(33,17,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(34,17,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(35,18,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(36,18,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(37,19,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(38,19,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+            Penggunaan(39,20,"ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat"),
+            Penggunaan(40,20,"ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu"),
+        )
+    }
+
 }

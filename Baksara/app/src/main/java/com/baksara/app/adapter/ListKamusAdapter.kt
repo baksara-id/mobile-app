@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.baksara.app.database.KamusBelajar
 import com.baksara.app.databinding.ItemKamusBinding
+import com.baksara.app.ui.DetailKamusActivity
+
 class ListKamusAdapter(private val kamus: List<KamusBelajar>): RecyclerView.Adapter<ListKamusAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(private val binding: ItemKamusBinding) :
@@ -16,9 +18,9 @@ class ListKamusAdapter(private val kamus: List<KamusBelajar>): RecyclerView.Adap
             binding.tvItemLogo.text = kamus.aksara
 
             binding.cardViewKamusAksara.setOnClickListener {
-//                val intent = Intent(itemView.context, DetailCeritaActivity::class.java)
-//                intent.putExtra(DetailCeritaActivity.CERITA_ID, cerita.id)
-//                itemView.context.startActivity(intent)
+                val intent = Intent(itemView.context, DetailKamusActivity::class.java)
+                intent.putExtra(DetailKamusActivity.KAMUSID, kamus.id)
+                itemView.context.startActivity(intent)
             }
         }
     }

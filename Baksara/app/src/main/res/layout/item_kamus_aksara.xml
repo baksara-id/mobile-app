@@ -26,14 +26,14 @@
             android:fontFamily="@font/poppins"
             android:gravity="center"
             android:text="@string/hancaraka_placeholder"
-            android:textSize="28sp" />
+            android:textSize="38sp" />
 
         <TextView
             android:id="@+id/tv_latin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/main_300"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/poppins_bold"
             android:gravity="center"
             android:text="@string/ha_placeholder"
             android:textColor="@color/neutral_white"
