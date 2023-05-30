@@ -16,7 +16,10 @@
         android:theme="@style/Theme.Baksara"
         tools:targetApi="31">
         <activity
-            android:name=".DetailCeritaActivity"
+            android:name=".ui.DetailCeritaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.tantangan.TantanganActivity"
             android:exported="false" />
         <activity
             android:name=".ui.soal.SoalActivity"

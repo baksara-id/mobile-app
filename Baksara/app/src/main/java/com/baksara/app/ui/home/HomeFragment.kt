@@ -1,5 +1,7 @@
 package com.baksara.app.ui.home
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +13,8 @@ import com.baksara.app.adapter.ListTantanganAdapter
 import com.baksara.app.databinding.FragmentHomeBinding
 import com.baksara.app.helper.InitialDataSource.getModuls
 import com.baksara.app.helper.InitialDataSource.getTantangans
+import com.baksara.app.ui.MainActivity
+import com.baksara.app.ui.tantangan.TantanganActivity
 
 
 class HomeFragment : Fragment() {
@@ -29,6 +33,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupTantanganAdapter()
         setupModulAdapter()
+        binding.btnTantanganSelengkapnya.setOnClickListener {
+            val intent = Intent(activity, TantanganActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupTantanganAdapter(){

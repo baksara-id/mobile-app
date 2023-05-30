@@ -55,7 +55,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtLoginPage" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txt_login_email"
+                android:id="@+id/txt_tantangan_search"
                 style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
                 app:startIconTint="@color/main_300">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input_login_email"
+                    android:id="@+id/input_tantangan_search"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:fontFamily="@font/poppins_light"
@@ -100,7 +100,7 @@
                 app:hintEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_login_email"
+                app:layout_constraintTop_toBottomOf="@+id/txt_tantangan_search"
                 app:startIconDrawable="@drawable/lock_icon"
                 app:startIconTint="@color/main_300">
 
