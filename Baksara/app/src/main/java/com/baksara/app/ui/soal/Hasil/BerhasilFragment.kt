@@ -30,18 +30,13 @@ class BerhasilFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        handler = Handler()
         fadeInAnimator = ObjectAnimator.ofFloat(binding.tvBerhasilExp, "alpha", 0f, 1f)
             .apply {
-                duration = 500
+                duration = 2000
                 doOnEnd { binding.tvBerhasilExp.visibility = View.VISIBLE }
             }
 
-        delayedRunnable = Runnable {
-            fadeInAnimator.start()
-        }
-
-        handler.postDelayed(delayedRunnable, 1000)
+        fadeInAnimator.start()
 
         binding.btnKembaliKelas.setOnClickListener {
             activity?.finish()

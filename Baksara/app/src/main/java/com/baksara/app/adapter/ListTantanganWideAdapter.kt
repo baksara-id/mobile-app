@@ -1,5 +1,6 @@
 package com.baksara.app.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +9,7 @@ import com.baksara.app.databinding.ItemTantanganWideBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.TransformationUtils.centerCrop
 
-class ListTantanganWideAdapter(private val tantangans: List<Tantangan>): RecyclerView.Adapter<ListTantanganWideAdapter.ListViewHolder>() {
+class ListTantanganWideAdapter(var tantangans: List<Tantangan>): RecyclerView.Adapter<ListTantanganWideAdapter.ListViewHolder>() {
     inner class ListViewHolder(private val binding: ItemTantanganWideBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(tantangan: Tantangan, position:Int){
             binding.tvXpTantangan.text =tantangan.nama
@@ -32,4 +33,10 @@ class ListTantanganWideAdapter(private val tantangans: List<Tantangan>): Recycle
     }
 
     override fun getItemCount(): Int = tantangans.size
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setListTantangan(newTantangans: List<Tantangan>) {
+        tantangans = newTantangans
+        notifyDataSetChanged()
+    }
 }

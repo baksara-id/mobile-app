@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import com.baksara.app.R
 import com.baksara.app.database.SoalPilihan
@@ -18,10 +19,6 @@ class PilihanFragment : Fragment() {
 
     private var _binding: FragmentPilihanBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,52 +62,65 @@ class PilihanFragment : Fragment() {
         val bundle = Bundle()
         bundle.putInt(PELAJARAN_ID, pelajaranId)
         bundle.putInt(URUTAN_SOAL, nomorUrutan + 1)
-        button.setTextColor(resources.getColor(R.color.accent_white))
-        if (pilihan == jawaban){
-            button.background.setTint(resources.getColor(R.color.success))
-            if(nomorUrutan != 5){
-                Handler().postDelayed({
-                    val pilihanFragment = PilihanFragment()
-                    pilihanFragment.arguments = bundle
-                    val fragmentManager = parentFragmentManager
-                    fragmentManager.beginTransaction().apply {
-                        replace(R.id.frame_pelajaran, pilihanFragment, PilihanFragment::class.java.simpleName)
-                        addToBackStack(null)
-                        commit()
-                    }
-                }, 2000)
 
-            }else{
-                val berhasilFragment = BerhasilFragment()
-                val fragmentManager = parentFragmentManager
-                Handler().postDelayed({
-                    fragmentManager.beginTransaction().apply {
-                        replace(R.id.frame_pelajaran, berhasilFragment, BerhasilFragment::class.java.simpleName)
-                        addToBackStack(null)
-                        commit()
-                    }
-                }, 1000)
-            }
-        }else{
+        disableButton()
+
+        button.setTextColor(resources.getColor(R.color.accent_white))
+        if (pilihan == jawaban) {
+            button.background.setTint(resources.getColor(R.color.success))
+        }else {
             button.background.setTint(resources.getColor(R.color.danger))
+        }
+
+        if(nomorUrutan != 5){
+            val pilihanFragment = PilihanFragment()
+            pilihanFragment.arguments = bundle
+            val fragmentManager = parentFragmentManager
+
             Handler().postDelayed({
-                val pilihanFragment = PilihanFragment()
-                pilihanFragment.arguments = bundle
-                val fragmentManager = parentFragmentManager
+                binding.root.isClickable = false
+                binding.root.isFocusable = false
                 fragmentManager.beginTransaction().apply {
-                    replace(R.id.frame_pelajaran, pilihanFragment, PilihanFragment::class.java.simpleName)
+                    replace(
+                        R.id.frame_pelajaran,
+                        pilihanFragment,
+                        PilihanFragment::class.java.simpleName
+                    )
                     addToBackStack(null)
                     commit()
                 }
-            }, 1000)        }
+            }, 1000)
+        }else{
+            val berhasilFragment = BerhasilFragment()
+            val fragmentManager = parentFragmentManager
+
+            Handler().postDelayed({
+                fragmentManager.beginTransaction().apply {
+                    replace(R.id.frame_pelajaran, berhasilFragment, BerhasilFragment::class.java.simpleName)
+                    addToBackStack(null)
+                    commit()
+                }
+            }, 1000)
+        }
     }
+
+    private fun disableButton(){
+        binding.btnPilihan1.isEnabled = false
+        binding.btnPilihan1.isClickable = false
+        binding.btnPilihan2.isEnabled = false
+        binding.btnPilihan2.isClickable = false
+        binding.btnPilihan3.isEnabled = false
+        binding.btnPilihan3.isClickable = false
+        binding.btnPilihan4.isEnabled = false
+        binding.btnPilihan4.isClickable = false
+    }
+
 
     fun soalPilihan(pelajaranId: Int, nomor: Int): SoalPilihan {
         return InitialDataSource.getSoalPilihan().first{
             it.pelajaranId == pelajaranId && it.urutan == nomor
         }
     }
-
     companion object {
         var PELAJARAN_ID = "pelajaran_id"
         var URUTAN_SOAL = "soal_id"
