@@ -11,6 +11,7 @@ class ContohKamusActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityContohKamusBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
     }
 
     companion object {

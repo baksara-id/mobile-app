@@ -21,6 +21,7 @@
     <string name="nama_tantangan">Nama Tantangan</string>
     <string name="hancaraka_placeholder">ꦲ</string>
     <string name="ha_placeholder">Ha</string>
+    <string name="ha">ꦲ</string>
     <string name="na_placeholder">Na</string>
     <string name="ca_placeholder">Ca</string>
     <string name="ra_placeholder">Ra</string>
@@ -52,6 +53,13 @@
     <string name="cari_cerita">Cari Cerita</string>
     <string name="judul_kamus">Carakan</string>
     <string name="deskripsi_kamus">Carakan merupakan kata dasar Aksara Jawa yang berjumlah 20 aksara pokok dan bersifat kesukukataan.  </string>
+    <string name="pustaka_aksara">Aksara</string>
+    <string name="pustaka_latin">Latin</string>
+    <string name="pustaka_contoh_aksara1">ꦲꦫꦶꦆꦤꦶ</string>
+    <string name="pustaka_contoh_aksara2">ꦲꦶꦗꦻꦴꦣꦻꦴꦤ꧀</string>
+    <string name="pustaka_contoh_latin1">Hari Ini</string>
+    <string name="pustaka_contoh_latin2">Hijau Daun</string>
+    <string name="contoh_penggunaan">Contoh Penggunaan</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
