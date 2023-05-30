@@ -5,8 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.baksara.app.R
+import com.baksara.app.adapter.ListCeritaAdapter
+import com.baksara.app.adapter.ListModulAdapter
+import com.baksara.app.adapter.ListTantanganAdapter
 import com.baksara.app.databinding.FragmentCeritaBinding
+import com.baksara.app.helper.InitialDataSource
 
 class CeritaFragment : Fragment() {
     private var _binding: FragmentCeritaBinding? = null
@@ -14,7 +19,6 @@ class CeritaFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
         }
     }
 
@@ -22,8 +26,20 @@ class CeritaFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cerita, container, false)
+        _binding = FragmentCeritaBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupCeritaAdapter()
+    }
+
+    private fun setupCeritaAdapter(){
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding.rvCerita.layoutManager = layoutManager
+        val adapter = ListCeritaAdapter(InitialDataSource.getCeritas())
+        binding.rvCerita.adapter = adapter
     }
 
     companion object {

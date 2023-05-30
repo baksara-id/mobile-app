@@ -147,3 +147,11 @@ data class Artikel(
     val deskripsi: String,
     val url_img: String,
 )
+
+data class KamusBelajar(
+    val id:Int,
+    val jumlah: String,
+    val aksara: String,
+    val latin: String,
+    val judul: String,
+)

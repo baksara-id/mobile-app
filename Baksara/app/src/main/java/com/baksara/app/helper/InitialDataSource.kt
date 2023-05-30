@@ -1,11 +1,6 @@
 package com.baksara.app.helper
 
-import com.baksara.app.database.Modul
-import com.baksara.app.database.Pelajaran
-import com.baksara.app.database.SoalBaca
-import com.baksara.app.database.SoalGambar
-import com.baksara.app.database.SoalPilihan
-import com.baksara.app.database.Tantangan
+import com.baksara.app.database.*
 
 object InitialDataSource {
     fun getModuls(): List<Modul>{
@@ -113,6 +108,26 @@ object InitialDataSource {
             Tantangan(1, "Tantangan 1", 150, "ꦱꦶꦤꦲꦸꦠꦼꦩ꧀ꦧꦁꦩꦕꦥꦠ꧀", "Keraton Yogyakarta Hadiningrat", "https://en.wikipedia.org/wiki/File:Kraton_Yogyakarta_Pagelaran.jpg"),
             Tantangan(2, "Tantangan 2", 150, "ꦮꦼꦢꦁꦧꦸꦧꦸꦏ꧀ꦠꦤ꧀ꦥꦒꦸꦭ", "Wedang Bubuk Tanpa Gula", "https://akcdn.detik.net.id/community/media/visual/2021/06/23/resep-wedang-jahe-susu_43.jpeg?w=700&q=90"),
             Tantangan(3, "Tantangan 3", 150, "ꦩꦔꦤ꧀ꦱꦼꦒꦠꦺꦩ꧀ꦥꦺꦏꦫꦺꦴꦠꦲꦸ", "Mangan Sega Tempe Karo Tahu", "https://www.astronauts.id/blog/wp-content/uploads/2022/08/Makanan-Khas-Daerah-tiap-Provinsi-di-Indonesia-Serta-Daerah-Asalnya.jpg"),
+        )
+    }
+
+    fun getCeritas(): List<Cerita>{
+        return listOf(
+            Cerita(1, "Arjuna 1","Deskripsi Arjuna","https://png.pngtree.com/png-clipart/20221125/ourlarge/pngtree-javanese-arjuna-wayang-png-image_6479984.png"),
+            Cerita(2, "Arjuna 2","Deskripsi Arjuna","https://png.pngtree.com/png-clipart/20221125/ourlarge/pngtree-javanese-arjuna-wayang-png-image_6479984.png"),
+            Cerita(3, "Arjuna 3","Deskripsi Arjuna","https://png.pngtree.com/png-clipart/20221125/ourlarge/pngtree-javanese-arjuna-wayang-png-image_6479984.png"),
+            Cerita(4, "Arjuna 4","Deskripsi Arjuna","https://png.pngtree.com/png-clipart/20221125/ourlarge/pngtree-javanese-arjuna-wayang-png-image_6479984.png"),
+            Cerita(5, "Arjuna 5","Deskripsi Arjuna","https://png.pngtree.com/png-clipart/20221125/ourlarge/pngtree-javanese-arjuna-wayang-png-image_6479984.png"),
+            Cerita(6, "Arjuna 6","Deskripsi Arjuna","https://png.pngtree.com/png-clipart/20221125/ourlarge/pngtree-javanese-arjuna-wayang-png-image_6479984.png"),
+            Cerita(7, "Arjuna 7","Deskripsi Arjuna","https://png.pngtree.com/png-clipart/20221125/ourlarge/pngtree-javanese-arjuna-wayang-png-image_6479984.png"),
+        )
+    }
+
+    fun getListKamus(): List<KamusBelajar>{
+        return listOf(
+            KamusBelajar(1,"20 Aksara","ꦲ", "Ha", "Carakan"),
+            KamusBelajar(2,"26 Aksara","ꦲ", "Ha","Sandhangan"),
+            KamusBelajar(3,"28 Aksara","ꦲ", "Ha","Pasangan"),
         )
     }
 }

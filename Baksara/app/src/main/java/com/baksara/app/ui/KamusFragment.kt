@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.baksara.app.R
+import androidx.recyclerview.widget.GridLayoutManager
+import com.baksara.app.adapter.ListKamusAdapter
 import com.baksara.app.databinding.FragmentKamusBinding
+import com.baksara.app.helper.InitialDataSource
 
 class KamusFragment : Fragment() {
     private var _binding: FragmentKamusBinding? = null
@@ -14,7 +16,6 @@ class KamusFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
         }
     }
 
@@ -22,8 +23,20 @@ class KamusFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_kamus, container, false)
+        _binding = FragmentKamusBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupListKamus()
+    }
+
+    private fun setupListKamus(){
+        val layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.rvListkamus.layoutManager = layoutManager
+        val adapter = ListKamusAdapter(InitialDataSource.getListKamus())
+        binding.rvListkamus.adapter = adapter
     }
 
     companion object {

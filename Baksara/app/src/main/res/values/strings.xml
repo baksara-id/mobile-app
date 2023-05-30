@@ -50,6 +50,8 @@
     <string name="tab_translator">Translator</string>
     <string name="pilih_cerita">Pilih Cerita</string>
     <string name="cari_cerita">Cari Cerita</string>
+    <string name="judul_kamus">Carakan</string>
+    <string name="deskripsi_kamus">Carakan merupakan kata dasar Aksara Jawa yang berjumlah 20 aksara pokok dan bersifat kesukukataan.  </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
