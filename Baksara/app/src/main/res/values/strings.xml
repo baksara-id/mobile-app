@@ -60,6 +60,10 @@
     <string name="pustaka_contoh_latin1">Hari Ini</string>
     <string name="pustaka_contoh_latin2">Hijau Daun</string>
     <string name="contoh_penggunaan">Contoh Penggunaan</string>
+    <string name="aksara_latin">Aksara Latin</string>
+    <string name="masukan_huruf_latin">Masukan Huruf Latin</string>
+    <string name="hasil_aksara_jawa">Hasil Aksara Jawa</string>
+    <string name="aksara_jawa">Aksara Jawa</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

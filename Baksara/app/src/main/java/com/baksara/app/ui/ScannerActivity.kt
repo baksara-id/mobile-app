@@ -1,12 +1,20 @@
 package com.baksara.app.ui
 
+import android.app.AlertDialog
 import android.app.Application
+import android.content.Context
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -29,8 +37,24 @@ class ScannerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityScannerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.captureImage.setOnClickListener { takePhoto() }
+        val preferences = this.getSharedPreferences(SCANNERPREF, Context.MODE_PRIVATE)
+        var langganan = false
+        binding.captureImage.setOnClickListener {
+            if(preferences.getBoolean(LIMITREACH, false)){
+                showMaxLimitScanDialog(this, langganan)
+            }
+            else{
+                val editor = preferences.edit()
+                val currentLimit = preferences.getInt(CURRENTLIMIT, 0) + 1
+                editor.putInt(CURRENTLIMIT, currentLimit)
+                Log.d("limit", currentLimit.toString())
+                if(currentLimit >= 3){
+                    editor.putBoolean(LIMITREACH, true)
+                }
+                editor.apply()
+                takePhoto()
+            }
+        }
     }
 
     public override fun onResume() {
@@ -73,7 +97,6 @@ class ScannerActivity : AppCompatActivity() {
         val imageCapture = imageCapture ?: return
 
         val photoFile = createFile(application)
-
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
         imageCapture.takePicture(
             outputOptions,
@@ -127,5 +150,39 @@ class ScannerActivity : AppCompatActivity() {
             )
         }
         supportActionBar?.hide()
+    }
+
+    private fun showMaxLimitScanDialog(context: Context, langganan: Boolean) {
+        val builder = AlertDialog.Builder(context)
+        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val dialogView: View = inflater.inflate(R.layout.item_dialog_information, null)
+
+
+        val imgInformation: ImageView = dialogView.findViewById(R.id.img_information)
+        val textTitle: TextView = dialogView.findViewById(R.id.tv_information_title)
+        val textDesc: TextView = dialogView.findViewById(R.id.tv_information_description)
+        val buttonInformation: Button = dialogView.findViewById(R.id.btn_information)
+
+        imgInformation.setImageResource(R.drawable.img_logo_information)
+        textTitle.text = "Pesan Informasi"
+
+        if (!langganan) {
+            textDesc.text = "Batas scanning anda sudah habis. Lakukan pembelian langganan untuk melakukan scanning."
+            buttonInformation.text = "Mengerti"
+        }
+
+        builder.setView(dialogView)
+        val dialog: AlertDialog = builder.create()
+        buttonInformation.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    companion object{
+        const val SCANNERPREF = "scannerpref"
+        const val LIMITREACH = "limitreach"
+        const val CURRENTLIMIT = "limit"
     }
 }

@@ -20,7 +20,7 @@ class ListCeritaAdapter(private val ceritas: List<Cerita>): RecyclerView.Adapter
 
             Glide.with(this.itemView)
                 .load(cerita.url_img)
-                .placeholder(R.drawable.arjunadummy)
+                .placeholder(R.drawable.arjunadummy2)
                 .fitCenter()
                 .into(binding.imageView);
 

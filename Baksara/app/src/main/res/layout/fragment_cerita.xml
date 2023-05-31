@@ -19,12 +19,14 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="18dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/pilih_cerita"
                 android:textColor="@color/main_400"
                 android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,24 +34,31 @@
                 android:id="@+id/txt_cari_cerita"
                 style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="18dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="14dp"
-                android:layout_marginEnd="18dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_input_editor"
+                android:hint="@string/cari_cerita"
                 app:endIconDrawable="@drawable/filter"
+                app:endIconMode="custom"
+                app:endIconTint="@color/main_300"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
-                app:startIconDrawable="@drawable/search">
+                app:startIconDrawable="@drawable/search"
+                app:startIconTint="@color/main_300">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
                     android:fontFamily="@font/poppins_light"
-                    android:hint="@string/cari_cerita"
-                    android:textColor="@color/main_75"
-                    android:textSize="14sp" />
+                    android:inputType="textPersonName"
+                    android:letterSpacing="0"
+                    android:textColor="@color/neutral_200"
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.recyclerview.widget.RecyclerView
