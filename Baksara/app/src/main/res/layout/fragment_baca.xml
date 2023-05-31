@@ -16,7 +16,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="64dp"
             android:layout_marginEnd="48dp"
             android:fontFamily="@font/poppins"
             android:gravity="center"
@@ -30,7 +30,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_soal_baca"
             android:layout_width="350dp"
-            android:layout_height="300dp"
+            android:layout_height="350dp"
             android:layout_marginTop="32dp"
             android:background="@color/main_300"
             android:padding="4dp"

@@ -118,7 +118,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_label_jawaban_tantangan">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_jawaban_tantangan"
+            android:id="@+id/input_jawab_tantangan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/accent_white"

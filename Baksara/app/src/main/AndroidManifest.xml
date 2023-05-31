@@ -17,6 +17,18 @@
         android:theme="@style/Theme.Baksara"
         tools:targetApi="31">
         <activity
+            android:name=".ui.profil.tentangaplikasi.TentangAplikasiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profil.laporkanmasalah.LaporkanMasalahActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profil.bantuan.BantuanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profil.pencapaian.PencapaianActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ContohKamusActivity"
             android:exported="false" />
         <activity

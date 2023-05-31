@@ -18,6 +18,9 @@ class SoalTantanganActivity : AppCompatActivity() {
         _binding = ActivitySoalTantanganBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Soal Tantangan"
+
         setTantanganData()
     }
 
@@ -28,7 +31,7 @@ class SoalTantanganActivity : AppCompatActivity() {
         binding.tvDeskripsiSoalTantangan.text = tantangan.deskripsi
         binding.btnJawabTantangan.setOnClickListener {
             val intent: Intent
-            if(binding.inputJawabanTantangan.text.toString().lowercase() == tantangan.kunci_jawaban.lowercase()){
+            if(binding.inputJawabTantangan.text.toString().lowercase() == tantangan.kunci_jawaban.lowercase()){
                 intent = Intent(this, BerhasilTantanganActivity::class.java)
             }else{
                 intent = Intent(this, GagalTantanganActivity::class.java)

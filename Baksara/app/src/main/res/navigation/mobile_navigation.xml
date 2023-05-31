@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/navigation_profil"
-        android:name="com.baksara.app.ui.ProfilFragment"
+        android:name="com.baksara.app.ui.profil.ProfilFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profil"
         />

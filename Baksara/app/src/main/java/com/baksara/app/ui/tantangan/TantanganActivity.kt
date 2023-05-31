@@ -20,6 +20,9 @@ class TantanganActivity : AppCompatActivity() {
         _binding = ActivityTantanganBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Tantangan"
+
         setupTantanganAdapter()
     }
 
