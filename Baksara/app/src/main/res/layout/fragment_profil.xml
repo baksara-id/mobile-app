@@ -79,6 +79,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/label_akun" />
 
             <View
+                android:id="@+id/view7"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginStart="16dp"
@@ -122,6 +123,28 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_ubah" />
 
+            <Button
+                android:id="@+id/btn_langganan"
+                style="@android:style/Widget.Material.Button.Borderless.Small"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:capitalize="none"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="start|center_vertical"
+                android:text="Langganan"
+                android:textAllCaps="false"
+                android:textColor="@color/neutral_800"
+                app:icon="@drawable/ic_arrow_forward"
+                app:iconGravity="end"
+                app:iconSize="16dp"
+                app:iconTint="@color/neutral_800"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_ubah" />
+
             <TextView
                 android:id="@+id/label_lainnya"
                 android:layout_width="wrap_content"
@@ -133,7 +156,7 @@
                 android:textColor="@color/main_400"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_langganan" />
 
             <Button
                 android:id="@+id/btn_bantuan"

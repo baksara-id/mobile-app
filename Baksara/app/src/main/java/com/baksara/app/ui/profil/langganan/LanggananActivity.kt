@@ -1,4 +1,4 @@
-package com.baksara.app.ui.profil.laporkanmasalah
+package com.baksara.app.ui.profil.langganan
 
 import android.app.AlertDialog
 import android.content.Context
@@ -11,20 +11,24 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.baksara.app.R
 import com.baksara.app.databinding.ActivityLanggananBinding
-import com.baksara.app.databinding.ActivityLaporkanMasalahBinding
 
-class LaporkanMasalahActivity : AppCompatActivity() {
-    private var _binding: ActivityLaporkanMasalahBinding? = null
+class LanggananActivity : AppCompatActivity() {
+    private var _binding: ActivityLanggananBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityLaporkanMasalahBinding.inflate(layoutInflater)
+        _binding = ActivityLanggananBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Laporkan Masalah"
+        supportActionBar?.title = "Langganan"
+
+        binding.btnBeli.setOnClickListener {
+            showDialogBeli(this)
+        }
     }
 
-    private fun showDialogLapor(context: Context) {
+    private fun showDialogBeli(context: Context) {
         val builder = AlertDialog.Builder(context)
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val dialogView: View = inflater.inflate(R.layout.item_dialog_information, null)
@@ -36,8 +40,8 @@ class LaporkanMasalahActivity : AppCompatActivity() {
         val buttonInformation: Button = dialogView.findViewById(R.id.btn_information)
 
         imgInformation.setImageResource(R.drawable.img_logo_confirmation)
-        textTitle.text = "Laporan Terkirim"
-        textDesc.text = "Laporan anda telah terkirim ke tim baksara. Permasalahan anda akan segera kami atasi."
+        textTitle.text = "Pembelian Berhasil"
+        textDesc.text = "Selamat anda telah menjadi user premium. Hak akses fitur premium telah diberikan."
         buttonInformation.text = "Mengerti"
         buttonInformation.background.setTint(resources.getColor(R.color.success))
 

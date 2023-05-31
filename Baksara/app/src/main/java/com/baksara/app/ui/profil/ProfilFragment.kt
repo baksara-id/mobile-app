@@ -15,8 +15,10 @@ import com.baksara.app.R
 import com.baksara.app.databinding.FragmentProfilBinding
 import com.baksara.app.ui.LoginActivity
 import com.baksara.app.ui.profil.bantuan.BantuanActivity
+import com.baksara.app.ui.profil.langganan.LanggananActivity
 import com.baksara.app.ui.profil.laporkanmasalah.LaporkanMasalahActivity
 import com.baksara.app.ui.profil.pencapaian.PencapaianActivity
+import com.baksara.app.ui.profil.tentangaplikasi.TentangAplikasiActivity
 import com.baksara.app.ui.tantangan.hasil.BerhasilTantanganActivity
 
 class ProfilFragment : Fragment() {
@@ -48,6 +50,11 @@ class ProfilFragment : Fragment() {
 
         }
 
+        binding.btnLangganan.setOnClickListener {
+            val intent = Intent(activity, LanggananActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.btnBantuan.setOnClickListener {
             val intent = Intent(activity, BantuanActivity::class.java)
             startActivity(intent)
@@ -55,6 +62,11 @@ class ProfilFragment : Fragment() {
 
         binding.btnLaporkan.setOnClickListener {
             val intent = Intent(activity, LaporkanMasalahActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnTentang.setOnClickListener {
+            val intent = Intent(activity, TentangAplikasiActivity::class.java)
             startActivity(intent)
         }
 
