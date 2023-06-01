@@ -21,7 +21,7 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/tv_judul"
+            android:id="@+id/tv_judul_artikel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -46,11 +46,11 @@
             android:textSize="18sp"
             android:textStyle="bold"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_judul"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_judul_artikel"
             tools:text="@string/hancaraka_lengkap_placeholder" />
 
         <TextView
-            android:id="@+id/tv_deskripsi"
+            android:id="@+id/tv_deskripsi_artikel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"

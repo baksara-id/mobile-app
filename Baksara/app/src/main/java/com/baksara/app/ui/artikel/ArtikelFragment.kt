@@ -1,4 +1,4 @@
-package com.baksara.app.ui
+package com.baksara.app.ui.artikel
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

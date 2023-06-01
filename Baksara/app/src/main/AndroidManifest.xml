@@ -20,6 +20,9 @@
             android:name=".ui.TransliterasiActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.artikel.DetailArtikelActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.profil.langganan.LanggananActivity"
             android:exported="false" />
         <activity

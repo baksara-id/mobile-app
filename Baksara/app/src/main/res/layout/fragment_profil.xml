@@ -44,221 +44,281 @@
                 app:strokeColor="@color/neutral_300"
                 app:strokeWidth="2dp" />
 
-            <TextView
-                android:id="@+id/label_akun"
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_akun"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Akun"
-                android:textColor="@color/main_400"
-                android:textSize="16sp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/badge_user" />
+                app:layout_constraintTop_toBottomOf="@+id/badge_user">
 
-            <Button
-                android:id="@+id/btn_pencapaian"
-                style="@android:style/Widget.Material.Button.Borderless.Small"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/label_akun"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Akun"
+                        android:textColor="@color/main_400"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/btn_pencapaian"
+                        style="@android:style/Widget.Material.Button.Borderless.Small"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:capitalize="none"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="start|center_vertical"
+                        android:text="Pencapaian"
+                        android:textAllCaps="false"
+                        android:textColor="@color/neutral_800"
+                        app:icon="@drawable/ic_arrow_forward"
+                        app:iconGravity="end"
+                        app:iconSize="16dp"
+                        app:iconTint="@color/neutral_800"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/label_akun" />
+
+                    <View
+                        android:id="@+id/view7"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@color/neutral_300"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_pencapaian" />
+
+                    <Button
+                        android:id="@+id/btn_ubah"
+                        style="@android:style/Widget.Material.Button.Borderless.Small"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:capitalize="none"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="start|center_vertical"
+                        android:text="Ubah Data"
+                        android:textAllCaps="false"
+                        android:textColor="@color/neutral_800"
+                        app:icon="@drawable/ic_arrow_forward"
+                        app:iconGravity="end"
+                        app:iconSize="16dp"
+                        app:iconTint="@color/neutral_800"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_pencapaian" />
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@color/neutral_300"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_ubah" />
+
+                    <Button
+                        android:id="@+id/btn_langganan"
+                        style="@android:style/Widget.Material.Button.Borderless.Small"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:capitalize="none"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="start|center_vertical"
+                        android:text="Langganan"
+                        android:textAllCaps="false"
+                        android:textColor="@color/neutral_800"
+                        app:icon="@drawable/ic_arrow_forward"
+                        app:iconGravity="end"
+                        app:iconSize="16dp"
+                        app:iconTint="@color/neutral_800"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_ubah" />
+
+                    <View
+                        android:id="@+id/view8"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@color/neutral_300"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_langganan" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_lainnya"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:capitalize="none"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="start|center_vertical"
-                android:text="Pencapaian"
-                android:textAllCaps="false"
-                android:textColor="@color/neutral_800"
-                app:icon="@drawable/ic_arrow_forward"
-                app:iconGravity="end"
-                app:iconSize="16dp"
-                app:iconTint="@color/neutral_800"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/label_akun" />
+                app:layout_constraintTop_toBottomOf="@+id/cv_akun">
 
-            <View
-                android:id="@+id/view7"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/neutral_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_pencapaian" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/btn_ubah"
-                style="@android:style/Widget.Material.Button.Borderless.Small"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:capitalize="none"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="start|center_vertical"
-                android:text="Ubah Data"
-                android:textAllCaps="false"
-                android:textColor="@color/neutral_800"
-                app:icon="@drawable/ic_arrow_forward"
-                app:iconGravity="end"
-                app:iconSize="16dp"
-                app:iconTint="@color/neutral_800"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_pencapaian" />
+                    <TextView
+                        android:id="@+id/label_lainnya"
+                        android:layout_width="wrap_content"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Lainnya"
+                        android:textColor="@color/main_400"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <View
-                android:id="@+id/view"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/neutral_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_ubah" />
+                    <Button
+                        android:id="@+id/btn_bantuan"
+                        style="@android:style/Widget.Material.Button.Borderless.Small"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:capitalize="none"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="start|center_vertical"
+                        android:text="Bantuan"
+                        android:textAllCaps="false"
+                        android:textColor="@color/neutral_800"
+                        app:icon="@drawable/ic_arrow_forward"
+                        app:iconGravity="end"
+                        app:iconSize="16dp"
+                        app:iconTint="@color/neutral_800"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/label_lainnya" />
 
-            <Button
-                android:id="@+id/btn_langganan"
-                style="@android:style/Widget.Material.Button.Borderless.Small"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:capitalize="none"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="start|center_vertical"
-                android:text="Langganan"
-                android:textAllCaps="false"
-                android:textColor="@color/neutral_800"
-                app:icon="@drawable/ic_arrow_forward"
-                app:iconGravity="end"
-                app:iconSize="16dp"
-                app:iconTint="@color/neutral_800"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_ubah" />
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@color/neutral_300"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_bantuan" />
 
-            <TextView
-                android:id="@+id/label_lainnya"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Lainnya"
-                android:textColor="@color/main_400"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_langganan" />
+                    <Button
+                        android:id="@+id/btn_laporkan"
+                        style="@android:style/Widget.Material.Button.Borderless.Small"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:capitalize="none"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="start|center_vertical"
+                        android:text="Laporkan Masalah"
+                        android:textAllCaps="false"
+                        android:textColor="@color/neutral_800"
+                        app:icon="@drawable/ic_arrow_forward"
+                        app:iconGravity="end"
+                        app:iconSize="16dp"
+                        app:iconTint="@color/neutral_800"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.52"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_bantuan" />
 
-            <Button
-                android:id="@+id/btn_bantuan"
-                style="@android:style/Widget.Material.Button.Borderless.Small"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:capitalize="none"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="start|center_vertical"
-                android:text="Bantuan"
-                android:textAllCaps="false"
-                android:textColor="@color/neutral_800"
-                app:icon="@drawable/ic_arrow_forward"
-                app:iconGravity="end"
-                app:iconSize="16dp"
-                app:iconTint="@color/neutral_800"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/label_lainnya" />
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@color/neutral_300"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_laporkan" />
 
-            <View
-                android:id="@+id/view2"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/neutral_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_bantuan" />
+                    <Button
+                        android:id="@+id/btn_tentang"
+                        style="@android:style/Widget.Material.Button.Borderless.Small"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:capitalize="none"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="start|center_vertical"
+                        android:text="Tentang Aplikasi"
+                        android:textAllCaps="false"
+                        android:textColor="@color/neutral_800"
+                        app:icon="@drawable/ic_arrow_forward"
+                        app:iconGravity="end"
+                        app:iconSize="16dp"
+                        app:iconTint="@color/neutral_800"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.51"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_laporkan" />
 
-            <Button
-                android:id="@+id/btn_laporkan"
-                style="@android:style/Widget.Material.Button.Borderless.Small"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:capitalize="none"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="start|center_vertical"
-                android:text="Laporkan Masalah"
-                android:textAllCaps="false"
-                android:textColor="@color/neutral_800"
-                app:icon="@drawable/ic_arrow_forward"
-                app:iconGravity="end"
-                app:iconSize="16dp"
-                app:iconTint="@color/neutral_800"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.52"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_bantuan" />
+                    <View
+                        android:id="@+id/view4"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@color/neutral_300"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_tentang" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <View
-                android:id="@+id/view3"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/neutral_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_laporkan" />
 
-            <Button
-                android:id="@+id/btn_tentang"
-                style="@android:style/Widget.Material.Button.Borderless.Small"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:capitalize="none"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="start|center_vertical"
-                android:text="Tentang Aplikasi"
-                android:textAllCaps="false"
-                android:textColor="@color/neutral_800"
-                app:icon="@drawable/ic_arrow_forward"
-                app:iconGravity="end"
-                app:iconSize="16dp"
-                app:iconTint="@color/neutral_800"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.51"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_laporkan" />
+            </androidx.cardview.widget.CardView>
 
-            <View
-                android:id="@+id/view4"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/neutral_300"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_tentang" />
 
             <Button
                 android:id="@+id/btn_logout"
@@ -279,7 +339,7 @@
                 app:cornerRadius="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view4" />
+                app:layout_constraintTop_toBottomOf="@+id/cv_lainnya" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
