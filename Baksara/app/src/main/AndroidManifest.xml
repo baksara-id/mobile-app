@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Baksara"
         tools:targetApi="31">
         <activity
-            android:name=".ui.TransliterasiActivity"
+            android:name=".ui.scanner.TransliterasiActivity"
             android:exported="false" />
         <activity
             android:name=".ui.artikel.DetailArtikelActivity"
@@ -38,10 +38,10 @@
             android:name=".ui.profil.pencapaian.PencapaianActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ContohKamusActivity"
+            android:name=".ui.pustaka.ContohKamusActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.DetailKamusActivity"
+            android:name=".ui.pustaka.DetailKamusActivity"
             android:exported="false" />
         <activity
             android:name=".ui.tantangan.hasil.GagalTantanganActivity"
@@ -53,7 +53,7 @@
             android:name=".ui.tantangan.SoalTantanganActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.DetailCeritaActivity"
+            android:name=".ui.pustaka.DetailCeritaActivity"
             android:exported="false" />
         <activity
             android:name=".ui.tantangan.TantanganActivity"
@@ -68,7 +68,7 @@
             android:name=".ui.OnBoardingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ScannerActivity"
+            android:name=".ui.scanner.ScannerActivity"
             android:exported="false" />
         <activity
             android:name=".ui.SplashActivity"

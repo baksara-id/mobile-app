@@ -15,6 +15,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.baksara.app.R
 import com.baksara.app.databinding.ActivityMainBinding
+import com.baksara.app.ui.scanner.ScannerActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

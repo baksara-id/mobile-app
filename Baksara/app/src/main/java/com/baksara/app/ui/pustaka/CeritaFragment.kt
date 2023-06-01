@@ -1,4 +1,4 @@
-package com.baksara.app.ui
+package com.baksara.app.ui.pustaka
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,10 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.baksara.app.R
 import com.baksara.app.adapter.ListCeritaAdapter
-import com.baksara.app.adapter.ListModulAdapter
-import com.baksara.app.adapter.ListTantanganAdapter
 import com.baksara.app.databinding.FragmentCeritaBinding
 import com.baksara.app.helper.InitialDataSource
 

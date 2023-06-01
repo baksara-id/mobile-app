@@ -1,4 +1,4 @@
-package com.baksara.app.ui
+package com.baksara.app.ui.scanner
 
 import android.app.AlertDialog
 import android.app.Application

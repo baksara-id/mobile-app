@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.baksara.app.database.KamusBelajar
 import com.baksara.app.databinding.ItemKamusBinding
-import com.baksara.app.ui.DetailKamusActivity
+import com.baksara.app.ui.pustaka.DetailKamusActivity
 
 class ListKamusAdapter(private val kamus: List<KamusBelajar>): RecyclerView.Adapter<ListKamusAdapter.ListViewHolder>() {
 

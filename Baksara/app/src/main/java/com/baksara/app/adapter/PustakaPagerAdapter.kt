@@ -2,9 +2,9 @@ package com.baksara.app.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.baksara.app.ui.CeritaFragment
-import com.baksara.app.ui.KamusFragment
-import com.baksara.app.ui.TranslatorFragment
+import com.baksara.app.ui.pustaka.CeritaFragment
+import com.baksara.app.ui.pustaka.KamusFragment
+import com.baksara.app.ui.pustaka.TranslatorFragment
 
 class PustakaPagerAdapter(fragment : Fragment) : FragmentStateAdapter(fragment){
     override fun getItemCount(): Int = 3

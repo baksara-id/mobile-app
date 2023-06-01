@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.baksara.app.R
 import com.baksara.app.database.Cerita
 import com.baksara.app.databinding.ItemCeritaBinding
-import com.baksara.app.ui.DetailCeritaActivity
+import com.baksara.app.ui.pustaka.DetailCeritaActivity
 import com.bumptech.glide.Glide
 
 class ListCeritaAdapter(private val ceritas: List<Cerita>): RecyclerView.Adapter<ListCeritaAdapter.ListViewHolder>() {

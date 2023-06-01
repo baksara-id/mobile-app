@@ -7,21 +7,21 @@
 
     <fragment
         android:id="@+id/fragment_cerita"
-        android:name="com.baksara.app.ui.CeritaFragment"
+        android:name="com.baksara.app.ui.pustaka.CeritaFragment"
         android:label="Cerita Fragment"
         tools:layout="@layout/fragment_cerita"
         />
 
     <fragment
         android:id="@+id/fragment_kamus"
-        android:name="com.baksara.app.ui.KamusFragment"
+        android:name="com.baksara.app.ui.pustaka.KamusFragment"
         android:label="Kamus Fragment"
         tools:layout="@layout/fragment_kamus"
         />
 
     <fragment
         android:id="@+id/fragment_translator"
-        android:name="com.baksara.app.ui.TranslatorFragment"
+        android:name="com.baksara.app.ui.pustaka.TranslatorFragment"
         android:label="Translator Fragment"
         tools:layout="@layout/fragment_translator"
         />

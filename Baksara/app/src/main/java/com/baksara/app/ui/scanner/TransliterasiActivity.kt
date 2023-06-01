@@ -1,4 +1,4 @@
-package com.baksara.app.ui
+package com.baksara.app.ui.scanner
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
