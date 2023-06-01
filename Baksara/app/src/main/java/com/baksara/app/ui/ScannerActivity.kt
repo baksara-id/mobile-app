@@ -2,8 +2,11 @@ package com.baksara.app.ui
 
 import android.app.AlertDialog
 import android.app.Application
+import android.content.ContentResolver
 import android.content.Context
+import android.content.Intent
 import android.icu.text.SimpleDateFormat
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +19,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -25,12 +29,14 @@ import androidx.core.content.ContextCompat
 import com.baksara.app.R
 import com.baksara.app.databinding.ActivityScannerBinding
 import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.io.OutputStream
 import java.util.Locale
 
 class ScannerActivity : AppCompatActivity() {
     private var _binding: ActivityScannerBinding? = null
     private val binding get() = _binding!!
-    private lateinit var outputDirectory: File
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +46,7 @@ class ScannerActivity : AppCompatActivity() {
         val preferences = this.getSharedPreferences(SCANNERPREF, Context.MODE_PRIVATE)
         var langganan = false
         binding.captureImage.setOnClickListener {
-            if(preferences.getBoolean(LIMITREACH, false)){
+            if(!preferences.getBoolean(LIMITREACH, false)){
                 showMaxLimitScanDialog(this, langganan)
             }
             else{
@@ -48,12 +54,20 @@ class ScannerActivity : AppCompatActivity() {
                 val currentLimit = preferences.getInt(CURRENTLIMIT, 0) + 1
                 editor.putInt(CURRENTLIMIT, currentLimit)
                 Log.d("limit", currentLimit.toString())
-                if(currentLimit >= 3){
+                if(currentLimit >= 1000){
                     editor.putBoolean(LIMITREACH, true)
                 }
                 editor.apply()
                 takePhoto()
             }
+        }
+
+        binding.btnGallery.setOnClickListener {
+            startGallery()
+        }
+
+        binding.btnScantips.setOnClickListener {
+            showScanTipsDialog(this)
         }
     }
 
@@ -93,6 +107,44 @@ class ScannerActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
     }
 
+    private fun startGallery(){
+        val intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        launcherIntentGallery.launch(chooser)
+    }
+
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val selectedImg = result.data?.data as Uri
+            selectedImg.let { uri ->
+                val myFile = uriToFile(uri, this@ScannerActivity)
+                // Kirim ke Transliterasi Activity
+                // Kirim Gambarnya ke Network
+                val intent = Intent(this@ScannerActivity, TransliterasiActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
+
+    fun uriToFile(selectedImg: Uri, context: Context): File {
+        val contentResolver: ContentResolver = context.contentResolver
+        val myFile = createFile(application)
+
+        val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
+        val outputStream: OutputStream = FileOutputStream(myFile)
+        val buf = ByteArray(1024)
+        var len: Int
+        while (inputStream.read(buf).also { len = it } > 0) outputStream.write(buf, 0, len)
+        outputStream.close()
+        inputStream.close()
+
+        return myFile
+    }
+
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
 
@@ -115,6 +167,9 @@ class ScannerActivity : AppCompatActivity() {
                         "Berhasil mengambil gambar.",
                         Toast.LENGTH_SHORT
                     ).show()
+                    // Kirim Gambarnya ke Network
+                    val intent = Intent(this@ScannerActivity, TransliterasiActivity::class.java)
+                    startActivity(intent)
                 }
             }
         )
@@ -174,6 +229,33 @@ class ScannerActivity : AppCompatActivity() {
         builder.setView(dialogView)
         val dialog: AlertDialog = builder.create()
         buttonInformation.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun showScanTipsDialog(context: Context) {
+        val builder = AlertDialog.Builder(context)
+        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val dialogView: View = inflater.inflate(R.layout.item_dialog_tips, null)
+
+        val buttonMengerti: Button = dialogView.findViewById(R.id.btn_tips_mengerti)
+        val imageTipsBenar: ImageView = dialogView.findViewById(R.id.img_tips_benar)
+        val imageTipsSalah: ImageView = dialogView.findViewById(R.id.img_tips_salah1)
+        val imageTipsSalah2: ImageView = dialogView.findViewById(R.id.img_tips_salah2)
+        val imageTipsSalah3: ImageView = dialogView.findViewById(R.id.img_tips_salah3)
+        val imageTipsSalah4: ImageView = dialogView.findViewById(R.id.img_tips_salah4)
+
+        imageTipsBenar.setImageResource(R.drawable.tipsbenar)
+        imageTipsSalah.setImageResource(R.drawable.tips_salah1)
+        imageTipsSalah2.setImageResource(R.drawable.tips_salah2)
+        imageTipsSalah3.setImageResource(R.drawable.tips_salah3)
+        imageTipsSalah4.setImageResource(R.drawable.tips_salah4)
+
+        builder.setView(dialogView)
+        val dialog: AlertDialog = builder.create()
+        buttonMengerti.setOnClickListener {
             dialog.dismiss()
         }
 

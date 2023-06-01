@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.TransliterasiActivity">
+
+    <TextView
+        android:id="@+id/tvTransliterasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/aksara_jawa"
+        android:textColor="@color/main_400"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_transliterasi_aksara_jawa"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="18dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTransliterasi">
+
+        <TextView
+            android:id="@+id/tv_aksara_jawa_transliterasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:fontFamily="@font/poppins_light"
+            android:hint="@string/masukan_huruf_latin"
+            android:inputType="textMultiLine"
+            android:padding="14dp"
+            android:textColor="@color/main_300"
+            android:textColorHint="@color/main_100"
+            android:textSize="12sp" />
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/view_transliterasi"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="18dp"
+        android:background="@color/neutral_300"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_transliterasi_aksara_jawa" />
+
+    <TextView
+        android:id="@+id/tvTransliterasi2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/aksara_latin"
+        android:textColor="@color/main_400"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_transliterasi" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_transliterasi_aksara_latin"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="18dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTransliterasi2">
+
+        <TextView
+            android:id="@+id/tv_aksara_latin_transliterasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:fontFamily="@font/poppins_light"
+            android:hint="@string/hasil_aksara_jawa"
+            android:inputType="textMultiLine"
+            android:padding="14dp"
+            android:textColor="@color/main_300"
+            android:textColorHint="@color/main_100"
+            android:textSize="12sp" />
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btn_tips_mengerti"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/main_300"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Deteksi Ulang"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

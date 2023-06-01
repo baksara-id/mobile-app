@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view_dialog_information"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal|center_vertical"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="12dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_tips_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="97dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="97dp"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center|top"
+            android:text="Scan Tips"
+            android:textColor="@color/neutral_900"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_tips_benar"
+            android:layout_width="130dp"
+            android:layout_height="86dp"
+            android:layout_marginTop="14dp"
+            android:contentDescription="@string/information"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tips_title"
+            tools:srcCompat="@drawable/tipsbenar" />
+
+        <TextView
+            android:id="@+id/tv_tips_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="65dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center|top"
+            android:text="Contoh di bawah ini akan  memperoleh hasil yang buruk"
+            android:textColor="@color/main_200"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_tips_benar" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <ImageView
+            android:id="@+id/img_tips_salah1"
+            android:layout_width="92dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="22dp"
+            android:contentDescription="@string/information"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_tips"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tips_description"
+            tools:srcCompat="@drawable/tips_salah1" />
+
+        <TextView
+            android:id="@+id/tv_tips_salah1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center|top"
+            android:text="Aksara terlalu kecil"
+            android:textColor="@color/main_200"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_tips"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_tips_salah1" />
+
+        <ImageView
+            android:id="@+id/img_tips_salah2"
+            android:layout_width="92dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="22dp"
+            android:contentDescription="@string/information"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_tips"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tips_description"
+            tools:srcCompat="@drawable/tips_salah2" />
+
+        <TextView
+            android:id="@+id/tv_tips_salah2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center|top"
+            android:text="Tulisan blur"
+            android:textColor="@color/main_200"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_tips"
+            app:layout_constraintTop_toBottomOf="@+id/img_tips_salah2" />
+
+        <ImageView
+            android:id="@+id/img_tips_salah3"
+            android:layout_width="92dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/information"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_tips"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tips_salah1"
+            tools:srcCompat="@drawable/tips_salah3" />
+
+        <TextView
+            android:id="@+id/tv_tips_salah3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center|top"
+            android:text="Aksara terlalu miring"
+            android:textColor="@color/main_200"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_tips"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_tips_salah3" />
+
+        <ImageView
+            android:id="@+id/img_tips_salah4"
+            android:layout_width="92dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/information"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_tips"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tips_salah2"
+            tools:srcCompat="@drawable/tips_salah4" />
+
+        <TextView
+            android:id="@+id/tv_tips_salah4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins"
+            android:gravity="center|top"
+            android:text="Warna tidak kontras"
+            android:textColor="@color/main_200"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_tips"
+            app:layout_constraintTop_toBottomOf="@+id/img_tips_salah4" />
+
+        <Button
+            android:id="@+id/btn_tips_mengerti"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="37dp"
+            android:backgroundTint="@color/main_300"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Mengerti"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tips_salah4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

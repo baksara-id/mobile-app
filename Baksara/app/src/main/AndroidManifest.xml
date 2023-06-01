@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Baksara"
         tools:targetApi="31">
         <activity
+            android:name=".ui.TransliterasiActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.profil.langganan.LanggananActivity"
             android:exported="false" />
         <activity
