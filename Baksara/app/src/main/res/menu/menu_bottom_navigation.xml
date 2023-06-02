@@ -16,7 +16,7 @@
     <item
         android:id="@+id/navigation_artikel"
         android:icon="@drawable/berita_icon"
-        android:title="@string/berita" />
+        android:title="@string/artikel" />
     <item
         android:id="@+id/navigation_profil"
         android:icon="@drawable/profil_icon"

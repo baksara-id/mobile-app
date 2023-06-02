@@ -12,7 +12,7 @@
     android:layout_marginBottom="4dp"
     card_view:cardBackgroundColor="#FFFFFF"
     card_view:cardCornerRadius="12dp"
-    card_view:cardElevation="12dp">
+    card_view:cardElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_pelajaran"
@@ -21,7 +21,7 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/tv_judul_artikel"
+            android:id="@+id/tv_judul"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -46,11 +46,11 @@
             android:textSize="18sp"
             android:textStyle="bold"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_judul_artikel"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_judul"
             tools:text="@string/hancaraka_lengkap_placeholder" />
 
         <TextView
-            android:id="@+id/tv_deskripsi_artikel"
+            android:id="@+id/tv_deskripsi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"

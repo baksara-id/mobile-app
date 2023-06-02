@@ -15,9 +15,8 @@
     <fragment
         android:id="@+id/navigation_artikel"
         android:name="com.baksara.app.ui.artikel.ArtikelFragment"
-        android:label="@string/berita"
-        tools:layout="@layout/fragment_artikel"
-        />
+        android:label="@string/artikel"
+        tools:layout="@layout/fragment_artikel" />
 
     <fragment
         android:id="@+id/navigation_pustaka"

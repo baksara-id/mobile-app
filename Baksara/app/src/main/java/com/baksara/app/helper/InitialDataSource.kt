@@ -237,4 +237,13 @@ object InitialDataSource {
         )
     }
 
+    fun getArtikels(): List<Artikel>{
+        return listOf(
+            Artikel(1, "Jokowi mantap", "Cihuy","https://test"),
+            Artikel(2, "Jokowi mantap", "Cihuy","https://test"),
+            Artikel(3, "Jokowi mantap", "Cihuy","https://test"),
+            Artikel(4, "Jokowi mantap", "Cihuy","https://test"),
+            )
+    }
+
 }
