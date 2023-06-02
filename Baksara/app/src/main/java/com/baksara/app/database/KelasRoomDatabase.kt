@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 //@Database(
-//    entities = [Modul::class, Pelajaran::class, SoalBaca::class, SoalGambar::class, SoalPilihan::class],
+//    entities = [Modul::class, Pelajaran::class, SoalBaca::class, SoalGambar::class, SoalPilihan::class, Penggunaan::class, Kamus::class],
 //    version = 1
 //)
 //abstract class KelasRoomDatabase:RoomDatabase() {
@@ -15,6 +15,8 @@ import androidx.room.RoomDatabase
 //    abstract fun soalBacaDao(): SoalBacaDao
 //    abstract fun soalGambarDao(): SoalGambarDao
 //    abstract fun soalPilihanDao(): SoalPilihanDao
+//    abstract fun penggunaanDao(): PenggunaanDao
+//    abstract fun kamusDao(): KamusDao
 //
 //    companion object {
 //        @Volatile
