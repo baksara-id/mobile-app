@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Kontak Pengembang"
+        android:text="Form Laporan"
         android:textColor="@color/main_400"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Judul"
@@ -76,31 +76,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_judul_laporan" />
-
-    <EditText
-        android:id="@+id/input_isi_laporan"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:fontFamily="@font/poppins"
-        android:gravity="start|top"
-        android:hint="Tuliskan Isi Laporan..."
-        android:inputType="textMultiLine"
-        android:padding="8dp"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_isi_laporan" />
+        app:layout_constraintTop_toBottomOf="@+id/cv_input_masalah" />
 
     <Button
         android:id="@+id/btn_kirim_laporan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/main_300"
         android:fontFamily="@font/poppins_bold"
@@ -115,21 +98,59 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_isi_laporan" />
+        app:layout_constraintTop_toBottomOf="@+id/cv_input_isi_masalah" />
 
-    <EditText
-        android:id="@+id/input_judul_laporan"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_input_masalah"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:fontFamily="@font/poppins"
-        android:inputType="text"
-        android:text="Tuliskan Judul..."
-        android:textSize="16sp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_judul" />
+        app:layout_constraintTop_toBottomOf="@+id/label_judul">
+
+        <EditText
+            android:id="@+id/input_judul_laporan"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:fontFamily="@font/poppins_light"
+            android:hint="Deskripsi Singkat Masalah"
+            android:inputType="textMultiLine"
+            android:padding="6dp"
+            android:textColor="@color/main_300"
+            android:textColorHint="@color/main_100"
+            android:textSize="12sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_input_isi_masalah"
+        android:layout_width="0dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_isi_laporan">
+
+        <EditText
+            android:id="@+id/input_isi_laporan"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:fontFamily="@font/poppins_light"
+            android:hint="Tuliskan isi Laporan"
+            android:inputType="textMultiLine"
+            android:padding="6dp"
+            android:textColor="@color/main_300"
+            android:textColorHint="@color/main_100"
+            android:textSize="12sp" />
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

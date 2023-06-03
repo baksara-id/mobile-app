@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/accent_white_hover"
+    android:background="@color/accent_light"
     tools:context=".ui.kelas.KelasActivity">
 
     <androidx.recyclerview.widget.RecyclerView

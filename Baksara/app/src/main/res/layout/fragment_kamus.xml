@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/accent_light"
     tools:context=".ui.pustaka.KamusFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,7 +12,6 @@
         android:id="@+id/rv_listkamus"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="24dp"
-        />
+        android:padding="16dp" />
 
 </FrameLayout>

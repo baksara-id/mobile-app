@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/accent_light"
     tools:context=".ui.pustaka.PustakaFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -18,6 +19,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/bg_tablayout_pustaka"
             android:contentDescription="@string/pustaka"
             android:elevation="4dp"
@@ -27,10 +30,10 @@
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp"
             app:tabMode="fixed"
-            app:tabPaddingTop="0dp"
             app:tabPaddingBottom="0dp"
-            app:tabPaddingEnd="8dp"
-            app:tabPaddingStart="8dp"
+            app:tabPaddingEnd="9dp"
+            app:tabPaddingStart="9dp"
+            app:tabPaddingTop="0dp"
             app:tabRippleColor="@null"
             app:tabTextColor="@color/accent_white" />
 
@@ -38,7 +41,6 @@
             android:id="@+id/viewPagerPustaka"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

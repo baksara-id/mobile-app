@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Rounded rectangle with transparent background -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#40FFFFFF" />
+            <solid android:color="#988D82" />
             <corners android:radius="12dp" />
         </shape>
     </item>
 
-    <!-- Custom icon in the middle -->
     <item android:gravity="center">
         <bitmap
             android:src="@drawable/lock_icon2"

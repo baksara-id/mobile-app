@@ -15,14 +15,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_judul_artikel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/neutral_black"
             android:textSize="14sp"
@@ -35,11 +35,14 @@
             android:layout_width="180dp"
             android:layout_height="42dp"
             android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="24dp"
             android:layout_toEndOf="@id/tv_judul_artikel"
             android:fontFamily="@font/poppins_bold"
             android:textColor="@color/neutral_black"
             android:textSize="10sp"
             android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_judul_artikel"
             tools:fontFamily="@font/poppins"
