@@ -34,7 +34,7 @@ data class Data(
     val userLangganan: List<Langganan>?,
     // Mutation
     @field:SerializedName("createUser")
-    val registerToken: String?,//token
+    val registerToken: User?,//token
     @field:SerializedName("loginUser")
     val loginUser: User?,//satu user
     @field:SerializedName("updateUser")
@@ -44,7 +44,7 @@ data class Data(
     @field:SerializedName("createUserLencana") // Kalau selesai modul
     val lencana: Lencana?, // Kalau selesai return lencananya
     @field:SerializedName("createUserTantangan")// Kalau benar menjawab
-    val is_approved: Boolean?, // Kalau benar return true
+    val is_approved: MutationResponse?, // Kalau benar return true
     @field:SerializedName("createLaporan") // Kalau tambah laporan
     val laporan: Laporan?, // Kalau benar return laporan
 )

@@ -4,10 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import com.baksara.app.ViewModelFactory
 import com.baksara.app.databinding.ActivityRegisterBinding
 import com.baksara.app.network.ApiConfig
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,6 +20,7 @@ import retrofit2.Response
 class RegisterActivity : AppCompatActivity() {
     private var _binding: ActivityRegisterBinding? = null
     private val binding get() = _binding!!
+    private lateinit var homeViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +29,7 @@ class RegisterActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.tvTologin.text = Html.fromHtml("<u>Login</u>", Html.FROM_HTML_MODE_LEGACY)
+        homeViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this))[MainViewModel::class.java]
 
         binding.btnRegister.setOnClickListener {
             binding.btnRegister.isEnabled = false
@@ -31,39 +38,32 @@ class RegisterActivity : AppCompatActivity() {
             val passwordLength = binding.inputPassword.length()
             val namaLengkap = binding.inputNamaLengkap.text.toString()
             val email = binding.inputEmail.text.toString()
+            if(password != repassword) Toast.makeText(this@RegisterActivity, "Password tidak sama dengan Repassword", Toast.LENGTH_SHORT).show()
+
             if(!password.isEmpty() && !repassword.isEmpty() && !namaLengkap.isEmpty() && !email.isEmpty()){
                 if(passwordLength >= 8 && isValidEmail(email)) {
-//                    val client = ApiConfig.getApiService().registerUser(name,email,password)
-//                    client.enqueue(object: Callback<RegisterResponse> {
-//                        override fun onResponse(
-//                            call: Call<RegisterResponse>,
-//                            response: Response<RegisterResponse>
-//                        ) {
-//                            if(response.isSuccessful){
-//                                response.body()?.let { callback.onRegisterResponse(it)}
-//                            }
-//                            else{
-//                                val registerFailed = RegisterResponse(
-//                                    true,
-//                                    "Register has Failed!"
-//                                )
-//                                callback.onRegisterResponse(registerFailed)
-//                            }
-//                        }
-//
-//                        override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-//                            val registerFailed = RegisterResponse(
-//                                true,
-//                                t.message.toString()
-//                            )
-//                            callback.onRegisterResponse(registerFailed)
-//                        }
-//                    })
+                    lifecycleScope.launchWhenStarted {
+                        launch {
+                            homeViewModel.register(email, namaLengkap, password).collect { response ->
+                                binding.btnRegister.isEnabled = true
+                                response.onSuccess {
+                                    if (it.errors == null) {
+                                        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                                        startActivity(intent)
+                                        Toast.makeText(this@RegisterActivity, "Testing Token ${it.data.toString()}", Toast.LENGTH_SHORT).show()
+                                        finish()
+                                    } else {
+                                        Toast.makeText(this@RegisterActivity, it.errors[0].message, Toast.LENGTH_SHORT).show()
+                                    }
+                                }
 
-                    binding.btnRegister.isEnabled = true
-                    val intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                                response.onFailure { error ->
+                                    Toast.makeText(this@RegisterActivity, "Terjadi error pada aplikasi", Toast.LENGTH_SHORT).show()
+                                    Log.e("error", error.message.toString())
+                                }
+                            }
+                        }
+                    }
                 }
                 else if(passwordLength >= 8 && !isValidEmail(email)) {
                     Toast.makeText(

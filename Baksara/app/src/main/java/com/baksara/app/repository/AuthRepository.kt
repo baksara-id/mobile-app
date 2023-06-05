@@ -11,31 +11,6 @@ class AuthRepository(
     private val userpref: UserPreferences,
     private val service: ApiService
 ) {
-    suspend fun register(email: String, name: String, password: String): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        mutation {
-                            register(email: "$email", name: "$name", password: "$password") {
-                                id
-                                name
-                                email
-                                password
-                            }
-                        }
-                    """.trimIndent()
-                )
-            )
-
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
-    }
-
     suspend fun login(){
 
     }
