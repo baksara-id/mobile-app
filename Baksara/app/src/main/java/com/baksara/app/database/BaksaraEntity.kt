@@ -121,7 +121,7 @@ data class Penggunaan(
 
 data class KamusAndPenggunaan(
     @Embedded
-    val pelajaran: Pelajaran,
+    val kamus: Kamus,
     @Relation(
         parentColumn = "id",
         entityColumn = "kamusId"

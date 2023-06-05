@@ -13,20 +13,20 @@ abstract class BaksaraDatabase: RoomDatabase() {
 
     abstract fun baksaraDao(): BaksaraDao
 
-//    companion object {
-//        @Volatile
-//        private var INSTANCE: KelasRoomDatabase? = null
-//
-//        fun getDatabase(context: Context): KelasRoomDatabase {
-//            return INSTANCE ?: synchronized(this) {
-//                val instance = Room.databaseBuilder(
-//                    context.applicationContext,
-//                    KelasRoomDatabase::class.java,
-//                    "kelas_db"
-//                ).build()
-//                INSTANCE = instance
-//                instance
-//            }
-//        }
-//    }
+    companion object {
+        @Volatile
+        private var INSTANCE: BaksaraDatabase? = null
+
+        fun getDatabase(context: Context): BaksaraDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    BaksaraDatabase::class.java,
+                    "baksara_db"
+                ).build()
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
 }

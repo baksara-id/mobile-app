@@ -49,7 +49,7 @@ class BacaFragment : Fragment() {
     }
 
     fun soalBaca(pelajaranId: Int, nomor: Int): SoalBaca {
-        return InitialDataSource.getSoalBaca().first{
+        return InitialDataSource.getSoalBacas().first{
             it.pelajaranId == pelajaranId && it.urutan == nomor
         }
     }

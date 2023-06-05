@@ -11,7 +11,7 @@ object InitialDataSource {
         )
     }
 
-    fun getPelajaran(): List<Pelajaran>{
+    fun getPelajarans(): List<Pelajaran>{
         return listOf(
             Pelajaran(1,1, "1", "ꦲ ꦤ ꦕ ꦫ ꦏ", "Ha   Na   Ca   Ra   Ka",false, false),
             Pelajaran(2,1, "2", "ꦣ ꦠ ꦱ ꦮ ꦭ", "Da   Ta   Sa   Wa   La",true, false),
@@ -20,7 +20,7 @@ object InitialDataSource {
         )
     }
 
-    fun getSoalBaca(): List<SoalBaca>{
+    fun getSoalBacas(): List<SoalBaca>{
         return listOf(
             SoalBaca(1,1, "ꦲ", "Ha", 1),
             SoalBaca(2,1, "ꦤ", "Na", 2),
@@ -48,7 +48,7 @@ object InitialDataSource {
         )
     }
 
-    fun getSoalGambar(): List<SoalGambar>{
+    fun getSoalGambars(): List<SoalGambar>{
         return listOf(
             SoalGambar(1,1, "Ha", 1),
             SoalGambar(2,1, "Na", 2),
@@ -75,7 +75,7 @@ object InitialDataSource {
             SoalGambar(20,4, "Nga", 5),
         )
     }
-    fun getSoalPilihan(): List<SoalPilihan>{
+    fun getSoalPilihans(): List<SoalPilihan>{
         return listOf(
             SoalPilihan(1,1, "ꦲ", "Ha", "Ca", "Ka", "Ra", "Ha",1),
             SoalPilihan(2,1, "ꦤ", "Ca", "Ka", "Nga", "Na", "Na",2),

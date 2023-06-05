@@ -6,14 +6,17 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.baksara.app.R
+import com.baksara.app.ViewModelFactory
 import com.baksara.app.databinding.ActivityMainBinding
 import com.baksara.app.ui.scanner.ScannerActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,11 +26,16 @@ class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var mainViewModel: MainViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+
+        val mainFactory = ViewModelFactory.getInstance(this)
+        mainViewModel = ViewModelProvider(this, mainFactory)[MainViewModel::class.java]
 
         bottomNavigationSetup()
         binding.fabScanner.setOnClickListener {

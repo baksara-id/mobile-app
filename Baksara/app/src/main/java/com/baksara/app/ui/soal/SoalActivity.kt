@@ -41,7 +41,7 @@ class SoalActivity : AppCompatActivity() {
     }
 
     fun getSoalBaca(pelajaranId: Int, nomor: Int): SoalBaca{
-        return InitialDataSource.getSoalBaca().first{
+        return InitialDataSource.getSoalBacas().first{
             it.pelajaranId == pelajaranId && it.urutan == nomor
         }
     }
@@ -49,7 +49,7 @@ class SoalActivity : AppCompatActivity() {
     fun getListSoalGambarByPelajaran(pelajaranId: Int): List<SoalGambar>{
         val listPelajaran: MutableList<SoalGambar> = mutableListOf()
 
-        InitialDataSource.getSoalGambar().forEach { soalGambar ->
+        InitialDataSource.getSoalGambars().forEach { soalGambar ->
             if (soalGambar.pelajaranId == pelajaranId){
                 listPelajaran.add(soalGambar)
             }
@@ -61,7 +61,7 @@ class SoalActivity : AppCompatActivity() {
     fun getListSoalPilihanByPelajaran(pelajaranId: Int): List<SoalPilihan>{
         val listPelajaran: MutableList<SoalPilihan> = mutableListOf()
 
-        InitialDataSource.getSoalPilihan().forEach { soalPilihan ->
+        InitialDataSource.getSoalPilihans().forEach { soalPilihan ->
             if (soalPilihan.pelajaranId == pelajaranId){
                 listPelajaran.add(soalPilihan)
             }

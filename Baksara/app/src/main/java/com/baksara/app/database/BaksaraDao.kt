@@ -24,6 +24,12 @@ interface BaksaraDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertSoalPilihan(course: List<SoalPilihan>)
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertKamus(course: List<Kamus>)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertPenggunaan(course: List<Penggunaan>)
+
     @Query("SELECT * from modul")
     fun getAllModul(): LiveData<List<Modul>>
 
@@ -32,6 +38,26 @@ interface BaksaraDao {
     fun getAllModulAndPelajaran(): LiveData<List<ModulAndPelajaran>>
 
     @Query("SELECT * from pelajaran")
-    fun getAllPelajaranAndSoalBaca(): LiveData<List<Pelajaran>>
+    fun getAllPelajaran(): LiveData<List<Pelajaran>>
+
+    @Transaction
+    @Query("SELECT * from pelajaran")
+    fun getAllPelajaranAndSoalBaca(): LiveData<List<PelajaranAndSoalBaca>>
+
+    @Transaction
+    @Query("SELECT * from pelajaran")
+    fun getAllPelajaranAndSoalGambar(): LiveData<List<PelajaranAndSoalGambar>>
+
+    @Transaction
+    @Query("SELECT * from pelajaran")
+    fun getAllPelajaranAndSoalPilihan(): LiveData<List<PelajaranAndSoalPilihan>>
+
+    @Query("SELECT * from kamus")
+    fun getAllKamus(): LiveData<List<Kamus>>
+
+    @Transaction
+    @Query("SELECT * from kamus")
+    fun getAllKamusAndPenggunaan(): LiveData<List<KamusAndPenggunaan>>
+
 
 }

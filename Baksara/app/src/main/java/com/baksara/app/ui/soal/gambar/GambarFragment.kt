@@ -68,7 +68,7 @@ class GambarFragment : Fragment() {
     }
 
     fun soalGambar(pelajaranId: Int, nomor: Int): SoalGambar {
-        return InitialDataSource.getSoalGambar().first{
+        return InitialDataSource.getSoalGambars().first{
             it.pelajaranId == pelajaranId && it.urutan == nomor
         }
     }

@@ -117,7 +117,7 @@ class PilihanFragment : Fragment() {
 
 
     fun soalPilihan(pelajaranId: Int, nomor: Int): SoalPilihan {
-        return InitialDataSource.getSoalPilihan().first{
+        return InitialDataSource.getSoalPilihans().first{
             it.pelajaranId == pelajaranId && it.urutan == nomor
         }
     }

@@ -45,7 +45,7 @@ class KelasActivity : AppCompatActivity() {
     fun getListPelajaranByModul(modulId: Int): List<Pelajaran>{
         val listPelajaran: MutableList<Pelajaran> = mutableListOf()
 
-        InitialDataSource.getPelajaran().forEach {pelajaran ->
+        InitialDataSource.getPelajarans().forEach {pelajaran ->
             if (pelajaran.modulId == modulId){
                 listPelajaran.add(pelajaran)
             }
