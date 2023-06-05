@@ -5,6 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.repository.BaksaraRepository
 import com.baksara.app.ui.MainViewModel
+import com.baksara.app.ui.home.HomeViewModel
+import com.baksara.app.ui.kelas.KelasViewModel
+import com.baksara.app.ui.soal.baca.BacaViewModel
 
 class ViewModelFactory private constructor(
     private val repository: BaksaraRepository
@@ -15,6 +18,19 @@ class ViewModelFactory private constructor(
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(repository) as T
             }
+
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                HomeViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(KelasViewModel::class.java) -> {
+                KelasViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(BacaViewModel::class.java) -> {
+                BacaViewModel(repository) as T
+            }
+
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
     }

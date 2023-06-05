@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -34,8 +33,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        val mainFactory = ViewModelFactory.getInstance(this)
-        mainViewModel = ViewModelProvider(this, mainFactory)[MainViewModel::class.java]
+        val viewModelFactory = ViewModelFactory.getInstance(this)
+        mainViewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
 
         bottomNavigationSetup()
         binding.fabScanner.setOnClickListener {

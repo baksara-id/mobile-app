@@ -37,12 +37,11 @@ interface BaksaraDao {
     @Query("SELECT * from modul")
     fun getAllModulAndPelajaran(): LiveData<List<ModulAndPelajaran>>
 
-    @Query("SELECT * from pelajaran")
-    fun getAllPelajaran(): LiveData<List<Pelajaran>>
+    @Query("SELECT * FROM pelajaran WHERE modulId = :modulId")
+    fun getPelajaransByModul(modulId : Int): LiveData<List<Pelajaran>>
 
-    @Transaction
-    @Query("SELECT * from pelajaran")
-    fun getAllPelajaranAndSoalBaca(): LiveData<List<PelajaranAndSoalBaca>>
+    @Query("SELECT * from SoalBaca WHERE pelajaranId = :pelajaranId AND id = :urutan")
+    fun getSoalBacaByPelajaran(pelajaranId: Int, urutan: Int): LiveData<SoalBaca>
 
     @Transaction
     @Query("SELECT * from pelajaran")

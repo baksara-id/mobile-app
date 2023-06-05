@@ -2,19 +2,23 @@ package com.baksara.app.ui.kelas
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.baksara.app.R
+import com.baksara.app.ViewModelFactory
 import com.baksara.app.adapter.ListPelajaranAdapter
 import com.baksara.app.database.Pelajaran
 import com.baksara.app.databinding.ActivityKelasBinding
 import com.baksara.app.helper.InitialDataSource
+import com.baksara.app.ui.home.HomeViewModel
 
 class KelasActivity : AppCompatActivity() {
     private var _binding: ActivityKelasBinding? = null
     private val binding get() = _binding!!
     private var modulId = 0
     private var modulNama : String? = ""
-
+    private lateinit var kelasViewModel: KelasViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,13 +32,22 @@ class KelasActivity : AppCompatActivity() {
         _binding = ActivityKelasBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val listPelajaran = getListPelajaranByModul(modulId)
+        val viewModelFactory = ViewModelFactory.getInstance(this)
+        kelasViewModel = ViewModelProvider(this, viewModelFactory)[KelasViewModel::class.java]
 
-        val layoutManager = LinearLayoutManager(this)
-        binding.rvPelajaran.layoutManager = layoutManager
+        kelasViewModel.getAllPelajaranByModul(modulId).observe(this){pelajarans->
+            if(pelajarans.isNotEmpty()){
+                val layoutManager = LinearLayoutManager(this)
+                binding.rvPelajaran.layoutManager = layoutManager
 
-        val adapter = ListPelajaranAdapter(listPelajaran)
-        binding.rvPelajaran.adapter = adapter
+                val adapter = ListPelajaranAdapter(pelajarans)
+                binding.rvPelajaran.adapter = adapter
+            }else{
+
+            }
+        }
+
+  
     }
 
     override fun onSupportNavigateUp(): Boolean {

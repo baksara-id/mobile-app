@@ -21,8 +21,6 @@ class MainViewModel(private val baksaraRepository: BaksaraRepository) : ViewMode
 
     fun getAllModul():LiveData<List<Modul>> = baksaraRepository.getAllModul()
     fun getAllModulAndPelajaran():LiveData<List<ModulAndPelajaran>> =baksaraRepository.getAllModulAndPelajaran()
-    fun getAllPelajaran(): LiveData<List<Pelajaran>> = baksaraRepository.getAllPelajaran()
-    fun getAllPelajaranAndSoalBaca():LiveData<List<PelajaranAndSoalBaca>> = baksaraRepository.getAllPelajaranAndSoalBaca()
     fun getAllPelajaranAndSoalGambar():LiveData<List<PelajaranAndSoalGambar>> = baksaraRepository.getAllPelajaranAndSoalGambar()
     fun getAllPelajaranAndSoalPilihan():LiveData<List<PelajaranAndSoalPilihan>> = baksaraRepository.getAllPelajaranAndSoalPilihan()
 

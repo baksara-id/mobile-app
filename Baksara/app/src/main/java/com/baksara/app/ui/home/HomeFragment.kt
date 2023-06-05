@@ -1,25 +1,29 @@
 package com.baksara.app.ui.home
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.baksara.app.ViewModelFactory
 import com.baksara.app.adapter.ListModulAdapter
 import com.baksara.app.adapter.ListTantanganAdapter
+import com.baksara.app.database.Modul
 import com.baksara.app.databinding.FragmentHomeBinding
 import com.baksara.app.helper.InitialDataSource.getModuls
 import com.baksara.app.helper.InitialDataSource.getTantangans
-import com.baksara.app.ui.MainActivity
+import com.baksara.app.ui.MainViewModel
 import com.baksara.app.ui.tantangan.TantanganActivity
 
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +35,19 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val viewModelFactory = ViewModelFactory.getInstance(requireContext())
+        homeViewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
+
+        homeViewModel.getAllModul().observe(requireActivity()){ moduls ->
+            if(moduls.isNotEmpty()){
+                setupModulAdapter(moduls)
+            }else{
+
+            }
+        }
+
         setupTantanganAdapter()
-        setupModulAdapter()
         binding.btnTantanganSelengkapnya.setOnClickListener {
             val intent = Intent(activity, TantanganActivity::class.java)
             startActivity(intent)
@@ -47,10 +62,10 @@ class HomeFragment : Fragment() {
         binding.rvTantangan.adapter = adapter
     }
 
-    private fun setupModulAdapter(){
+    private fun setupModulAdapter(moduls: List<Modul>){
         val layoutManager = LinearLayoutManager(requireContext())
         binding.rvModul.layoutManager = layoutManager
-        val adapter = ListModulAdapter(getModuls())
+        val adapter = ListModulAdapter(moduls)
         binding.rvModul.adapter = adapter
     }
 

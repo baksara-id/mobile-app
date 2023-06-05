@@ -42,7 +42,6 @@ class TantanganActivity : AppCompatActivity() {
 
         val adapter = ListTantanganWideAdapter(listTantangan)
         binding.rvTantanganWide.adapter = adapter
-
         binding.inputTantanganSearch.addTextChangedListener (object :TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }

@@ -10,6 +10,7 @@ import com.baksara.app.database.Pelajaran
 import com.baksara.app.database.PelajaranAndSoalBaca
 import com.baksara.app.database.PelajaranAndSoalGambar
 import com.baksara.app.database.PelajaranAndSoalPilihan
+import com.baksara.app.database.SoalBaca
 import com.baksara.app.helper.InitialDataSource
 import com.baksara.app.local.UserPreferences
 import com.baksara.app.network.ApiService
@@ -25,8 +26,8 @@ class BaksaraRepository(
     ) {
     fun getAllModul():LiveData<List<Modul>> = baksaraDao.getAllModul()
     fun getAllModulAndPelajaran():LiveData<List<ModulAndPelajaran>> =baksaraDao.getAllModulAndPelajaran()
-    fun getAllPelajaran(): LiveData<List<Pelajaran>> = baksaraDao.getAllPelajaran()
-    fun getAllPelajaranAndSoalBaca():LiveData<List<PelajaranAndSoalBaca>> = baksaraDao.getAllPelajaranAndSoalBaca()
+    fun getAllPelajaransByModul(modulId: Int): LiveData<List<Pelajaran>> = baksaraDao.getPelajaransByModul(modulId)
+    fun getSoalBacaByPelajaran(pelajaranId: Int, urutan: Int):LiveData<SoalBaca> = baksaraDao.getSoalBacaByPelajaran(pelajaranId, urutan)
     fun getAllPelajaranAndSoalGambar():LiveData<List<PelajaranAndSoalGambar>> = baksaraDao.getAllPelajaranAndSoalGambar()
     fun getAllPelajaranAndSoalPilihan():LiveData<List<PelajaranAndSoalPilihan>> = baksaraDao.getAllPelajaranAndSoalPilihan()
     fun getAllKamus():LiveData<List<Kamus>> = baksaraDao.getAllKamus()
