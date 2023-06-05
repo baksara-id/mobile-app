@@ -10,71 +10,43 @@ data class GraphQLResponse(
     val errors: List<Error>?,
 )
 
-// Fill all output structure here
 data class Data(
-    val coba: String,
-//    @field:SerializedName("register")
-//    val register: User?,
-//
-//    @field:SerializedName("login")
-//    val login: AuthToken?,
-//
-//    @field:SerializedName("logout")
-//    val logout: Logout?,
-//
-//    @field:SerializedName("refresh_access_token")
-//    val refreshAccessToken: AuthToken?,
-//
-//    @field:SerializedName("herbals")
-//    val herbals: List<Herbal>?,
-//
-//    @field:SerializedName("herbal")
-//    val herbal: Herbal?,
-//
-//    @field:SerializedName("bookmark_herbal")
-//    val bookmarkHerbal: BookmarkHerbal?,
-//
-//    @field:SerializedName("products")
-//    val products: List<Product>?,
-//
-//    @field:SerializedName("product")
-//    val product: Product?,
-//
-//    @field:SerializedName("product_favorite_user")
-//    val favoriteProduct: FavoriteProduct?,
-//
-//    @field:SerializedName("potd")
-//    val potd: Potd?,
-//
-//    @field:SerializedName("ppotw")
-//    val ppotw: List<Herbal>?,
-//
-//    @field:SerializedName("user")
-//    val user: User?,
-//
-//    @field:SerializedName("banner")
-//    val offer: List<Offer>?,
-//
-//    @field:SerializedName("product_health_interests")
-//    val productHealthInterests: List<ProductHealthInterest>?,
-//
-//    @field:SerializedName("product_health_interest")
-//    val productHealthInterest: ProductHealthInterest?,
-//
-//    @field:SerializedName("most_loved_products")
-//    val mostLovedProduct: List<Product>?,
-//
-//    @field:SerializedName("most_review_products")
-//    val mostReviewProduct: List<Product>?,
-//
-//    @field:SerializedName("best_sellers")
-//    val bestSellerProduct: List<Product>?,
-//
-//    @field:SerializedName("location")
-//    val locations: List<Location>?,
-//
-//    @field:SerializedName("save_order")
-//    val saveOrder: SaveOrder?,
+    // Query
+    @field:SerializedName("user")
+    val user: User?,
+    @field:SerializedName("tantanganBelum")
+    val tantanganBelum: List<Tantangan>?,
+    @field:SerializedName("detailTantangan")
+    val detailTantangan: Tantangan?,
+    @field:SerializedName("riwayatTantangan")
+    val riwayatTantangan: List<Tantangan>?,
+    @field:SerializedName("ceritas")
+    val ceritas: List<Cerita>?,
+    @field:SerializedName("detailCerita")
+    val detailCerita: Cerita?,
+    @field:SerializedName("artikels")
+    val artikels: List<Artikel>?,
+    @field:SerializedName("detailArtikel")
+    val detailArtikel: Artikel?,
+    @field:SerializedName("userLencana")
+    val userLencana: List<Lencana>?,
+    @field:SerializedName("userLangganans")
+    val userLangganan: List<Langganan>?,
+    // Mutation
+    @field:SerializedName("createUser")
+    val registerToken: String?,//token
+    @field:SerializedName("loginUser")
+    val loginUser: User?,//satu user
+    @field:SerializedName("updateUser")
+    val update: User?,//satu user
+    @field:SerializedName("createRiwayatBelajar") // Kalau selesai pelajaran/level
+    val riwayatBelajar: RiwayatBelajar?, // kalau selesai return riwayat belajarnya terus nanti cek modul dan pelajaran
+    @field:SerializedName("createUserLencana") // Kalau selesai modul
+    val lencana: Lencana?, // Kalau selesai return lencananya
+    @field:SerializedName("createUserTantangan")// Kalau benar menjawab
+    val is_approved: Boolean?, // Kalau benar return true
+    @field:SerializedName("createLaporan") // Kalau tambah laporan
+    val laporan: Laporan?, // Kalau benar return laporan
 )
 
 data class Error(

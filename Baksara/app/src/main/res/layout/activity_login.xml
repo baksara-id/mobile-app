@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/main_400"
-    tools:context=".ui.LoginActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_400"
+        tools:context=".ui.LoginActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewLogin"
@@ -55,7 +55,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtLoginPage" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txt_tantangan_search"
+                android:id="@+id/txt_login_email"
                 style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,24 +63,24 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/bg_input_editor"
-                android:hint="nama lengkap"
+                android:hint="email"
                 app:endIconMode="custom"
                 app:hintAnimationEnabled="true"
                 app:hintEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtLoginPage2"
-                app:startIconDrawable="@drawable/person_icon_300"
+                app:startIconDrawable="@drawable/email_icon"
                 app:startIconTint="@color/main_300">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input_tantangan_search"
+                    android:id="@+id/input_login_email"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:fontFamily="@font/poppins_light"
-                    android:inputType="textPersonName"
+                    android:inputType="textLongMessage|textPersonName"
                     android:letterSpacing="0"
-                    android:textColor="@color/neutral_200"
+                    android:textColor="@color/main_300"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +100,7 @@
                 app:hintEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_tantangan_search"
+                app:layout_constraintTop_toBottomOf="@+id/txt_login_email"
                 app:startIconDrawable="@drawable/lock_icon"
                 app:startIconTint="@color/main_300">
 
@@ -111,7 +111,7 @@
                     android:fontFamily="@font/poppins_light"
                     android:inputType="textPassword"
                     android:letterSpacing="0"
-                    android:textColor="@color/neutral_200"
+                    android:textColor="@color/main_300"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -167,20 +167,26 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
-            <ImageButton
-                android:id="@+id/googleButton"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_buttonGoogle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="28dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/google_logo"
+                app:cardCornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_atau" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_atau">
+
+                <ImageButton
+                    android:id="@+id/googleButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/google_logo" />
+            </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -193,7 +199,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/googleButton">
+                app:layout_constraintTop_toBottomOf="@+id/cv_buttonGoogle">
 
                 <TextView
                     android:id="@+id/tv_belumpunyaakun"
@@ -214,7 +220,7 @@
                     android:fontFamily="@font/poppins_bold"
                     android:letterSpacing="0"
                     android:text="Register"
-                    android:textColor="@color/main_100"
+                    android:textColor="@color/main_300"
                     android:textSize="16sp" />
             </LinearLayout>
 

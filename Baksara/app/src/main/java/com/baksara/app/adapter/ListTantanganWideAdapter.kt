@@ -16,10 +16,10 @@ import com.bumptech.glide.load.resource.bitmap.TransformationUtils.centerCrop
 class ListTantanganWideAdapter(var tantangans: List<Tantangan>): RecyclerView.Adapter<ListTantanganWideAdapter.ListViewHolder>() {
     inner class ListViewHolder(private val binding: ItemTantanganWideBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(tantangan: Tantangan, position:Int){
-            binding.tvXpTantangan.text =tantangan.nama
-
             val jumlahXp = tantangan.exp.toString()
-            binding.tvJudulTantangan.text = "$jumlahXp XP"
+            binding.tvXpTantangan.text = "$jumlahXp XP"
+
+            binding.tvJudulTantangan.text = tantangan.nama
             Glide.with(itemView.context).load(tantangan.url_img)
                 .centerCrop()
                 .into(binding.imgTantangan)
