@@ -25,6 +25,17 @@ data class Pelajaran(
     val selesai: Boolean,
 )
 
+data class ModulAndPelajaran(
+    @Embedded
+    val modul: Modul,
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "modulId"
+    )
+    val pelajaran: List<Pelajaran>
+)
+
+
 @Entity
 data class SoalBaca(
     @PrimaryKey
@@ -58,15 +69,6 @@ data class SoalPilihan(
     val urutan: Int,
 )
 
-data class ModulAndPelajaran(
-    @Embedded
-    val modul: Modul,
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "modulId"
-    )
-    val pelajaran: List<Pelajaran>
-)
 
 data class PelajaranAndSoalBaca(
     @Embedded
@@ -97,6 +99,8 @@ data class PelajaranAndSoalPilihan(
     )
     val soalPilihan : List<SoalPilihan>
 )
+
+
 
 @Entity
 data class Kamus(
