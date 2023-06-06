@@ -7,7 +7,10 @@ import com.baksara.app.repository.BaksaraRepository
 import com.baksara.app.ui.MainViewModel
 import com.baksara.app.ui.home.HomeViewModel
 import com.baksara.app.ui.kelas.KelasViewModel
+import com.baksara.app.ui.pustaka.KamusViewModel
 import com.baksara.app.ui.soal.baca.BacaViewModel
+import com.baksara.app.ui.soal.gambar.GambarViewModel
+import com.baksara.app.ui.soal.pilihan.PilihanViewModel
 
 class ViewModelFactory private constructor(
     private val repository: BaksaraRepository
@@ -29,6 +32,18 @@ class ViewModelFactory private constructor(
 
             modelClass.isAssignableFrom(BacaViewModel::class.java) -> {
                 BacaViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(GambarViewModel::class.java) -> {
+                GambarViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(PilihanViewModel::class.java) -> {
+                PilihanViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(KamusViewModel::class.java) -> {
+                KamusViewModel(repository) as T
             }
 
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)

@@ -1,5 +1,7 @@
 package com.baksara.app.ui.soal.pilihan
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -8,17 +10,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
+import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.R
+import com.baksara.app.ViewModelFactory
 import com.baksara.app.database.SoalPilihan
 import com.baksara.app.databinding.FragmentPilihanBinding
 import com.baksara.app.helper.InitialDataSource
 import com.baksara.app.ui.soal.Hasil.BerhasilFragment
+import com.baksara.app.ui.soal.SoalActivity
 import com.baksara.app.ui.soal.baca.BacaFragment
+import com.baksara.app.ui.soal.gambar.GambarViewModel
 
 class PilihanFragment : Fragment() {
 
     private var _binding: FragmentPilihanBinding? = null
     private val binding get() = _binding!!
+    private lateinit var pilihanViewModel: PilihanViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,37 +40,41 @@ class PilihanFragment : Fragment() {
         val pelajaranId = arguments?.getInt(BacaFragment.PELAJARAN_ID) ?: 0
         val nomorUrutan = arguments?.getInt(BacaFragment.URUTAN_SOAL) ?: 0
 
-        val soal = soalPilihan(pelajaranId, nomorUrutan)
+        val viewModelFactory = ViewModelFactory.getInstance(requireContext())
+        pilihanViewModel = ViewModelProvider(this, viewModelFactory)[PilihanViewModel::class.java]
 
-        binding.tvAksaraSoalPilihan.text = soal.aksara
-        binding.btnPilihan1.text = soal.pilihanSatu
-        binding.btnPilihan2.text = soal.pilihanDua
-        binding.btnPilihan3.text = soal.pilihanTiga
-        binding.btnPilihan4.text = soal.pilihanEmpat
+        pilihanViewModel.getSoalPilihanByPelajaran(pelajaranId, nomorUrutan).observe(requireActivity()){ soalPilihan ->
+            binding.tvAksaraSoalPilihan.text = soalPilihan.aksara
+            binding.btnPilihan1.text = soalPilihan.pilihanSatu
+            binding.btnPilihan2.text = soalPilihan.pilihanDua
+            binding.btnPilihan3.text = soalPilihan.pilihanTiga
+            binding.btnPilihan4.text = soalPilihan.pilihanEmpat
 
-        binding.btnPilihan1.setOnClickListener {
-            onMenjawab(binding.btnPilihan1.text.toString(),soal.jawabanBenar, nomorUrutan, pelajaranId, binding.btnPilihan1 )
-        }
+            binding.btnPilihan1.setOnClickListener {
+                onMenjawab(binding.btnPilihan1.text.toString(),soalPilihan.jawabanBenar, nomorUrutan, pelajaranId, binding.btnPilihan1 )
+            }
 
-        binding.btnPilihan2.setOnClickListener {
-            onMenjawab(binding.btnPilihan2.text.toString(),soal.jawabanBenar, nomorUrutan, pelajaranId, binding.btnPilihan2 )
-        }
+            binding.btnPilihan2.setOnClickListener {
+                onMenjawab(binding.btnPilihan2.text.toString(),soalPilihan.jawabanBenar, nomorUrutan, pelajaranId, binding.btnPilihan2 )
+            }
 
-        binding.btnPilihan3.setOnClickListener {
-            onMenjawab(binding.btnPilihan3.text.toString(),soal.jawabanBenar, nomorUrutan, pelajaranId, binding.btnPilihan3 )
-        }
+            binding.btnPilihan3.setOnClickListener {
+                onMenjawab(binding.btnPilihan3.text.toString(),soalPilihan.jawabanBenar, nomorUrutan, pelajaranId, binding.btnPilihan3 )
+            }
 
-        binding.btnPilihan4.setOnClickListener {
-            onMenjawab(binding.btnPilihan4.text.toString(),soal.jawabanBenar, nomorUrutan, pelajaranId, binding.btnPilihan4 )
+            binding.btnPilihan4.setOnClickListener {
+                onMenjawab(binding.btnPilihan4.text.toString(),soalPilihan.jawabanBenar, nomorUrutan, pelajaranId, binding.btnPilihan4 )
+            }
         }
     }
 
     fun onMenjawab(pilihan: String, jawaban:String, nomorUrutan:Int, pelajaranId: Int, button: Button){
+        fillProgressBar()
+        disableButton()
+
         val bundle = Bundle()
         bundle.putInt(PELAJARAN_ID, pelajaranId)
         bundle.putInt(URUTAN_SOAL, nomorUrutan + 1)
-
-        disableButton()
 
         button.setTextColor(resources.getColor(R.color.accent_white))
         if (pilihan == jawaban) {
@@ -115,12 +126,11 @@ class PilihanFragment : Fragment() {
         binding.btnPilihan4.isClickable = false
     }
 
-
-    fun soalPilihan(pelajaranId: Int, nomor: Int): SoalPilihan {
-        return InitialDataSource.getSoalPilihans().first{
-            it.pelajaranId == pelajaranId && it.urutan == nomor
-        }
+    private fun fillProgressBar(){
+        val progressBar = (requireActivity() as SoalActivity).binding.progressSoal
+        progressBar.progress += 1
     }
+
     companion object {
         var PELAJARAN_ID = "pelajaran_id"
         var URUTAN_SOAL = "soal_id"

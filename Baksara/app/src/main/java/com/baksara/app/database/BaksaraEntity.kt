@@ -100,12 +100,23 @@ data class PelajaranAndSoalPilihan(
     val soalPilihan : List<SoalPilihan>
 )
 
+@Entity
+data class KamusBelajar(
+    @PrimaryKey
+    val id:Int,
+    val jumlah: String,
+    val aksara: String,
+    val latin: String,
+    val judul: String,
+    val deskripsi: String,
+)
 
 
 @Entity
 data class Kamus(
     @PrimaryKey
     val id: Int,
+    val kamusBelajarId: Int,
     val aksara: String,
     val latin: String,
 )
@@ -153,12 +164,3 @@ data class Artikel(
     val deskripsi: String,
     val url_img: String,
 )
-
-data class KamusBelajar(
-    val id:Int,
-    val jumlah: String,
-    val aksara: String,
-    val latin: String,
-    val judul: String,
-)
-

@@ -25,6 +25,9 @@ interface BaksaraDao {
     suspend fun insertSoalPilihan(course: List<SoalPilihan>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertKamusBelajar(course: List<KamusBelajar>)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertKamus(course: List<Kamus>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -43,6 +46,12 @@ interface BaksaraDao {
     @Query("SELECT * from SoalBaca WHERE pelajaranId = :pelajaranId AND id = :urutan")
     fun getSoalBacaByPelajaran(pelajaranId: Int, urutan: Int): LiveData<SoalBaca>
 
+    @Query("SELECT * from soalgambar WHERE pelajaranId = :pelajaranId AND id = :urutan")
+    fun getSoalGambarByPelajaran(pelajaranId: Int, urutan: Int): LiveData<SoalGambar>
+
+    @Query("SELECT * from soalpilihan WHERE pelajaranId = :pelajaranId AND id = :urutan")
+    fun getSoalPilihanByPelajaran(pelajaranId: Int, urutan: Int): LiveData<SoalPilihan>
+
     @Transaction
     @Query("SELECT * from pelajaran")
     fun getAllPelajaranAndSoalGambar(): LiveData<List<PelajaranAndSoalGambar>>
@@ -51,8 +60,11 @@ interface BaksaraDao {
     @Query("SELECT * from pelajaran")
     fun getAllPelajaranAndSoalPilihan(): LiveData<List<PelajaranAndSoalPilihan>>
 
-    @Query("SELECT * from kamus")
-    fun getAllKamus(): LiveData<List<Kamus>>
+    @Query("SELECT * from kamusbelajar")
+    fun getAllKamusBelajar(): LiveData<List<KamusBelajar>>
+
+    @Query("SELECT * from kamus WHERE kamusBelajarId = :belajarId")
+    fun getAllKamusByKamusBelajar(belajarId: Int): LiveData<List<Kamus>>
 
     @Transaction
     @Query("SELECT * from kamus")

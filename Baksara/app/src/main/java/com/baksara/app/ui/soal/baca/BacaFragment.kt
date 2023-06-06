@@ -1,15 +1,19 @@
 package com.baksara.app.ui.soal.baca
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.R
 import com.baksara.app.ViewModelFactory
 import com.baksara.app.database.SoalBaca
 import com.baksara.app.databinding.FragmentBacaBinding
+import com.baksara.app.ui.MainActivity
+import com.baksara.app.ui.soal.SoalActivity
 import com.baksara.app.ui.soal.gambar.GambarFragment
 
 class BacaFragment : Fragment() {
@@ -35,10 +39,12 @@ class BacaFragment : Fragment() {
         bacaViewModel = ViewModelProvider(this, viewModelFactory)[BacaViewModel::class.java]
 
         bacaViewModel.getSoalBacaByPelajaran(pelajaranId, nomorUrutan).observe(requireActivity()){
-
             binding.tvAksaraSoalBaca.text = it.aksara
             binding.tvLatinSoalBaca.text = it.latin
             binding.fabMulaiSoalBaca.setOnClickListener {
+
+                fillProgressBar()
+
                 val bundle = Bundle()
                 bundle.putInt(GambarFragment.PELAJARAN_ID, pelajaranId)
                 bundle.putInt(GambarFragment.URUTAN_SOAL, nomorUrutan)
@@ -54,6 +60,11 @@ class BacaFragment : Fragment() {
         }
 
 
+    }
+
+    private fun fillProgressBar(){
+        val progressBar = (requireActivity() as SoalActivity).binding.progressSoal
+        progressBar.progress += 1
     }
 
     companion object {

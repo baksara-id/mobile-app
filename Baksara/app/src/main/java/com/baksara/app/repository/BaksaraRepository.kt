@@ -4,13 +4,15 @@ import androidx.lifecycle.LiveData
 import com.baksara.app.database.BaksaraDao
 import com.baksara.app.database.Kamus
 import com.baksara.app.database.KamusAndPenggunaan
+import com.baksara.app.database.KamusBelajar
 import com.baksara.app.database.Modul
 import com.baksara.app.database.ModulAndPelajaran
 import com.baksara.app.database.Pelajaran
-import com.baksara.app.database.PelajaranAndSoalBaca
 import com.baksara.app.database.PelajaranAndSoalGambar
 import com.baksara.app.database.PelajaranAndSoalPilihan
 import com.baksara.app.database.SoalBaca
+import com.baksara.app.database.SoalGambar
+import com.baksara.app.database.SoalPilihan
 import com.baksara.app.helper.InitialDataSource
 import com.baksara.app.local.UserPreferences
 import com.baksara.app.network.ApiService
@@ -28,9 +30,14 @@ class BaksaraRepository(
     fun getAllModulAndPelajaran():LiveData<List<ModulAndPelajaran>> =baksaraDao.getAllModulAndPelajaran()
     fun getAllPelajaransByModul(modulId: Int): LiveData<List<Pelajaran>> = baksaraDao.getPelajaransByModul(modulId)
     fun getSoalBacaByPelajaran(pelajaranId: Int, urutan: Int):LiveData<SoalBaca> = baksaraDao.getSoalBacaByPelajaran(pelajaranId, urutan)
+    fun getSoalGambarByPelajaran(pelajaranId: Int, urutan: Int):LiveData<SoalGambar> = baksaraDao.getSoalGambarByPelajaran(pelajaranId, urutan)
+    fun getSoalPilihanByPelajaran(pelajaranId: Int, urutan: Int):LiveData<SoalPilihan> = baksaraDao.getSoalPilihanByPelajaran(pelajaranId, urutan)
+
     fun getAllPelajaranAndSoalGambar():LiveData<List<PelajaranAndSoalGambar>> = baksaraDao.getAllPelajaranAndSoalGambar()
     fun getAllPelajaranAndSoalPilihan():LiveData<List<PelajaranAndSoalPilihan>> = baksaraDao.getAllPelajaranAndSoalPilihan()
-    fun getAllKamus():LiveData<List<Kamus>> = baksaraDao.getAllKamus()
+    fun getAllKamusBelajar():LiveData<List<KamusBelajar>> = baksaraDao.getAllKamusBelajar()
+
+    fun getAllKamus(belajarId: Int):LiveData<List<Kamus>> = baksaraDao.getAllKamusByKamusBelajar(belajarId)
     fun getAllKamusAndPenggunaan():LiveData<List<KamusAndPenggunaan>> = baksaraDao.getAllKamusAndPenggunaan()
 
     suspend fun insertAllData(){
@@ -39,6 +46,7 @@ class BaksaraRepository(
         baksaraDao.insertSoalBaca(InitialDataSource.getSoalBacas())
         baksaraDao.insertSoalGambar(InitialDataSource.getSoalGambars())
         baksaraDao.insertSoalPilihan(InitialDataSource.getSoalPilihans())
+        baksaraDao.insertKamusBelajar(InitialDataSource.getListKamus())
         baksaraDao.insertKamus(InitialDataSource.getAksaraKamus())
         baksaraDao.insertPenggunaan(InitialDataSource.getPenggunaanKamus())
     }

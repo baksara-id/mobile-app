@@ -2,16 +2,13 @@ package com.baksara.app.ui.kelas
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.baksara.app.R
 import com.baksara.app.ViewModelFactory
 import com.baksara.app.adapter.ListPelajaranAdapter
 import com.baksara.app.database.Pelajaran
 import com.baksara.app.databinding.ActivityKelasBinding
 import com.baksara.app.helper.InitialDataSource
-import com.baksara.app.ui.home.HomeViewModel
 
 class KelasActivity : AppCompatActivity() {
     private var _binding: ActivityKelasBinding? = null

@@ -13,7 +13,7 @@ import com.baksara.app.ui.soal.baca.BacaFragment
 
 class SoalActivity : AppCompatActivity() {
     private var _binding: ActivitySoalBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

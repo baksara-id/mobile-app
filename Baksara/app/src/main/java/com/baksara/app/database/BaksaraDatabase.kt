@@ -6,8 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [Modul::class, Pelajaran::class, SoalBaca::class, SoalGambar::class, SoalPilihan::class, Penggunaan::class, Kamus::class],
-    version = 1
+    entities = [Modul::class, Pelajaran::class, SoalBaca::class, SoalGambar::class, SoalPilihan::class, Penggunaan::class, KamusBelajar::class, Kamus::class],
+    version = 1,
+    exportSchema = false
 )
 abstract class BaksaraDatabase: RoomDatabase() {
 
