@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
 
             }
         }
-        setHomePage(userLogin)
+//        setHomePage(userLogin)
         setupTantanganAdapter()
         binding.btnTantanganSelengkapnya.setOnClickListener {
             val intent = Intent(activity, TantanganActivity::class.java)
