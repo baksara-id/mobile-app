@@ -66,6 +66,9 @@ interface BaksaraDao {
     @Query("SELECT * from kamus WHERE kamusBelajarId = :belajarId")
     fun getAllKamusByKamusBelajar(belajarId: Int): LiveData<List<Kamus>>
 
+    @Query("SELECT * from penggunaan WHERE kamusId = :kamusId")
+    fun getAllPenggunaanByKamus(kamusId: Int): LiveData<List<Penggunaan>>
+
     @Transaction
     @Query("SELECT * from kamus")
     fun getAllKamusAndPenggunaan(): LiveData<List<KamusAndPenggunaan>>

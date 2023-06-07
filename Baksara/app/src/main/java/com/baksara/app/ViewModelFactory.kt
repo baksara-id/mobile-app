@@ -8,6 +8,8 @@ import com.baksara.app.ui.MainViewModel
 import com.baksara.app.ui.artikel.ArtikelViewModel
 import com.baksara.app.ui.home.HomeViewModel
 import com.baksara.app.ui.kelas.KelasViewModel
+import com.baksara.app.ui.pustaka.ContohKamusViewModel
+import com.baksara.app.ui.pustaka.DetailKamusViewModel
 import com.baksara.app.ui.pustaka.KamusViewModel
 import com.baksara.app.ui.pustaka.PustakaViewModel
 import com.baksara.app.ui.soal.baca.BacaViewModel
@@ -46,6 +48,14 @@ class ViewModelFactory private constructor(
 
             modelClass.isAssignableFrom(KamusViewModel::class.java) -> {
                 KamusViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(ContohKamusViewModel::class.java) -> {
+                ContohKamusViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(DetailKamusViewModel::class.java) -> {
+                DetailKamusViewModel(repository) as T
             }
 
             modelClass.isAssignableFrom(PustakaViewModel::class.java) -> {

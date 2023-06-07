@@ -44,7 +44,6 @@ class KamusFragment : Fragment() {
 
             }
         }
-
     }
 
     private fun setupListKamus(listKamusBelajar: List<KamusBelajar>){

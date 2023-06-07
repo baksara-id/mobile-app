@@ -19,6 +19,8 @@ class ListKamusDetailAdapter (private val kamus: List<Kamus>): RecyclerView.Adap
             binding.cardViewKamusAksara.setOnClickListener {
                 val intent = Intent(itemView.context, ContohKamusActivity::class.java)
                 intent.putExtra(ContohKamusActivity.AKSARAJAWA_ID, kamus.id)
+                intent.putExtra(ContohKamusActivity.JAWA_AKSARA, kamus.aksara)
+                intent.putExtra(ContohKamusActivity.JAWA_LATIN, kamus.latin)
                 itemView.context.startActivity(intent)
             }
         }

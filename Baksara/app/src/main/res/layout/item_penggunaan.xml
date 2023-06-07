@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_penggunaan"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="0dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_contoh_aksara"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            android:text="@string/pustaka_contoh_aksara1"
+            android:textColor="@color/main_300"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/tv_contoh_latin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/main_300"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:paddingTop="6dp"
+            android:paddingBottom="4dp"
+            android:text="@string/pustaka_contoh_latin1"
+            android:textColor="@color/neutral_white"
+            android:textSize="12sp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

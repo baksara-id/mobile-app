@@ -19,11 +19,6 @@ class MainViewModel(private val baksaraRepository: BaksaraRepository) : ViewMode
         insertAllData()
     }
 
-    fun getAllModul():LiveData<List<Modul>> = baksaraRepository.getAllModul()
-    fun getAllModulAndPelajaran():LiveData<List<ModulAndPelajaran>> =baksaraRepository.getAllModulAndPelajaran()
-    fun getAllPelajaranAndSoalGambar():LiveData<List<PelajaranAndSoalGambar>> = baksaraRepository.getAllPelajaranAndSoalGambar()
-    fun getAllPelajaranAndSoalPilihan():LiveData<List<PelajaranAndSoalPilihan>> = baksaraRepository.getAllPelajaranAndSoalPilihan()
-
     private fun insertAllData() = viewModelScope.launch {
         baksaraRepository.insertAllData()
     }

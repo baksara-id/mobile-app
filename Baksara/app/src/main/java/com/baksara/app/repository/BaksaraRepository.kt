@@ -11,6 +11,7 @@ import com.baksara.app.database.ModulAndPelajaran
 import com.baksara.app.database.Pelajaran
 import com.baksara.app.database.PelajaranAndSoalGambar
 import com.baksara.app.database.PelajaranAndSoalPilihan
+import com.baksara.app.database.Penggunaan
 import com.baksara.app.database.SoalBaca
 import com.baksara.app.database.SoalGambar
 import com.baksara.app.database.SoalPilihan
@@ -38,7 +39,10 @@ class BaksaraRepository(
     fun getAllPelajaranAndSoalPilihan():LiveData<List<PelajaranAndSoalPilihan>> = baksaraDao.getAllPelajaranAndSoalPilihan()
     fun getAllKamusBelajar():LiveData<List<KamusBelajar>> = baksaraDao.getAllKamusBelajar()
 
-    fun getAllKamus(belajarId: Int):LiveData<List<Kamus>> = baksaraDao.getAllKamusByKamusBelajar(belajarId)
+    fun getAllKamusByKamusBelajar(belajarId: Int):LiveData<List<Kamus>> = baksaraDao.getAllKamusByKamusBelajar(belajarId)
+
+    fun getAllPenggunaanByKamus(kamusId: Int):LiveData<List<Penggunaan>> = baksaraDao.getAllPenggunaanByKamus(kamusId)
+
     fun getAllKamusAndPenggunaan():LiveData<List<KamusAndPenggunaan>> = baksaraDao.getAllKamusAndPenggunaan()
 
     suspend fun insertAllData(){

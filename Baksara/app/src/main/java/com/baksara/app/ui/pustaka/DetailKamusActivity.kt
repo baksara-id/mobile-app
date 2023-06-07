@@ -24,6 +24,9 @@ class DetailKamusActivity : AppCompatActivity() {
 
         kamusBelajarId = intent.getIntExtra(KAMUSID, 0)
 
+        binding.tvJudulKamus.text = intent.getStringExtra(KAMUSJUDUL)
+        binding.tvDeskripsiKamus.text = intent.getStringExtra(KAMUSDESKRIPSI)
+
         val viewModelFactory = ViewModelFactory.getInstance(this)
         detailKamusViewModel = ViewModelProvider(this, viewModelFactory)[DetailKamusViewModel::class.java]
 
@@ -45,5 +48,7 @@ class DetailKamusActivity : AppCompatActivity() {
 
     companion object {
         const val KAMUSID = "kamus_id"
+        const val KAMUSJUDUL = "kamus_judul"
+        const val KAMUSDESKRIPSI = "kamus_deskripsi"
     }
 }

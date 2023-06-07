@@ -37,7 +37,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/tv_display_aksara_2"
+                android:id="@+id/tv_display_aksara_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins"
@@ -80,7 +80,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/tv_display_latin_2"
+                android:id="@+id/tv_display_latin_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/poppins"
@@ -114,90 +114,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cv_aksara" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_penggunaan1"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_penggunaan"
         android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center|center_horizontal"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:elevation="0dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_contoh_aksara_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:gravity="center"
-                android:text="@string/pustaka_contoh_aksara1"
-                android:textColor="@color/main_300"
-                android:textSize="32sp" />
-
-            <TextView
-                android:id="@+id/tv_contoh_latin_1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/main_300"
-                android:fontFamily="@font/poppins_bold"
-                android:gravity="center"
-                android:text="@string/pustaka_contoh_latin1"
-                android:textColor="@color/neutral_white"
-                android:textSize="12sp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_penggunaan2"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center|center_horizontal"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_view_penggunaan1">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:elevation="0dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_contoh_aksara_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:gravity="center"
-                android:text="@string/pustaka_contoh_aksara2"
-                android:textColor="@color/main_300"
-                android:textSize="32sp" />
-
-            <TextView
-                android:id="@+id/tv_contoh_latin_2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/main_300"
-                android:fontFamily="@font/poppins_bold"
-                android:gravity="center"
-                android:text="@string/pustaka_contoh_latin2"
-                android:textColor="@color/neutral_white"
-                android:textSize="12sp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
