@@ -94,7 +94,7 @@ class AksaraDrawingView(context: Context, attrs: AttributeSet) : View(context, a
         return stream.toByteArray()
     }
 
-    
+
     fun clear() {
         drawPath.reset()
         canvasBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)

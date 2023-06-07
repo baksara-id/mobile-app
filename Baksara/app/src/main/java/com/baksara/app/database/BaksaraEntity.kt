@@ -165,3 +165,9 @@ data class Artikel(
     val deskripsi: String,
     val url_img: String,
 )
+
+data class Lencana(
+    val id:Int,
+    val nama: String,
+    val url_img: String
+)

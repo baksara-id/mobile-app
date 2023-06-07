@@ -246,4 +246,12 @@ object InitialDataSource {
             )
     }
 
+    fun getLencanas(): List<Lencana>{
+        return listOf(
+            Lencana(1, "Carakan Bronze", "https://static.vecteezy.com/system/resources/thumbnails/011/811/814/small/gold-wavy-circle-badge-free-png.png"),
+            Lencana(2, "Carakan Silver", "https://static.vecteezy.com/system/resources/thumbnails/011/811/814/small/gold-wavy-circle-badge-free-png.png"),
+            Lencana(3, "Carakan Gold", "https://static.vecteezy.com/system/resources/thumbnails/011/811/814/small/gold-wavy-circle-badge-free-png.png"),
+        )
+    }
+
 }
