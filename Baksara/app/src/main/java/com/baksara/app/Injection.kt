@@ -10,9 +10,8 @@ import com.baksara.app.repository.BaksaraRepository
 object Injection {
     fun provideRepository(context: Context): BaksaraRepository{
         val baksaraDatabase = BaksaraDatabase.getDatabase(context)
-        val userpref: UserPreferences = UserPreferences(context)
         val service: ApiService = ApiConfig.getApiService()
-        return BaksaraRepository(baksaraDatabase.baksaraDao(), userpref, service)
+        return BaksaraRepository(baksaraDatabase.baksaraDao(), service)
     }
 
 }

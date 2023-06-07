@@ -29,7 +29,7 @@ data class User(
     @field: SerializedName("lencanas")
     val lencanaUsers: List<Lencana>?,
     @field: SerializedName("riwayat_belajars")
-    val riwayatBelajar: RiwayatBelajar?,
+    val riwayatBelajar: List<RiwayatBelajar>?,
 ) : Parcelable
 
 
