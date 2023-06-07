@@ -65,7 +65,7 @@ class UserPreferences constructor(context: Context) {
         val modul = userPref.getInt(MODUL,0)
         val token = userPref.getString(TOKEN,"")
         val langganan = userPref.getInt(PREMIUM,0)
-        val _langgananObject = Langganan(langganan,"",0.0,0)
+        val _langgananObject = Langganan(langganan,"",0.0f,0)
         var listOfRiwayat = mutableListOf<RiwayatBelajar>()
         val _riwayatBelajarObject = RiwayatBelajar(0,id,modul,kelas)
         listOfRiwayat.add(_riwayatBelajarObject)

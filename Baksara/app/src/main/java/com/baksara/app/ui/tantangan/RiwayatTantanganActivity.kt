@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.baksara.app.ViewModelFactory
 import com.baksara.app.adapter.ListTantanganWideAdapter
+import com.baksara.app.adapter.ListTantanganWideRiwayatAdapter
 import com.baksara.app.databinding.ActivityRiwayatTantanganBinding
 import com.baksara.app.helper.InitialDataSource
 import com.baksara.app.response.Langganan
@@ -40,10 +41,10 @@ class RiwayatTantanganActivity : AppCompatActivity() {
             tantanganViewModel.fetchRiwayatTantanganUser(it.id ?: -1)
         }
 
-        tantanganViewModel.liveDataTantangan.observe(this){ result ->
+        tantanganViewModel.liveDataTantanganSudah.observe(this){ result ->
             result.onSuccess { tantangans->
-                val listTantanganBelum = tantangans.data?.tantanganBelum ?: emptyList()
-                setupTantanganAdapter(listTantanganBelum)
+                val listTantanganSudah = tantangans.data?.riwayatTantangan ?: emptyList()
+                setupTantanganAdapter(listTantanganSudah)
             }
 
             result.onFailure {
@@ -52,20 +53,20 @@ class RiwayatTantanganActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupTantanganAdapter(listTantanganBelum: List<Tantangan>){
+    private fun setupTantanganAdapter(listTantanganSudah: List<Tantangan>){
         val layoutManager = LinearLayoutManager(this)
         binding.rvTantanganRiwayat.layoutManager = layoutManager
 
-        val adapter = ListTantanganWideAdapter(listTantanganBelum)
+        val adapter = ListTantanganWideRiwayatAdapter(listTantanganSudah)
         binding.rvTantanganRiwayat.adapter = adapter
         binding.inputTantanganRiwayatSearch.addTextChangedListener (object :TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val query = s.toString()
-                val filteredList = listTantanganBelum.filter {
-                    it.nama?.contains(query) ?: true
+                val query = s.toString().lowercase()
+                val filteredList = listTantanganSudah.filter {
+                    it.nama?.lowercase()?.contains(query) == true
                 }
                 adapter.setListTantangan(filteredList)
             }
@@ -89,7 +90,7 @@ class RiwayatTantanganActivity : AppCompatActivity() {
         val modul = userPref.getInt(MainActivity.MODUL,0)
         val token = userPref.getString(MainActivity.TOKEN,"")
         val langganan = userPref.getInt(MainActivity.PREMIUM,0)
-        val _langgananObject = Langganan(langganan,"",0.0,0)
+        val _langgananObject = Langganan(langganan,"",0.0f,0)
         var listOfRiwayat = mutableListOf<RiwayatBelajar>()
         val _riwayatBelajarObject = RiwayatBelajar(0,id,modul,kelas)
         listOfRiwayat.add(_riwayatBelajarObject)

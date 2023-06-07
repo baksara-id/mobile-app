@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.baksara.app.ViewModelFactory
@@ -17,6 +18,7 @@ import com.baksara.app.response.RiwayatBelajar
 import com.baksara.app.response.Tantangan
 import com.baksara.app.response.User
 import com.baksara.app.ui.MainActivity
+import java.util.Locale
 
 class TantanganActivity : AppCompatActivity() {
 
@@ -69,9 +71,9 @@ class TantanganActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val query = s.toString()
+                val query = s.toString().lowercase()
                 val filteredList = listTantanganBelum.filter {
-                    it.nama?.contains(query) ?: true
+                    it.nama?.lowercase()?.contains(query) == true
                 }
                 adapter.setListTantangan(filteredList)
             }
@@ -95,7 +97,7 @@ class TantanganActivity : AppCompatActivity() {
         val modul = userPref.getInt(MainActivity.MODUL,0)
         val token = userPref.getString(MainActivity.TOKEN,"")
         val langganan = userPref.getInt(MainActivity.PREMIUM,0)
-        val _langgananObject = Langganan(langganan,"",0.0,0)
+        val _langgananObject = Langganan(langganan,"",0.0f,0)
         var listOfRiwayat = mutableListOf<RiwayatBelajar>()
         val _riwayatBelajarObject = RiwayatBelajar(0,id,modul,kelas)
         listOfRiwayat.add(_riwayatBelajarObject)

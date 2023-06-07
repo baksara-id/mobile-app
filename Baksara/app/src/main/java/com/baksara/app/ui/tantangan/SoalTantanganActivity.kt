@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.ViewModelFactory
 import com.baksara.app.databinding.ActivitySoalTantanganBinding
-import com.baksara.app.helper.InitialDataSource
 import com.baksara.app.response.Tantangan
 import com.baksara.app.ui.tantangan.hasil.BerhasilTantanganActivity
 import com.baksara.app.ui.tantangan.hasil.GagalTantanganActivity
@@ -45,6 +44,8 @@ class SoalTantanganActivity : AppCompatActivity() {
         binding.tvXpSoalTantangan.text = "${tantangan.exp} XP"
         binding.tvDeskripsiSoalTantangan.text = tantangan.soal
         binding.tvLabelJawabanTantangan.text = tantangan.pertanyaan
+        binding.tvJudulSoalTantangan.text = tantangan.nama
+        binding.tvXpSoalTantangan.text = tantangan.exp.toString()
         binding.btnJawabTantangan.setOnClickListener {
             val intent: Intent
             if(binding.inputJawabTantangan.text.toString().lowercase() == tantangan.kunci_jawaban?.lowercase()){

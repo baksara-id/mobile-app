@@ -302,4 +302,28 @@ class BaksaraRepository(
             emit(Result.failure(e))
         }
     }
+
+    suspend fun getAllLangganans(): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        query {
+                            langganans {
+                            durasi
+                            harga
+                            id
+                            nama
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
 }

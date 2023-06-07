@@ -11,7 +11,7 @@ data class Langganan (
     @field: SerializedName("nama")
     val nama: String?,
     @field: SerializedName("harga")
-    val harga: Double?,
+    val harga: Float?,
     @field: SerializedName("durasi")
     val durasi: Int?,
 ) : Parcelable
