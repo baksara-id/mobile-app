@@ -20,7 +20,9 @@ class DetailCeritaActivity : AppCompatActivity() {
 
         ceritaViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this@DetailCeritaActivity))[PustakaViewModel::class.java]
         val ceritaId = intent.getIntExtra(CERITA_ID, -1)
-
+        ceritaId.let {
+            ceritaViewModel.fetchDetailCerita(it)
+        }
         ceritaViewModel.liveDataDetailCerita.observe(this){result->
             result.onSuccess { detailCerita->
                 Glide.with(this)
@@ -37,10 +39,6 @@ class DetailCeritaActivity : AppCompatActivity() {
             result.onFailure {
                 // Kalau Gagal
             }
-        }
-
-        ceritaId.let {
-            ceritaViewModel.fetchDetailCerita(it)
         }
     }
 

@@ -14,7 +14,7 @@ data class Data(
     // Query
     @field:SerializedName("user")
     val user: User?,
-    @field:SerializedName("getTantangans")
+    @field:SerializedName("tantangans")
     val tantanganBelum: List<Tantangan>?,
     @field:SerializedName("tantangan")
     val detailTantangan: Tantangan?,
@@ -22,15 +22,15 @@ data class Data(
     val riwayatTantangan: List<Tantangan>?,
     @field:SerializedName("ceritas")
     val ceritas: List<Cerita>?,
-    @field:SerializedName("detailCerita")
+    @field:SerializedName("cerita")
     val detailCerita: Cerita?,
     @field:SerializedName("artikels")
     val artikels: List<Artikel>?,
-    @field:SerializedName("detailArtikel")
+    @field:SerializedName("artikel")
     val detailArtikel: Artikel?,
-    @field:SerializedName("userLencana")
+    @field:SerializedName("user_lencanas")
     val userLencana: List<Lencana>?,
-    @field:SerializedName("userLangganans")
+    @field:SerializedName("langganans")
     val userLangganan: List<Langganan>?,
     // Mutation
     @field:SerializedName("createUser")

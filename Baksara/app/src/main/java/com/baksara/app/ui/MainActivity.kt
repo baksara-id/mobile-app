@@ -1,7 +1,9 @@
 package com.baksara.app.ui
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,6 +19,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.baksara.app.R
 import com.baksara.app.ViewModelFactory
 import com.baksara.app.databinding.ActivityMainBinding
+import com.baksara.app.local.UserPreferences
+import com.baksara.app.response.Langganan
+import com.baksara.app.response.RiwayatBelajar
+import com.baksara.app.response.User
 import com.baksara.app.ui.scanner.ScannerActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -26,7 +32,6 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _binding!!
 
     private lateinit var mainViewModel: MainViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -98,5 +103,18 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
+
+        const val PREF = "android_user"
+        const val CURRENTLIMIT = "limit"//jumlah scan
+        const val EXP = "exp"
+        const val LEVEL = "level"
+        const val AVATAR = "profilepic"
+        const val UNIQUEID = "id"
+        const val FULLNAME = "fullname"
+        const val EMAIL = "email"
+        const val PREMIUM = "langganan"
+        const val MODUL = "modul"
+        const val KELAS = "pelajaran"
+        const val TOKEN = "tokenz"
     }
 }

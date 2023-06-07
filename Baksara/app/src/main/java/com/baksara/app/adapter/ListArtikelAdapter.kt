@@ -16,7 +16,9 @@ class ListArtikelAdapter(private val artikels: List<Artikel>): RecyclerView.Adap
         RecyclerView.ViewHolder(binding.root) {
         fun bind(artikel: Artikel, position: Int) {
             binding.tvJudulArtikel.text = artikel.judul
-            val artikeldescription = artikel.isi?.substring(0,40)
+            val isiLength = artikel.isi?.length ?: 0
+            var artikeldescription = artikel.isi
+            if(isiLength > 40) artikeldescription = artikel.isi?.substring(0,40) + " ... "
             binding.tvDeskripsiArtikel.text = artikeldescription
 
             Glide.with(this.itemView)

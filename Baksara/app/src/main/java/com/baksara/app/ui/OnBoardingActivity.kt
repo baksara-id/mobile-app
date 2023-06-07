@@ -38,7 +38,7 @@ class OnBoardingActivity : AppCompatActivity(){
         }
     }
     companion object{
-        const val PREFNAME = "onboarding_pref"
+        const val PREFNAME = "android_user"
         const val IS_SEEN = "is_seen"
     }
 }

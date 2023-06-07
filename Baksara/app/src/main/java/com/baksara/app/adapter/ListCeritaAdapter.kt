@@ -16,7 +16,10 @@ class ListCeritaAdapter(private val ceritas: List<Cerita>): RecyclerView.Adapter
         RecyclerView.ViewHolder(binding.root) {
         fun bind(cerita: Cerita, position: Int) {
             binding.tvJudul.text = cerita.judul
-            binding.tvDeskripsi.text = cerita.deskripsi
+            val deskripsiLength = cerita.deskripsi?.length ?: 0
+            var deskripsi = cerita.deskripsi
+            if(deskripsiLength > 40) deskripsi = cerita.deskripsi?.substring(0,40) + " ... "
+            binding.tvDeskripsi.text = deskripsi
 
             Glide.with(this.itemView)
                 .load(cerita.url_gambar)

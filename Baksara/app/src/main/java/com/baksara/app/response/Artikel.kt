@@ -15,7 +15,9 @@ data class Artikel (
     @field: SerializedName("isi")
     val isi: String?,
     @field: SerializedName("url_gambar")
-    val url_gambar: String?
+    val url_gambar: String?,
+    @field: SerializedName("createdAt")
+    val createdAt: String?
 ) : Parcelable
 
 @Parcelize

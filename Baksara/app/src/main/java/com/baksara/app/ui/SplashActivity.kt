@@ -21,11 +21,13 @@ class SplashActivity : AppCompatActivity() {
 
         val delay = 4000.0.toLong()
         val seenBoarding = preferences.getBoolean(OnBoardingActivity.IS_SEEN, false)
+        val loggedIn = preferences.getString(MainActivity.TOKEN, "") ?: ""
 
         var intent = Intent(this, OnBoardingActivity::class.java)
 
         if (seenBoarding){
-            intent = Intent(this, LoginActivity::class.java)
+            if(loggedIn != "") intent = Intent(this, MainActivity::class.java)
+            else intent = Intent(this, LoginActivity::class.java)
         }
 
         Handler(Looper.getMainLooper()).postDelayed({

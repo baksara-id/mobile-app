@@ -31,8 +31,8 @@
             app:tabIndicatorHeight="0dp"
             app:tabMode="fixed"
             app:tabPaddingBottom="0dp"
-            app:tabPaddingEnd="9dp"
-            app:tabPaddingStart="9dp"
+            app:tabPaddingEnd="7dp"
+            app:tabPaddingStart="7dp"
             app:tabPaddingTop="0dp"
             app:tabRippleColor="@null"
             app:tabTextColor="@color/accent_white" />

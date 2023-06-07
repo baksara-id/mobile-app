@@ -50,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
                                     if (it.errors == null) {
                                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                                         startActivity(intent)
-                                        Toast.makeText(this@RegisterActivity, "Testing Token ${it.data.toString()}", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(this@RegisterActivity, "Berhasil Register", Toast.LENGTH_SHORT).show()
                                         finish()
                                     } else {
                                         Toast.makeText(this@RegisterActivity, it.errors[0].message, Toast.LENGTH_SHORT).show()

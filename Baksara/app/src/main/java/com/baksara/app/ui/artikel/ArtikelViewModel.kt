@@ -1,5 +1,6 @@
 package com.baksara.app.ui.artikel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,6 +29,7 @@ class ArtikelViewModel(private val baksaraRepository: BaksaraRepository): ViewMo
         viewModelScope.launch {
             getDetailArtikel(id).collect{ detailArtikel ->
                 liveDataDetailArtikel.value = detailArtikel
+                Log.d("a",detailArtikel.toString())
             }
         }
     }

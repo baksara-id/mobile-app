@@ -1,6 +1,7 @@
 package com.baksara.app.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.baksara.app.database.BaksaraDao
 import com.baksara.app.database.Kamus
 import com.baksara.app.database.KamusAndPenggunaan
@@ -18,12 +19,12 @@ import com.baksara.app.local.UserPreferences
 import com.baksara.app.network.ApiService
 import com.baksara.app.response.GraphQLRequest
 import com.baksara.app.response.GraphQLResponse
+import com.baksara.app.response.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class BaksaraRepository(
     private val baksaraDao: BaksaraDao,
-    private val userpref: UserPreferences,
     private val service: ApiService
     ) {
     fun getAllModul():LiveData<List<Modul>> = baksaraDao.getAllModul()
@@ -145,7 +146,7 @@ class BaksaraRepository(
                 "application/json",
                 GraphQLRequest(
                     """
-                        query Cerita($id: Int!) {
+                        query {
                           cerita(id: $id) {
                             deskripsi
                             id
@@ -176,10 +177,6 @@ class BaksaraRepository(
                             isi
                             judul
                             url_gambar
-                            kategori {
-                              id
-                              nama
-                            }
                           }
                         }
                     """.trimIndent()
@@ -198,16 +195,41 @@ class BaksaraRepository(
                 "application/json",
                 GraphQLRequest(
                     """
-                        query Artikel($id: Int!) {
+                        query {
                           artikel(id: $id) {
                             id
                             isi
                             judul
                             url_gambar
+                            createdAt
                             kategori {
                               id
                               nama
                             }
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
+    suspend fun getAllTantanganBelum(): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        query Artikels {
+                          artikels {
+                            id
+                            isi
+                            judul
+                            url_gambar
                           }
                         }
                     """.trimIndent()
