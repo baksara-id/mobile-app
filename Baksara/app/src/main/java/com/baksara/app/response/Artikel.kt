@@ -8,8 +8,8 @@ import kotlinx.parcelize.Parcelize
 data class Artikel (
     @field: SerializedName("id")
     val id: Int?,
-    @field: SerializedName("kategori_id")
-    val kategori_id: Int?,
+    @field: SerializedName("kategori")
+    val kategori: Kategori?,
     @field: SerializedName("judul")
     val judul: String?,
     @field: SerializedName("isi")

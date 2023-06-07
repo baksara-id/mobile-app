@@ -46,7 +46,7 @@ class ScannerActivity : AppCompatActivity() {
         val preferences = this.getSharedPreferences(SCANNERPREF, Context.MODE_PRIVATE)
         var langganan = false
         binding.captureImage.setOnClickListener {
-            if(!preferences.getBoolean(LIMITREACH, false)){
+            if(preferences.getBoolean(LIMITREACH, false)){
                 showMaxLimitScanDialog(this, langganan)
             }
             else{

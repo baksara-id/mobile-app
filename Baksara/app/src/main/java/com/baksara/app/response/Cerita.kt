@@ -10,8 +10,8 @@ data class Cerita (
     val id: Int?,
     @field: SerializedName("judul")
     val judul: String?,
-    @field: SerializedName("deksripsi")
-    val deksripsi: String?,
+    @field: SerializedName("deskripsi")
+    val deskripsi: String?,
     @field: SerializedName("url_isi")
     val url_isi: String?,
     @field: SerializedName("url_gambar")

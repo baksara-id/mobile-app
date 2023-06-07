@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.baksara.app.R
-import com.baksara.app.database.Cerita
 import com.baksara.app.databinding.ItemCeritaBinding
+import com.baksara.app.response.Cerita
 import com.baksara.app.ui.pustaka.DetailCeritaActivity
 import com.bumptech.glide.Glide
 
@@ -19,7 +19,7 @@ class ListCeritaAdapter(private val ceritas: List<Cerita>): RecyclerView.Adapter
             binding.tvDeskripsi.text = cerita.deskripsi
 
             Glide.with(this.itemView)
-                .load(cerita.url_img)
+                .load(cerita.url_gambar)
                 .placeholder(R.drawable.arjunadummy2)
                 .fitCenter()
                 .into(binding.imageView);

@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.baksara.app.R
-import com.baksara.app.database.Artikel
 import com.baksara.app.databinding.ItemArtikelBinding
+import com.baksara.app.response.Artikel
 import com.baksara.app.ui.artikel.DetailArtikelActivity
+import com.baksara.app.ui.pustaka.DetailCeritaActivity
 import com.bumptech.glide.Glide
 
 class ListArtikelAdapter(private val artikels: List<Artikel>): RecyclerView.Adapter<ListArtikelAdapter.ListViewHolder>()  {
@@ -15,16 +16,18 @@ class ListArtikelAdapter(private val artikels: List<Artikel>): RecyclerView.Adap
         RecyclerView.ViewHolder(binding.root) {
         fun bind(artikel: Artikel, position: Int) {
             binding.tvJudulArtikel.text = artikel.judul
-            binding.tvDeskripsiArtikel.text = artikel.deskripsi
+            val artikeldescription = artikel.isi?.substring(0,40)
+            binding.tvDeskripsiArtikel.text = artikeldescription
 
             Glide.with(this.itemView)
-                .load(artikel.url_img)
+                .load(artikel.url_gambar)
                 .placeholder(R.drawable.arjunadummy2)
                 .fitCenter()
                 .into(binding.imageView);
 
             binding.cardViewArtikel.setOnClickListener {
                 val intent = Intent(itemView.context, DetailArtikelActivity::class.java)
+                intent.putExtra(DetailArtikelActivity.ARTIKELID, artikel.id)
                 itemView.context.startActivity(intent)
             }
         }

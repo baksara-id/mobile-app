@@ -5,9 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.repository.BaksaraRepository
 import com.baksara.app.ui.MainViewModel
+import com.baksara.app.ui.artikel.ArtikelViewModel
 import com.baksara.app.ui.home.HomeViewModel
 import com.baksara.app.ui.kelas.KelasViewModel
 import com.baksara.app.ui.pustaka.KamusViewModel
+import com.baksara.app.ui.pustaka.PustakaViewModel
 import com.baksara.app.ui.soal.baca.BacaViewModel
 import com.baksara.app.ui.soal.gambar.GambarViewModel
 import com.baksara.app.ui.soal.pilihan.PilihanViewModel
@@ -44,6 +46,14 @@ class ViewModelFactory private constructor(
 
             modelClass.isAssignableFrom(KamusViewModel::class.java) -> {
                 KamusViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(PustakaViewModel::class.java) -> {
+                PustakaViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(ArtikelViewModel::class.java) -> {
+                ArtikelViewModel(repository) as T
             }
 
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)

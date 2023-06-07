@@ -14,11 +14,11 @@ data class Data(
     // Query
     @field:SerializedName("user")
     val user: User?,
-    @field:SerializedName("tantanganBelum")
+    @field:SerializedName("getTantangans")
     val tantanganBelum: List<Tantangan>?,
-    @field:SerializedName("detailTantangan")
+    @field:SerializedName("tantangan")
     val detailTantangan: Tantangan?,
-    @field:SerializedName("riwayatTantangan")
+    @field:SerializedName("riwayat_tantangans")
     val riwayatTantangan: List<Tantangan>?,
     @field:SerializedName("ceritas")
     val ceritas: List<Cerita>?,

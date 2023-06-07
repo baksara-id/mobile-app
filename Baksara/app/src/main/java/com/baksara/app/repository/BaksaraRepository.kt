@@ -51,6 +51,7 @@ class BaksaraRepository(
         baksaraDao.insertPenggunaan(InitialDataSource.getPenggunaanKamus())
     }
 
+
     suspend fun register(email: String, name: String, password: String): Flow<Result<GraphQLResponse>> = flow {
         try {
             val response = service.graphql(
@@ -85,23 +86,129 @@ class BaksaraRepository(
                                 email
                                 token
                                 avatar
+                                exp
+                                level
+                                jumlah_scan
                                 kadaluwarsa
-                                levels {
+                                riwayat_belajars {
+                                  nomor_modul
+                                  nomor_pelajaran
                                   id
-                                  nama
                                 }
                                 lencanas {
                                   id
-                                  nama
                                   url_gambar
                                 }
                                 langganan {
                                   id
-                                  nama
-                                  harga
-                                  durasi
                                 }
                             }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
+    suspend fun getAllCerita(): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        query Ceritas {
+                          ceritas {
+                            id
+                            judul
+                            url_gambar
+                            url_isi
+                            deskripsi
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
+    suspend fun getDetailCerita(id: Int): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        query Cerita($id: Int!) {
+                          cerita(id: $id) {
+                            deskripsi
+                            id
+                            judul
+                            url_gambar
+                            url_isi
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
+    suspend fun getAllArtikel(): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        query Artikels {
+                          artikels {
+                            id
+                            isi
+                            judul
+                            url_gambar
+                            kategori {
+                              id
+                              nama
+                            }
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
+    suspend fun getDetailArtikel(id: Int): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        query Artikel($id: Int!) {
+                          artikel(id: $id) {
+                            id
+                            isi
+                            judul
+                            url_gambar
+                            kategori {
+                              id
+                              nama
+                            }
+                          }
                         }
                     """.trimIndent()
                 )
