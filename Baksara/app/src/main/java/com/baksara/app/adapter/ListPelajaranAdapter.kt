@@ -35,7 +35,8 @@ class ListPelajaranAdapter(private val pelajarans: List<Pelajaran>): RecyclerVie
                 binding.fabMulai.setOnClickListener {
                     val intent = Intent(itemView.context, SoalActivity::class.java)
                     intent.putExtra(SoalActivity.PELAJARAN_ID, pelajaran.id)
-                    itemView.context.startActivity(intent)                }
+                    itemView.context.startActivity(intent)
+                }
             }
         }
 

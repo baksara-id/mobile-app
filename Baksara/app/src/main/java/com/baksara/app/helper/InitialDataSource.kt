@@ -125,9 +125,9 @@ object InitialDataSource {
 
     fun getListKamus(): List<KamusBelajar>{
         return listOf(
-            KamusBelajar(1,"20 Aksara","ꦲ", "Ha", "Carakan", "Carakan merupakan kata dasar Aksara Jawa yang berjumlah 20 aksara pokok dan bersifat kesukukataan."),
-            KamusBelajar(2,"8 Aksara","ꦲ", "Ha","Sandhangan", "Sandhangan adalah tanda diakritik yang berfungsi untuk mengubah bunyi pada huruf aksara Jawa."),
-            KamusBelajar(3,"20 Aksara","ꦲ", "Ha","Pasangan", "Pasangan Aksara Jawa adalah simbol-simbol yang berguna untuk mematikan atau menghilangkan huruf vokal pada aksara dasar Hanacaraka."),
+            KamusBelajar(1,"20 Aksara","ꦲ", "Ha", "Carakan", "Carakan merupakan kata dasar Aksara Jawa yang berjumlah 20 aksara pokok dan bersifat kesukukataan.", false),
+            KamusBelajar(2,"8 Aksara","ꦲ", "Ha","Sandhangan", "Sandhangan adalah tanda diakritik yang berfungsi untuk mengubah bunyi pada huruf aksara Jawa.", true),
+            KamusBelajar(3,"20 Aksara","ꦲ", "Ha","Pasangan", "Pasangan Aksara Jawa adalah simbol-simbol yang berguna untuk mematikan atau menghilangkan huruf vokal pada aksara dasar Hanacaraka.", true),
         )
     }
 
