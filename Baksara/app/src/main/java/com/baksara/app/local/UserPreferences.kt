@@ -49,8 +49,6 @@ class UserPreferences constructor(context: Context) {
         editor.putInt(LEVEL, user.level?:0)
         editor.putInt(CURRENTLIMIT, user.jumlah_scan?:0)
         editor.putInt(PREMIUM, user.langganan?.id?:0)
-        editor.putInt(KELAS, user.riwayatBelajar?.nomor_pelajaran ?:0)
-        editor.putInt(MODUL, user.riwayatBelajar?.nomor_modul ?:0)
         editor.putString(TOKEN,user.token)
         editor.apply()
     }
@@ -68,8 +66,10 @@ class UserPreferences constructor(context: Context) {
         val token = userPref.getString(TOKEN,"")
         val langganan = userPref.getInt(PREMIUM,0)
         val _langgananObject = Langganan(langganan,"",0.0,0)
+        var listOfRiwayat = mutableListOf<RiwayatBelajar>()
         val _riwayatBelajarObject = RiwayatBelajar(0,id,modul,kelas)
-        return User(id,_langgananObject,name,email,token,avatar, exp,level,limit,kadaluarsa = null,null,_riwayatBelajarObject)
+        listOfRiwayat.add(_riwayatBelajarObject)
+        return User(id,_langgananObject,name,email,token,avatar, exp,level,limit,kadaluarsa = null,null,listOfRiwayat)
     }
 
     fun deleteUser(){
