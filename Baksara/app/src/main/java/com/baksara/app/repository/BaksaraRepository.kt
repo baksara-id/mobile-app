@@ -275,4 +275,31 @@ class BaksaraRepository(
             emit(Result.failure(e))
         }
     }
+
+    suspend fun getAllTantanganSudah(idUser: Int): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        query {
+                          riwayat_tantangans(user_id: $idUser) {
+                            id
+                            nama
+                            exp
+                            soal
+                            pertanyaan
+                            kunci_jawaban
+                            url_gambar
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
 }

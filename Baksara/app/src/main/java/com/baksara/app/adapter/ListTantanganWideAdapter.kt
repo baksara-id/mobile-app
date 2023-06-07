@@ -5,13 +5,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.baksara.app.database.Tantangan
 import com.baksara.app.databinding.ItemTantanganWideBinding
-import com.baksara.app.ui.kelas.KelasActivity
+import com.baksara.app.response.Tantangan
 import com.baksara.app.ui.tantangan.SoalTantanganActivity
-import com.baksara.app.ui.tantangan.TantanganActivity
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.TransformationUtils.centerCrop
 
 class ListTantanganWideAdapter(var tantangans: List<Tantangan>): RecyclerView.Adapter<ListTantanganWideAdapter.ListViewHolder>() {
     inner class ListViewHolder(private val binding: ItemTantanganWideBinding): RecyclerView.ViewHolder(binding.root) {
@@ -20,7 +17,7 @@ class ListTantanganWideAdapter(var tantangans: List<Tantangan>): RecyclerView.Ad
             binding.tvXpTantangan.text = "$jumlahXp XP"
 
             binding.tvJudulTantangan.text = tantangan.nama
-            Glide.with(itemView.context).load(tantangan.url_img)
+            Glide.with(itemView.context).load(tantangan.url_gambar)
                 .centerCrop()
                 .into(binding.imgTantangan)
             binding.root.setOnClickListener {

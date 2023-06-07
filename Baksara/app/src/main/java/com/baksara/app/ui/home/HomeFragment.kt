@@ -19,6 +19,7 @@ import com.baksara.app.helper.InitialDataSource.getModuls
 import com.baksara.app.helper.InitialDataSource.getTantangans
 import com.baksara.app.response.Langganan
 import com.baksara.app.response.RiwayatBelajar
+import com.baksara.app.response.Tantangan
 import com.baksara.app.response.User
 import com.baksara.app.ui.MainActivity
 import com.baksara.app.ui.MainViewModel
@@ -54,19 +55,31 @@ class HomeFragment : Fragment() {
 
             }
         }
-//        setHomePage(userLogin)
-        setupTantanganAdapter()
+        userLogin.let{
+            homeViewModel.fetchAllTantanganUser(it.id?:-1)
+        }
+        homeViewModel.liveDataTantangan.observe(requireActivity()){ result ->
+            result.onSuccess { tantangans->
+                val listTantanganBelum = tantangans.data?.tantanganBelum ?: emptyList()
+                setupTantanganAdapter(listTantanganBelum)
+            }
+
+            result.onFailure {
+                //Kalau gagal
+            }
+        }
+        setHomePage(userLogin)
         binding.btnTantanganSelengkapnya.setOnClickListener {
             val intent = Intent(activity, TantanganActivity::class.java)
             startActivity(intent)
         }
     }
 
-    private fun setupTantanganAdapter(){
+    private fun setupTantanganAdapter(listTantangan: List<Tantangan>){
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvTantangan.layoutManager = layoutManager
 
-        val adapter = ListTantanganAdapter(getTantangans())
+        val adapter = ListTantanganAdapter(listTantangan)
         binding.rvTantangan.adapter = adapter
     }
 

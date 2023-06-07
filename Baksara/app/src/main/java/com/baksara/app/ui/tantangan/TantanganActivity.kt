@@ -1,21 +1,28 @@
 package com.baksara.app.ui.tantangan
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.baksara.app.ViewModelFactory
 import com.baksara.app.adapter.ListTantanganWideAdapter
 import com.baksara.app.databinding.ActivityTantanganBinding
-import com.baksara.app.helper.InitialDataSource
-import com.baksara.app.ui.LoginActivity
+import com.baksara.app.response.Langganan
+import com.baksara.app.response.RiwayatBelajar
+import com.baksara.app.response.Tantangan
+import com.baksara.app.response.User
+import com.baksara.app.ui.MainActivity
 
 class TantanganActivity : AppCompatActivity() {
 
     private var _binding: ActivityTantanganBinding? = null
     private val binding get() = _binding!!
+    private lateinit var tantanganViewModel: TantanganViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +32,24 @@ class TantanganActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Tantangan"
 
-        setupTantanganAdapter()
+        tantanganViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this@TantanganActivity))[TantanganViewModel::class.java]
+
+        val userPref = getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
+        val userLogin = getUser(userPref)
+
+        userLogin.let{
+            tantanganViewModel.fetchAllTantanganUser(it.id?:-1)
+        }
+        tantanganViewModel.liveDataTantangan.observe(this){ result ->
+            result.onSuccess { tantangans->
+                val listTantanganBelum = tantangans.data?.tantanganBelum ?: emptyList()
+                setupTantanganAdapter(listTantanganBelum)
+            }
+
+            result.onFailure {
+                //Kalau gagal
+            }
+        }
 
         binding.btnTantanganSelengkapnya3.setOnClickListener {
             val intent = Intent(this, RiwayatTantanganActivity::class.java)
@@ -34,13 +58,11 @@ class TantanganActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupTantanganAdapter(){
-        val listTantangan = InitialDataSource.getTantangans()
-
+    private fun setupTantanganAdapter(listTantanganBelum: List<Tantangan>){
         val layoutManager = LinearLayoutManager(this)
         binding.rvTantanganWide.layoutManager = layoutManager
 
-        val adapter = ListTantanganWideAdapter(listTantangan)
+        val adapter = ListTantanganWideAdapter(listTantanganBelum)
         binding.rvTantanganWide.adapter = adapter
         binding.inputTantanganSearch.addTextChangedListener (object :TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -48,8 +70,8 @@ class TantanganActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val query = s.toString()
-                val filteredList = listTantangan.filter {
-                    it.nama.contains(query)
+                val filteredList = listTantanganBelum.filter {
+                    it.nama?.contains(query) ?: true
                 }
                 adapter.setListTantangan(filteredList)
             }
@@ -59,6 +81,25 @@ class TantanganActivity : AppCompatActivity() {
 
         })
 
+    }
+
+    fun getUser(userPref: SharedPreferences): User {
+        val name = userPref.getString(MainActivity.FULLNAME,"")
+        val email = userPref.getString(MainActivity.EMAIL,"")
+        val avatar = userPref.getString(MainActivity.AVATAR,"")
+        val id = userPref.getInt(MainActivity.UNIQUEID,0)
+        val exp = userPref.getInt(MainActivity.EXP,0)
+        val level = userPref.getInt(MainActivity.LEVEL,0)
+        val limit = userPref.getInt(MainActivity.CURRENTLIMIT,0)
+        val kelas = userPref.getInt(MainActivity.KELAS,0)
+        val modul = userPref.getInt(MainActivity.MODUL,0)
+        val token = userPref.getString(MainActivity.TOKEN,"")
+        val langganan = userPref.getInt(MainActivity.PREMIUM,0)
+        val _langgananObject = Langganan(langganan,"",0.0,0)
+        var listOfRiwayat = mutableListOf<RiwayatBelajar>()
+        val _riwayatBelajarObject = RiwayatBelajar(0,id,modul,kelas)
+        listOfRiwayat.add(_riwayatBelajarObject)
+        return User(id,_langgananObject,name,email,token,avatar, exp,level,limit,kadaluarsa = null,null,listOfRiwayat)
     }
 
 }
