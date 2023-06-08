@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 
 class ProfileViewModel (private val baksaraRepository: BaksaraRepository): ViewModel() {
     val liveDataLangganan: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
+    val liveDataLencana: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
 
     init {
         fetchLanggananData()
@@ -22,7 +23,17 @@ class ProfileViewModel (private val baksaraRepository: BaksaraRepository): ViewM
             }
         }
     }
+    fun fetchLencanaData(userId: Int){
+        viewModelScope.launch {
+            getAllLencanaUser(userId).collect{ lencanas->
+                liveDataLencana.value = lencanas
+            }
+        }
+    }
 
     suspend fun getAllLangganans(): Flow<Result<GraphQLResponse>> =
         baksaraRepository.getAllLangganans()
+
+    suspend fun getAllLencanaUser(userId: Int): Flow<Result<GraphQLResponse>> =
+        baksaraRepository.getUserLencanas(userId)
 }

@@ -38,6 +38,11 @@ class RegisterActivity : AppCompatActivity() {
             val passwordLength = binding.inputPassword.length()
             val namaLengkap = binding.inputNamaLengkap.text.toString()
             val email = binding.inputEmail.text.toString()
+            if(binding.checkBox.isChecked == false) {
+                Toast.makeText(this@RegisterActivity, "Anda belum menyetujui pernyataan kami", Toast.LENGTH_SHORT).show()
+                binding.btnRegister.isEnabled = true
+                return@setOnClickListener
+            }
             if(password != repassword) Toast.makeText(this@RegisterActivity, "Password tidak sama dengan Repassword", Toast.LENGTH_SHORT).show()
 
             if(!password.isEmpty() && !repassword.isEmpty() && !namaLengkap.isEmpty() && !email.isEmpty()){

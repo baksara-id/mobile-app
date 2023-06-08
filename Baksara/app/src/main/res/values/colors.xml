@@ -22,6 +22,7 @@
     <color name="light_danger">#FBE4E3</color>
     <color name="premium">#EC9922</color>
     <color name="light_premium">#FFF5DE</color>
+    <color name="light_standard">#FBFBFB</color>
     <!--  NEUTRAL COLOR  -->
     <color name="neutral_50">#efefef</color>
     <color name="neutral_100">#cecece</color>

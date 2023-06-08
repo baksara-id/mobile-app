@@ -6,8 +6,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class MutationResponse(
-    @field: SerializedName("response")
-    val response: String?,
-    @field: SerializedName("response2")
-    val response2:String?,
+    @field: SerializedName("is_approved")
+    val is_approved: Boolean?,
+    @field: SerializedName("jawaban")
+    val jawaban:String?
 ): Parcelable

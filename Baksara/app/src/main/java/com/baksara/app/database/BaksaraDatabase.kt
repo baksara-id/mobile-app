@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [Modul::class, Pelajaran::class, SoalBaca::class, SoalGambar::class, SoalPilihan::class, Penggunaan::class, KamusBelajar::class, Kamus::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class BaksaraDatabase: RoomDatabase() {
@@ -24,7 +24,7 @@ abstract class BaksaraDatabase: RoomDatabase() {
                     context.applicationContext,
                     BaksaraDatabase::class.java,
                     "baksara_db"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 instance
             }

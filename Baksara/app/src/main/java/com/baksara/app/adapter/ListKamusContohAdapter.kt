@@ -1,9 +1,12 @@
 package com.baksara.app.adapter
 
 import android.content.Intent
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.baksara.app.R
 import com.baksara.app.database.Penggunaan
 import com.baksara.app.databinding.ItemPenggunaanBinding
 
@@ -12,7 +15,8 @@ class ListKamusContohAdapter(private val penggunaan: List<Penggunaan>): Recycler
     inner class ListViewHolder(private val binding: ItemPenggunaanBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(penggunaan: Penggunaan, position: Int) {
-            binding.tvContohAksara.text = penggunaan.aksara
+            val textInHTMLFormat = penggunaan.aksara
+            binding.tvContohAksara.text = Html.fromHtml(textInHTMLFormat, Html.FROM_HTML_MODE_LEGACY)
             binding.tvContohLatin.text = penggunaan.latin
         }
     }

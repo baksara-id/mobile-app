@@ -21,6 +21,7 @@ import com.baksara.app.response.RiwayatBelajar
 import com.baksara.app.response.User
 import com.baksara.app.ui.MainActivity
 import com.baksara.app.ui.profil.ProfileViewModel
+import com.bumptech.glide.Glide
 import java.text.NumberFormat
 import java.util.Currency
 import java.util.Locale
@@ -41,21 +42,27 @@ class LanggananActivity : AppCompatActivity() {
         val userPref = getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
         val userLogin = getUser(userPref)
 
-        if(userLogin.langganan != null){
+        if(userLogin.langganan?.id != 0){
             // User Premium
+            binding.cvBadgeUserLangganan.backgroundTintList = ContextCompat.getColorStateList(this, R.color.light_premium)
             binding.badgeUserPencapaianLangganan.text = "User Premium"
-            val border = binding.badgeUserPencapaianLangganan.background as GradientDrawable
-            border.setStroke(2, ContextCompat.getColor(this, R.color.premium))
+            binding.badgeUserPencapaianLangganan.setBackgroundResource(R.drawable.bg_border_premium)
             binding.badgeUserPencapaianLangganan.setTextColor(ContextCompat.getColor(this, R.color.premium))
         }
         else{
             // User Standard
+            binding.cvBadgeUserLangganan.backgroundTintList = ContextCompat.getColorStateList(this, R.color.light_standard)
             binding.badgeUserPencapaianLangganan.text = "User Standard"
-            val border = binding.badgeUserPencapaianLangganan.background as GradientDrawable
-            border.setStroke(2, ContextCompat.getColor(this, R.color.neutral_300))
+            binding.badgeUserPencapaianLangganan.setBackgroundResource(R.drawable.bg_border_standard)
             binding.badgeUserPencapaianLangganan.setTextColor(ContextCompat.getColor(this, R.color.neutral_300))
 
         }
+
+        Glide.with(this)
+            .load(userLogin.avatar)
+            .placeholder(R.drawable.arjunadummy2)
+            .centerCrop()
+            .into(binding.imgProfilePencapaianLangganan);
 
         profileViewModel.liveDataLangganan.observe(this){ result->
             result.onSuccess {

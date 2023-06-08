@@ -119,6 +119,30 @@ class BaksaraRepository(
         }
     }
 
+    suspend fun submitJawabanTantangan(userId: Int, tantanganId: Int, jawaban: String): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        mutation {
+                          createUserTantangan(user_id: $userId, tantangan_id: $tantanganId, jawaban: "$jawaban") {
+                            is_approved
+                            jawaban
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
+
+//=========================================================QUERY============================================================
     suspend fun getAllCerita(): Flow<Result<GraphQLResponse>> = flow {
         try {
             val response = service.graphql(
@@ -315,6 +339,29 @@ class BaksaraRepository(
                             harga
                             id
                             nama
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
+    suspend fun getUserLencanas(userId: Int): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        query {
+                          user_lencanas(user_id: $userId) {
+                            id
+                            nama
+                            url_gambar
                           }
                         }
                     """.trimIndent()

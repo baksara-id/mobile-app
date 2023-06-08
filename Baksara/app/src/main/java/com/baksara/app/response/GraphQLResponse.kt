@@ -44,7 +44,7 @@ data class Data(
     @field:SerializedName("createUserLencana") // Kalau selesai modul
     val lencana: Lencana?, // Kalau selesai return lencananya
     @field:SerializedName("createUserTantangan")// Kalau benar menjawab
-    val is_approved: MutationResponse?, // Kalau benar return true
+    val response: MutationResponse?, // Kalau benar return true
     @field:SerializedName("createLaporan") // Kalau tambah laporan
     val laporan: Laporan?, // Kalau benar return laporan
 )

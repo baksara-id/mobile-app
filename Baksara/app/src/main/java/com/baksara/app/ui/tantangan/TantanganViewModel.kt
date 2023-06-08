@@ -13,6 +13,7 @@ class TantanganViewModel(private val baksaraRepository: BaksaraRepository): View
     val liveDataTantangan: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataDetailTantangan: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataTantanganSudah: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
+    val liveDataResponseSubmit: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
 
     fun fetchAllTantanganUser(userId: Int){
         viewModelScope.launch {
@@ -38,6 +39,14 @@ class TantanganViewModel(private val baksaraRepository: BaksaraRepository): View
         }
     }
 
+    fun fetchResponseSubmmit(userId: Int, tantanganId: Int, jawaban:String) {
+        viewModelScope.launch {
+            jawabTantangan(userId,tantanganId, jawaban).collect{ response ->
+                liveDataResponseSubmit.value = response
+            }
+        }
+    }
+
     suspend fun getAllTantanganUser(userId: Int): Flow<Result<GraphQLResponse>> =
         baksaraRepository.getAllTantanganBelum(userId)
 
@@ -46,4 +55,7 @@ class TantanganViewModel(private val baksaraRepository: BaksaraRepository): View
 
     suspend fun getRiwayatTantangan(userId: Int): Flow<Result<GraphQLResponse>> =
         baksaraRepository.getAllTantanganSudah(userId)
+
+    suspend fun jawabTantangan(userId: Int, tantanganId: Int, jawaban:String): Flow<Result<GraphQLResponse>> =
+        baksaraRepository.submitJawabanTantangan(userId, tantanganId, jawaban)
 }

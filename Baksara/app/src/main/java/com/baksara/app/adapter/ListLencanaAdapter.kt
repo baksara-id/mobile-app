@@ -3,15 +3,15 @@ package com.baksara.app.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.baksara.app.database.Lencana
 import com.baksara.app.databinding.ItemLencanaBinding
+import com.baksara.app.response.Lencana
 import com.bumptech.glide.Glide
 
 class ListLencanaAdapter(private val lencanas: List<Lencana>): RecyclerView.Adapter<ListLencanaAdapter.ListViewHolder>(){
     inner class ListViewHolder(private val binding: ItemLencanaBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(lencana: Lencana, position: Int) {
-            Glide.with(itemView.context).load(lencana.url_img)
+            Glide.with(itemView.context).load(lencana.url_gambar)
                 .centerCrop()
                 .into(binding.imgLencana)
         }
