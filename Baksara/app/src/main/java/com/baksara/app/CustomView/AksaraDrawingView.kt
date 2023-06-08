@@ -37,7 +37,7 @@ class AksaraDrawingView(context: Context, attrs: AttributeSet) : View(context, a
         drawPaint = Paint()
         drawPaint.color = Color.BLACK
         drawPaint.isAntiAlias = true
-        drawPaint.strokeWidth = 5.toFloat()
+        drawPaint.strokeWidth = 8.toFloat()
         drawPaint.style = Paint.Style.STROKE
         drawPaint.strokeJoin = Paint.Join.ROUND
         drawPaint.strokeCap = Paint.Cap.ROUND
