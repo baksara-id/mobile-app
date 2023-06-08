@@ -19,6 +19,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BASE_URL",'"https://graphql-api-qohpfhypea-an.a.run.app/"'
+        buildConfigField "String", "BASE_URL_ML",'"https://aksara-api-v4-qohpfhypea-et.a.run.app/"'
     }
 
     buildTypes {

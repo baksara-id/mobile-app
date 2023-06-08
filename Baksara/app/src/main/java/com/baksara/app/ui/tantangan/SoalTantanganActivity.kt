@@ -53,7 +53,6 @@ class SoalTantanganActivity : AppCompatActivity() {
         binding.tvDeskripsiSoalTantangan.text = tantangan.soal
         binding.tvLabelJawabanTantangan.text = tantangan.pertanyaan
         binding.tvJudulSoalTantangan.text = tantangan.nama
-        binding.tvXpSoalTantangan.text = tantangan.exp.toString()
         binding.btnJawabTantangan.setOnClickListener {
             tantanganViewModel.fetchResponseSubmmit(userId, tantangan.id ?: -1, binding.inputJawabTantangan.text.toString())
             tantanganViewModel.liveDataResponseSubmit.observe(this){ result->
@@ -69,13 +68,8 @@ class SoalTantanganActivity : AppCompatActivity() {
                     finish()
                 }
                 result.onFailure {
-                    // Kalau internet gagal atau apapun
+                // Kalau internet gagal atau apapun
                 }
-            }
-            if(binding.inputJawabTantangan.text.toString().lowercase() == tantangan.kunci_jawaban?.lowercase()){
-                intent = Intent(this, BerhasilTantanganActivity::class.java)
-            }else{
-                intent = Intent(this, GagalTantanganActivity::class.java)
             }
         }
     }

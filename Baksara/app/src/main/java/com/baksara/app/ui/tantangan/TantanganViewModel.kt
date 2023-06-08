@@ -14,6 +14,7 @@ class TantanganViewModel(private val baksaraRepository: BaksaraRepository): View
     val liveDataDetailTantangan: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataTantanganSudah: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataResponseSubmit: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
+    val liveDataResponseUpdateUser: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
 
     fun fetchAllTantanganUser(userId: Int){
         viewModelScope.launch {
@@ -42,6 +43,16 @@ class TantanganViewModel(private val baksaraRepository: BaksaraRepository): View
     fun fetchResponseSubmmit(userId: Int, tantanganId: Int, jawaban:String) {
         viewModelScope.launch {
             jawabTantangan(userId,tantanganId, jawaban).collect{ response ->
+
+                response.onSuccess { submitResult ->
+                    val isApproved = submitResult.data?.response?.is_approved?:false
+                    if(isApproved){
+                        updateUser().collect{ response ->
+                            liveDataResponseUpdateUser.value = response
+                        }
+                    }
+                }
+
                 liveDataResponseSubmit.value = response
             }
         }
@@ -58,4 +69,7 @@ class TantanganViewModel(private val baksaraRepository: BaksaraRepository): View
 
     suspend fun jawabTantangan(userId: Int, tantanganId: Int, jawaban:String): Flow<Result<GraphQLResponse>> =
         baksaraRepository.submitJawabanTantangan(userId, tantanganId, jawaban)
+
+    suspend fun updateUser(): Flow<Result<GraphQLResponse>> =
+        baksaraRepository.getAllLangganans()
 }
