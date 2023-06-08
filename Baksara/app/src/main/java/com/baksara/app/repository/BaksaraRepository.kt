@@ -141,6 +141,29 @@ class BaksaraRepository(
         }
     }
 
+    suspend fun tambahLaporan(judul: String, isi: String, userId: Int): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        mutation {
+                          createLaporan(user_id: $userId, judul: "$judul", isi: "$isi") {
+                            id
+                            isi
+                            judul
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
 
 //=========================================================QUERY============================================================
     suspend fun getAllCerita(): Flow<Result<GraphQLResponse>> = flow {

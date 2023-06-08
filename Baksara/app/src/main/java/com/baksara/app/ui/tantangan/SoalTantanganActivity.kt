@@ -61,6 +61,8 @@ class SoalTantanganActivity : AppCompatActivity() {
                     val is_approved = it.data?.response?.is_approved ?: false
                     if(is_approved){
                         intent = Intent(this, BerhasilTantanganActivity::class.java)
+                        intent.putExtra(BerhasilTantanganActivity.USERID, userId)
+                        intent.putExtra(BerhasilTantanganActivity.EXPEARNED, tantangan.exp)
                     }else{
                         intent = Intent(this, GagalTantanganActivity::class.java)
                     }

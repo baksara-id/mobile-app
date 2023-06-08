@@ -8,8 +8,6 @@ import kotlinx.parcelize.Parcelize
 data class Laporan (
     @field: SerializedName("id")
     val id: Int?,
-    @field: SerializedName("user_id")
-    val user_id: Int?,
     @field: SerializedName("judul")
     val judul: String?,
     @field: SerializedName("isi")

@@ -43,17 +43,15 @@ class TantanganViewModel(private val baksaraRepository: BaksaraRepository): View
     fun fetchResponseSubmmit(userId: Int, tantanganId: Int, jawaban:String) {
         viewModelScope.launch {
             jawabTantangan(userId,tantanganId, jawaban).collect{ response ->
-
-                response.onSuccess { submitResult ->
-                    val isApproved = submitResult.data?.response?.is_approved?:false
-                    if(isApproved){
-                        updateUser().collect{ response ->
-                            liveDataResponseUpdateUser.value = response
-                        }
-                    }
-                }
-
                 liveDataResponseSubmit.value = response
+            }
+        }
+    }
+
+    fun fetchResponseUpdateUser(){
+        viewModelScope.launch {
+            updateUser().collect{ response ->
+                liveDataResponseUpdateUser.value = response
             }
         }
     }
