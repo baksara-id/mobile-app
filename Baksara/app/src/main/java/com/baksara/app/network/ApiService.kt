@@ -4,7 +4,9 @@ import com.baksara.app.response.GraphQLRequest
 import com.baksara.app.response.GraphQLResponse
 import com.baksara.app.response.TranslatorRequest
 import com.baksara.app.response.TranslatorResponse
+import com.baksara.app.response.PredictResponse
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.Multipart
@@ -21,11 +23,13 @@ interface ApiService {
     @Multipart
     @POST("predict")
     suspend fun predict(
-        @Part file: MultipartBody.Part
-    )
+        @Part file: MultipartBody.Part,
+        @Part("actual_class") description: RequestBody,
+    ): PredictResponse
 
     @POST("tojavanese")
     suspend fun translator(
         @Body body: TranslatorRequest
     ) : TranslatorResponse
+
 }

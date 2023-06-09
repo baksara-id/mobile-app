@@ -21,7 +21,6 @@ class KelasActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         modulId = intent.getIntExtra(MODUL_ID, 0)
-        modulNama = intent.getStringExtra(MODUL_NAMA)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Modul " + modulNama
@@ -67,5 +66,7 @@ class KelasActivity : AppCompatActivity() {
     companion object {
         const val MODUL_ID = "modul_id"
         const val MODUL_NAMA = "modul_nama"
+        public val modulNama = intent.getStringExtra(MODUL_NAMA)
+
     }
 }

@@ -16,11 +16,20 @@ import com.baksara.app.database.SoalBaca
 import com.baksara.app.database.SoalGambar
 import com.baksara.app.database.SoalPilihan
 import com.baksara.app.helper.InitialDataSource
-import com.baksara.app.local.UserPreferences
 import com.baksara.app.network.ApiService
 import com.baksara.app.response.*
+import com.baksara.app.response.GraphQLRequest
+import com.baksara.app.response.GraphQLResponse
+import com.baksara.app.response.PredictResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
 
 class BaksaraRepository(
     private val baksaraDao: BaksaraDao,
@@ -286,6 +295,23 @@ class BaksaraRepository(
             )
             emit(Result.success(response))
         } catch (e: Exception) {
+            emit(Result.failure(e))
+        }
+    }
+
+    suspend fun predictResult(
+        img: File,
+        aksaraClass : String
+    ): Flow<Result<PredictResponse>> = flow{
+        try {
+            val requestImageFile = img.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData("img", img.name, requestImageFile)
+            val actualClass : RequestBody = aksaraClass.toRequestBody("text/plain".toMediaType())
+            val response = mlservice.predict(imageMultipart, actualClass)
+
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
             emit(Result.failure(e))
         }
     }

@@ -14,6 +14,7 @@ import android.view.ViewConfiguration
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 import kotlin.math.abs
 
 class AksaraDrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) {
@@ -94,6 +95,23 @@ class AksaraDrawingView(context: Context, attrs: AttributeSet) : View(context, a
         return stream.toByteArray()
     }
 
+    fun saveDrawingToFile(): File? {
+        val file = File(context.filesDir, "drawing.jpg")
+        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        draw(canvas)
+
+        try {
+            FileOutputStream(file).use { outputStream ->
+                canvasBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+            }
+            return file
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
 
     fun clear() {
         drawPath.reset()
