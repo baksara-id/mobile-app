@@ -18,15 +18,14 @@ import com.baksara.app.database.SoalPilihan
 import com.baksara.app.helper.InitialDataSource
 import com.baksara.app.local.UserPreferences
 import com.baksara.app.network.ApiService
-import com.baksara.app.response.GraphQLRequest
-import com.baksara.app.response.GraphQLResponse
-import com.baksara.app.response.User
+import com.baksara.app.response.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class BaksaraRepository(
     private val baksaraDao: BaksaraDao,
-    private val service: ApiService
+    private val service: ApiService,
+    private val mlservice: ApiService
     ) {
     fun getAllModul():LiveData<List<Modul>> = baksaraDao.getAllModul()
     fun getAllModulAndPelajaran():LiveData<List<ModulAndPelajaran>> =baksaraDao.getAllModulAndPelajaran()
@@ -164,6 +163,132 @@ class BaksaraRepository(
         }
     }
 
+    suspend fun tambahRiwayatBelajar(modulId: Int, userId: Int, pelajaranId: Int): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        mutation {
+                          createRiwayatBelajar(user_id: $userId, nomor_modul: $modulId, nomor_pelajaran: $pelajaranId) {
+                            id
+                            nomor_modul
+                            nomor_pelajaran
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
+    suspend fun tambahLencana(modulId: Int, userId: Int): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        mutation {
+                          createUserLencana(user_id: $userId, lencana_id: $modulId) {
+                            token
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
+    suspend fun updateUserEXP(newEXP: Int, userId: Int): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        mutation {
+                          updateUser(id: $userId, exp: $newEXP) {
+                            name
+                            level
+                            id
+                            exp
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
+    suspend fun updateUserLevel(newLevel: Int, userId: Int, newEXP: Int): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        mutation {
+                          updateUser(id: $userId, level: $newLevel, exp: $newEXP) {
+                            name
+                            level
+                            id
+                            exp
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
+    suspend fun updateUserScan(newJumlahScan: Int, userId: Int): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        mutation {
+                          updateUser(id: $userId, jumlah_scan: $newJumlahScan) {
+                            name
+                            id
+                            jumlah_scan
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
+//    MACHINE LEARNING API
+    suspend fun translator(text: String): Flow<Result<TranslatorResponse>> = flow {
+        try {
+            val response = mlservice.translator(
+                TranslatorRequest(text)
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            emit(Result.failure(e))
+        }
+    }
 
 //=========================================================QUERY============================================================
     suspend fun getAllCerita(): Flow<Result<GraphQLResponse>> = flow {
