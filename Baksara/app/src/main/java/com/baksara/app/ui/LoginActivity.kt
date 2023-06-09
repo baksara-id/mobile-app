@@ -98,17 +98,24 @@ class LoginActivity : AppCompatActivity() {
 
     fun setUser(user: User?, userPreferences: SharedPreferences){
         val editor = userPreferences.edit()
+        val jumlahScan = user?.jumlah_scan?:0
         editor.putString(MainActivity.FULLNAME, user?.name)
         editor.putString(MainActivity.EMAIL, user?.email)
         editor.putString(MainActivity.AVATAR, user?.avatar)
         editor.putInt(MainActivity.UNIQUEID, user?.id?:0)
         editor.putInt(MainActivity.EXP, user?.exp?:0)
         editor.putInt(MainActivity.LEVEL, user?.level?:0)
-        editor.putInt(MainActivity.CURRENTLIMIT, user?.jumlah_scan?:0)
+        editor.putInt(MainActivity.CURRENTLIMIT, jumlahScan)
         editor.putInt(MainActivity.PREMIUM, user?.langganan?.id?:0)
         editor.putInt(MainActivity.KELAS, user?.riwayatBelajar?.get(0)?.nomor_pelajaran ?:0)
         editor.putInt(MainActivity.MODUL, user?.riwayatBelajar?.get(0)?.nomor_modul ?:0)
         editor.putString(MainActivity.TOKEN,user?.token)
+        if(jumlahScan >= 3){
+            editor.putBoolean(MainActivity.LIMITREACH, true)
+        }
+        else{
+            editor.putBoolean(MainActivity.LIMITREACH, false)
+        }
         editor.apply()
     }
 

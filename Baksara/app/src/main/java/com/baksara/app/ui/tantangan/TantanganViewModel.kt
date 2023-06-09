@@ -14,7 +14,8 @@ class TantanganViewModel(private val baksaraRepository: BaksaraRepository): View
     val liveDataDetailTantangan: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataTantanganSudah: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataResponseSubmit: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
-    val liveDataResponseUpdateUser: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
+    val liveDataResponseUpdateUserEXP: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
+    val liveDataResponseUpdateUserLevelEXP: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
 
     fun fetchAllTantanganUser(userId: Int){
         viewModelScope.launch {
@@ -48,10 +49,18 @@ class TantanganViewModel(private val baksaraRepository: BaksaraRepository): View
         }
     }
 
-    fun fetchResponseUpdateUser(){
+    fun fetchResponseUpdateUserExp(newEXP: Int, userId: Int){
         viewModelScope.launch {
-            updateUser().collect{ response ->
-                liveDataResponseUpdateUser.value = response
+            updateUserEXP(newEXP, userId).collect{ response ->
+                liveDataResponseUpdateUserEXP.value = response
+            }
+        }
+    }
+
+    fun fetchResponseUpdateUserLevel(newLevel: Int, userId: Int, newEXP: Int){
+        viewModelScope.launch {
+            updateUserLevel(newLevel, userId, newEXP).collect{ response ->
+                liveDataResponseUpdateUserLevelEXP.value = response
             }
         }
     }
@@ -68,6 +77,9 @@ class TantanganViewModel(private val baksaraRepository: BaksaraRepository): View
     suspend fun jawabTantangan(userId: Int, tantanganId: Int, jawaban:String): Flow<Result<GraphQLResponse>> =
         baksaraRepository.submitJawabanTantangan(userId, tantanganId, jawaban)
 
-    suspend fun updateUser(): Flow<Result<GraphQLResponse>> =
-        baksaraRepository.getAllLangganans()
+    suspend fun updateUserEXP(newEXP: Int, userId: Int): Flow<Result<GraphQLResponse>> =
+        baksaraRepository.updateUserEXP(newEXP, userId)
+
+    suspend fun updateUserLevel(newLevel: Int, userId: Int, newEXP: Int): Flow<Result<GraphQLResponse>> =
+        baksaraRepository.updateUserLevel(newLevel, userId, newEXP)
 }

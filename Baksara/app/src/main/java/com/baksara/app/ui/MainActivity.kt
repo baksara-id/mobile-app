@@ -115,5 +115,6 @@ class MainActivity : AppCompatActivity() {
         const val MODUL = "modul"
         const val KELAS = "pelajaran"
         const val TOKEN = "tokenz"
+        const val LIMITREACH = "limitreach"
     }
 }

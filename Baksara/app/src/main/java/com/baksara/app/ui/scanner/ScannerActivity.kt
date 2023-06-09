@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.icu.text.SimpleDateFormat
 import android.net.Uri
 import android.os.Build
@@ -28,6 +29,10 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.baksara.app.R
 import com.baksara.app.databinding.ActivityScannerBinding
+import com.baksara.app.response.Langganan
+import com.baksara.app.response.RiwayatBelajar
+import com.baksara.app.response.User
+import com.baksara.app.ui.MainActivity
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -43,27 +48,30 @@ class ScannerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityScannerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val preferences = this.getSharedPreferences(SCANNERPREF, Context.MODE_PRIVATE)
-        var langganan = false
+
+        val userPref = getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
+
+        var langganan = if(userPref.getInt(MainActivity.PREMIUM, 0) == 0) false else true
+
         binding.captureImage.setOnClickListener {
-            if(preferences.getBoolean(LIMITREACH, false)){
-                showMaxLimitScanDialog(this, langganan)
+            if(userPref.getBoolean(MainActivity.LIMITREACH, false) && !langganan){
+                // Kalau udah LimitReach dan Tidak Langganan
+                showMaxLimitScanDialog(this)
             }
             else{
-                val editor = preferences.edit()
-                val currentLimit = preferences.getInt(CURRENTLIMIT, 0) + 1
-                editor.putInt(CURRENTLIMIT, currentLimit)
-                Log.d("limit", currentLimit.toString())
-                if(currentLimit >= 1000){
-                    editor.putBoolean(LIMITREACH, true)
-                }
-                editor.apply()
                 takePhoto()
             }
         }
 
         binding.btnGallery.setOnClickListener {
-            startGallery()
+            if(userPref.getBoolean(MainActivity.LIMITREACH, false) && !langganan){
+                // Kalau udah LimitReach dan Tidak Langganan
+                showMaxLimitScanDialog(this)
+            }
+            else{
+                startGallery()
+            }
+
         }
 
         binding.btnScantips.setOnClickListener {
@@ -207,7 +215,7 @@ class ScannerActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    private fun showMaxLimitScanDialog(context: Context, langganan: Boolean) {
+    private fun showMaxLimitScanDialog(context: Context) {
         val builder = AlertDialog.Builder(context)
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val dialogView: View = inflater.inflate(R.layout.item_dialog_information, null)
@@ -221,10 +229,8 @@ class ScannerActivity : AppCompatActivity() {
         imgInformation.setImageResource(R.drawable.img_logo_information)
         textTitle.text = "Pesan Informasi"
 
-        if (!langganan) {
-            textDesc.text = "Batas scanning anda sudah habis. Lakukan pembelian langganan untuk melakukan scanning."
-            buttonInformation.text = "Mengerti"
-        }
+        textDesc.text = "Batas scanning anda sudah habis. Lakukan pembelian langganan untuk melakukan scanning."
+        buttonInformation.text = "Mengerti"
 
         builder.setView(dialogView)
         val dialog: AlertDialog = builder.create()
@@ -260,11 +266,5 @@ class ScannerActivity : AppCompatActivity() {
         }
 
         dialog.show()
-    }
-
-    companion object{
-        const val SCANNERPREF = "scannerpref"
-        const val LIMITREACH = "limitreach"
-        const val CURRENTLIMIT = "limit"
     }
 }

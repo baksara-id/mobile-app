@@ -35,10 +35,44 @@ class BerhasilTantanganActivity : AppCompatActivity() {
         tantanganViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this@BerhasilTantanganActivity))[TantanganViewModel::class.java]
         val userId = intent.getIntExtra(USERID, 0)
         val expEarned = intent.getIntExtra(EXPEARNED, 0)
-        userId.let{
-            tantanganViewModel.fetchResponseUpdateUser()
+        val currentLevel = userPref.getInt(MainActivity.LEVEL, 1)
+        val currentEXP = userPref.getInt(MainActivity.EXP, 0)
+        var earn = expEarned + currentEXP
+        var expNeededToLevelUp = calculateEXPNeeded(currentLevel + 1)
+        var counter = currentLevel
+        while(earn >= expNeededToLevelUp){
+            counter += 1 // Ini akan jadi patokan untuk menghitung kenaikan level
+            earn = expNeededToLevelUp - earn // Ini akan jadi sisa setelah iterasi berakhir
+            expNeededToLevelUp = counter * 500
         }
-        tantanganViewModel.liveDataResponseUpdateUser.observe(this){ response ->
+        val levelIncrease = counter - currentLevel
+        if(levelIncrease > 0)
+        {
+            // Panggil update exp + level
+            // Earn akan digunakan untuk update CurrentEXP di db
+            // counter akan digunakan untuk update level di db
+            userId.let{
+                tantanganViewModel.fetchResponseUpdateUserLevel(counter,it,earn)
+            }
+        }
+        else{
+            // Pangill update exp
+            userId.let{
+                tantanganViewModel.fetchResponseUpdateUserExp(earn, it)
+            }
+        }
+
+
+        tantanganViewModel.liveDataResponseUpdateUserEXP.observe(this){ response ->
+            response.onSuccess {
+                val user = it.data?.update
+                setUser(user, userPref)
+            }
+            response.onFailure {
+                // Kalau Gagal
+            }
+        }
+        tantanganViewModel.liveDataResponseUpdateUserLevelEXP.observe(this){ response ->
             response.onSuccess {
                 val user = it.data?.update
                 setUser(user, userPref)
@@ -83,15 +117,18 @@ class BerhasilTantanganActivity : AppCompatActivity() {
     fun setUser(user: User?, userPref : SharedPreferences){
         val editor = userPref.edit()
         editor.putString(MainActivity.FULLNAME, user?.name)
-        editor.putString(MainActivity.EMAIL, user?.email)
-        editor.putString(MainActivity.AVATAR, user?.avatar)
         editor.putInt(MainActivity.UNIQUEID, user?.id?:0)
         editor.putInt(MainActivity.EXP, user?.exp?:0)
         editor.putInt(MainActivity.LEVEL, user?.level?:0)
-        editor.putInt(MainActivity.CURRENTLIMIT, user?.jumlah_scan?:0)
-        editor.putInt(MainActivity.PREMIUM, user?.langganan?.id?:0)
-        editor.putString(MainActivity.TOKEN,user?.token)
         editor.apply()
+    }
+
+    fun calculateEXPNeeded(nextLevel: Int): Int //this function is used to calculate next Level EXP needed
+    {
+        val expNeededNow = nextLevel * nextLevel * 250 + nextLevel * 250
+        val currentLevel = nextLevel - 1
+        val expCummulative = currentLevel * currentLevel * 250 + currentLevel * 250
+        return expNeededNow - expCummulative
     }
 
     companion object{

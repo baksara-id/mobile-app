@@ -13,6 +13,7 @@ import com.baksara.app.ui.pustaka.ContohKamusViewModel
 import com.baksara.app.ui.pustaka.DetailKamusViewModel
 import com.baksara.app.ui.pustaka.KamusViewModel
 import com.baksara.app.ui.pustaka.PustakaViewModel
+import com.baksara.app.ui.scanner.ScannerViewModel
 import com.baksara.app.ui.soal.baca.BacaViewModel
 import com.baksara.app.ui.soal.gambar.GambarViewModel
 import com.baksara.app.ui.soal.pilihan.PilihanViewModel
@@ -74,6 +75,10 @@ class ViewModelFactory private constructor(
 
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
                 ProfileViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(ScannerViewModel::class.java) -> {
+                ScannerViewModel(repository) as T
             }
 
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
