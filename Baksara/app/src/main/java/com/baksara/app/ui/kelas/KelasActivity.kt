@@ -14,13 +14,13 @@ class KelasActivity : AppCompatActivity() {
     private var _binding: ActivityKelasBinding? = null
     private val binding get() = _binding!!
     private var modulId = 0
-    private var modulNama : String? = ""
     private lateinit var kelasViewModel: KelasViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         modulId = intent.getIntExtra(MODUL_ID, 0)
+        modulNama = intent.getStringExtra(MODUL_NAMA)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Modul " + modulNama
@@ -66,7 +66,6 @@ class KelasActivity : AppCompatActivity() {
     companion object {
         const val MODUL_ID = "modul_id"
         const val MODUL_NAMA = "modul_nama"
-        public val modulNama = intent.getStringExtra(MODUL_NAMA)
-
+        var modulNama : String? = ""
     }
 }

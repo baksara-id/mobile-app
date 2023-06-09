@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.R
 import com.baksara.app.ViewModelFactory
 import com.baksara.app.databinding.FragmentGambarBinding
+import com.baksara.app.ui.kelas.KelasActivity
 import com.baksara.app.ui.soal.SoalActivity
 import com.baksara.app.ui.soal.baca.BacaFragment
 import com.baksara.app.ui.soal.pilihan.PilihanFragment
@@ -54,10 +55,13 @@ class GambarFragment : Fragment() {
 //                val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
 
 
+                val actualClass = KelasActivity.modulNama?.lowercase() + "_" + soalGambar.latin.lowercase()
+
+
                 //predict image
                 val imageFile = binding.drawViewAksara.saveDrawingToFile()
                 if (imageFile != null) {
-                    gambarViewModel.fetchPredictImage(imageFile, "carakan_ha")
+                    gambarViewModel.fetchPredictImage(imageFile, actualClass)
                 }
 
 
@@ -70,6 +74,8 @@ class GambarFragment : Fragment() {
                         }else{
                             binding.cvDrawAksara.strokeColor = resources.getColor(R.color.danger)
                         }
+
+                        Toast.makeText(requireActivity(), it.result.toString(), Toast.LENGTH_SHORT).show()
 
                         //ganti transisi ke kelas baca atau ke kelas pilihan
                         if(nomorUrutan != 5){
