@@ -42,7 +42,7 @@ data class Data(
     @field:SerializedName("createRiwayatBelajar") // Kalau selesai pelajaran/level
     val riwayatBelajar: RiwayatBelajar?, // kalau selesai return riwayat belajarnya terus nanti cek modul dan pelajaran
     @field:SerializedName("createUserLencana") // Kalau selesai modul
-    val lencana: MutationResponse?, // Kalau selesai return token
+    val lencanaResponse: MutationResponse?, // Kalau selesai return token
     @field:SerializedName("createUserTantangan")// Kalau benar menjawab
     val response: MutationResponse?, // Kalau benar return true
     @field:SerializedName("createLaporan") // Kalau tambah laporan

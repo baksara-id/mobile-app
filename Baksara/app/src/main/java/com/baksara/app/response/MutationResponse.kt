@@ -10,6 +10,8 @@ data class MutationResponse(
     val is_approved: Boolean?,
     @field: SerializedName("jawaban")
     val jawaban:String?,
+    @field: SerializedName("lencanas")
+    val lencana:Lencana?,
     @field: SerializedName("token")
     val token:String?
 ): Parcelable

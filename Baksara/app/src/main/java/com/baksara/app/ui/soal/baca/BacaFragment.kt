@@ -34,6 +34,7 @@ class BacaFragment : Fragment() {
 
         val pelajaranId = arguments?.getInt(PELAJARAN_ID) ?: 0
         val nomorUrutan = arguments?.getInt(URUTAN_SOAL) ?: 0
+        val modulId = arguments?.getInt(MODUL_ID) ?: 0
 
         val viewModelFactory = ViewModelFactory.getInstance(requireContext())
         bacaViewModel = ViewModelProvider(this, viewModelFactory)[BacaViewModel::class.java]
@@ -48,6 +49,7 @@ class BacaFragment : Fragment() {
                 val bundle = Bundle()
                 bundle.putInt(GambarFragment.PELAJARAN_ID, pelajaranId)
                 bundle.putInt(GambarFragment.URUTAN_SOAL, nomorUrutan)
+                bundle.putInt(GambarFragment.MODUL_ID, modulId)
 
                 val gambarFragment = GambarFragment()
                 gambarFragment.arguments = bundle
@@ -68,6 +70,7 @@ class BacaFragment : Fragment() {
     }
 
     companion object {
+        var MODUL_ID = "modul_id"
         var PELAJARAN_ID = "pelajaran_id"
         var URUTAN_SOAL = "soal_id"
     }

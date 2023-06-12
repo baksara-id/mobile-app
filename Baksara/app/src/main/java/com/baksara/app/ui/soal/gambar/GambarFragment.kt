@@ -36,6 +36,7 @@ class GambarFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val pelajaranId = arguments?.getInt(BacaFragment.PELAJARAN_ID) ?: 0
         val nomorUrutan = arguments?.getInt(BacaFragment.URUTAN_SOAL) ?: 0
+        val modulId = arguments?.getInt(BacaFragment.MODUL_ID) ?: 0
 
         val viewModelFactory = ViewModelFactory.getInstance(requireContext())
         gambarViewModel = ViewModelProvider(this, viewModelFactory)[GambarViewModel::class.java]
@@ -64,12 +65,12 @@ class GambarFragment : Fragment() {
                     gambarViewModel.fetchPredictImage(imageFile, actualClass)
                 }
 
-
                 gambarViewModel.liveDataPredict.observe(requireActivity()){ result ->
                     result.onSuccess {
 
                         //cek predict
                         if (it.result > 0.7f){
+                            updateJawabanBenar()
                             binding.cvDrawAksara.strokeColor = resources.getColor(R.color.success)
                         }else{
                             binding.cvDrawAksara.strokeColor = resources.getColor(R.color.danger)
@@ -82,6 +83,7 @@ class GambarFragment : Fragment() {
                             val bundle = Bundle()
                             bundle.putInt(PELAJARAN_ID, pelajaranId)
                             bundle.putInt(URUTAN_SOAL, nomorUrutan + 1)
+                            bundle.putInt(MODUL_ID, modulId)
 
                             val bacaFragment = BacaFragment()
                             bacaFragment.arguments = bundle
@@ -102,6 +104,7 @@ class GambarFragment : Fragment() {
                             val bundle = Bundle()
                             bundle.putInt(PilihanFragment.PELAJARAN_ID, pelajaranId)
                             bundle.putInt(PilihanFragment.URUTAN_SOAL, 1)
+                            bundle.putInt(PilihanFragment.MODUL_ID, modulId)
 
                             val pilihanFragment = PilihanFragment()
                             pilihanFragment.arguments = bundle
@@ -132,7 +135,12 @@ class GambarFragment : Fragment() {
         progressBar.progress += 1
     }
 
+    private fun updateJawabanBenar(){
+        SoalActivity.totalJawabanBenar += 1
+    }
+
     companion object {
+        var MODUL_ID = "modul_id"
         var PELAJARAN_ID = "pelajaran_id"
         var URUTAN_SOAL = "soal_id"
     }

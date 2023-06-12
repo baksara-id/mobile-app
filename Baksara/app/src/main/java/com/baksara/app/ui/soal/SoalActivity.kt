@@ -19,11 +19,14 @@ class SoalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySoalBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        // Ambil pelajaran ID dan modul ID
         val pelajaranId = intent.getIntExtra(PELAJARAN_ID, 0)
+        val modulId = intent.getIntExtra(MODUL_ID, 0)
 
+        // Create bundle to send data
         val bundle = Bundle()
         bundle.putInt(BacaFragment.PELAJARAN_ID, pelajaranId)
+        bundle.putInt(BacaFragment.MODUL_ID, modulId)
         bundle.putInt(BacaFragment.URUTAN_SOAL, 1)
 
         val fragmentManager = supportFragmentManager
@@ -71,6 +74,8 @@ class SoalActivity : AppCompatActivity() {
     }
 
     companion object {
+        var totalJawabanBenar = 0
+        var MODUL_ID = "modul_id"
         const val PELAJARAN_ID = "pelajaran_id"
     }
 }

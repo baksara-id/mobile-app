@@ -17,7 +17,7 @@ import com.baksara.app.databinding.ItemPelajaranBinding
 import com.baksara.app.ui.kelas.KelasActivity
 import com.baksara.app.ui.soal.SoalActivity
 
-class ListPelajaranAdapter(private val pelajarans: List<Pelajaran>): RecyclerView.Adapter<ListPelajaranAdapter.ListViewHolder>() {
+class ListPelajaranAdapter(private val pelajarans: List<Pelajaran>, private val modulID: Int): RecyclerView.Adapter<ListPelajaranAdapter.ListViewHolder>() {
     inner class ListViewHolder(private val binding: ItemPelajaranBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(pelajaran: Pelajaran, position:Int){
             binding.tvJudul.text = "Pelajaran " + pelajaran.nomor
@@ -35,6 +35,7 @@ class ListPelajaranAdapter(private val pelajarans: List<Pelajaran>): RecyclerVie
                 binding.fabMulai.setOnClickListener {
                     val intent = Intent(itemView.context, SoalActivity::class.java)
                     intent.putExtra(SoalActivity.PELAJARAN_ID, pelajaran.id)
+                    intent.putExtra(SoalActivity.MODUL_ID, modulID)
                     itemView.context.startActivity(intent)
                 }
             }

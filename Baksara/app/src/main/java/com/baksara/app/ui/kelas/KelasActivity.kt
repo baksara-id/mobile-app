@@ -36,7 +36,7 @@ class KelasActivity : AppCompatActivity() {
                 val layoutManager = LinearLayoutManager(this)
                 binding.rvPelajaran.layoutManager = layoutManager
 
-                val adapter = ListPelajaranAdapter(pelajarans)
+                val adapter = ListPelajaranAdapter(pelajarans, modulId)
                 binding.rvPelajaran.adapter = adapter
             }else{
 
