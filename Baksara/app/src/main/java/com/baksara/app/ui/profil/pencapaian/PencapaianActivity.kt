@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.baksara.app.R
 import com.baksara.app.ViewModelFactory
 import com.baksara.app.adapter.ListLencanaAdapter
 import com.baksara.app.databinding.ActivityPencapaianBinding
@@ -44,6 +46,23 @@ class PencapaianActivity : AppCompatActivity() {
                 // Kalau gagal
             }
         }
+
+        if(userLogin.langganan?.id != 0){
+            // User Premium
+            binding.cvBadgeUserPencapaian.backgroundTintList = ContextCompat.getColorStateList(this@PencapaianActivity, R.color.light_premium)
+            binding.badgeUserPencapaian.text = "User Premium"
+            binding.badgeUserPencapaian.setBackgroundResource(R.drawable.bg_border_premium)
+            binding.badgeUserPencapaian.setTextColor(ContextCompat.getColor(this@PencapaianActivity, R.color.premium))
+        }
+        else{
+            // User Standard
+            binding.cvBadgeUserPencapaian.backgroundTintList = ContextCompat.getColorStateList(this@PencapaianActivity, R.color.light_standard)
+            binding.badgeUserPencapaian.text = "User Standard"
+            binding.badgeUserPencapaian.setBackgroundResource(R.drawable.bg_border_standard)
+            binding.badgeUserPencapaian.setTextColor(ContextCompat.getColor(this@PencapaianActivity, R.color.neutral_300))
+        }
+
+        setupAkun(userLogin)
     }
 
     private fun setupLencanaAdapter(listLencana : List<Lencana>){
@@ -54,8 +73,14 @@ class PencapaianActivity : AppCompatActivity() {
         binding.rvLencana.adapter = adapter
     }
 
-    private fun setupAkun(){
-
+    fun setupAkun(user:User){
+        binding.tvCurrentLevel.text = user.level.toString()
+        val currentEXP = user.exp ?: 0
+        binding.tvCurrentAccountExp.text = currentEXP.toString()
+        val maxEXP = user.level?.times(500) ?: 500
+        binding.tvMaxAccountExp.text = maxEXP.toString()
+        binding.expBar.max = maxEXP
+        binding.expBar.progress = currentEXP
     }
 
     fun getUser(userPref: SharedPreferences): User {

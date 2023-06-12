@@ -16,27 +16,35 @@ class TantanganViewModel(private val baksaraRepository: BaksaraRepository): View
     val liveDataResponseSubmit: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataResponseUpdateUserEXP: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataResponseUpdateUserLevelEXP: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
+    private val _liveDataIsLoading:MutableLiveData<Boolean> = MutableLiveData()
+    val liveDataIsLoading: LiveData<Boolean> = _liveDataIsLoading
 
     fun fetchAllTantanganUser(userId: Int){
+        _liveDataIsLoading.value = true
         viewModelScope.launch {
             getAllTantanganUser(userId).collect{ tantangans->
                 liveDataTantangan.value = tantangans
+                _liveDataIsLoading.value = false
             }
         }
     }
 
     fun fetchDetailTantangan(id: Int){
+        _liveDataIsLoading.value = true
         viewModelScope.launch {
             getDetailTantangan(id).collect{ tantangan ->
                 liveDataDetailTantangan.value = tantangan
+                _liveDataIsLoading.value = false
             }
         }
     }
 
     fun fetchRiwayatTantanganUser(userId: Int){
+        _liveDataIsLoading.value = true
         viewModelScope.launch {
             getRiwayatTantangan(userId).collect{ riwayat->
                 liveDataTantanganSudah.value = riwayat
+                _liveDataIsLoading.value = false
             }
         }
     }

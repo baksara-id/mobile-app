@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.baksara.app.ViewModelFactory
@@ -44,12 +45,24 @@ class RiwayatTantanganActivity : AppCompatActivity() {
         tantanganViewModel.liveDataTantanganSudah.observe(this){ result ->
             result.onSuccess { tantangans->
                 val listTantanganSudah = tantangans.data?.riwayatTantangan ?: emptyList()
+                if(listTantanganSudah.isEmpty()){
+                    binding.rvTantanganRiwayat.visibility = View.GONE
+                    binding.tvTantanganRiwayatKosong.visibility = View.VISIBLE
+                }
+                else{
+                    binding.rvTantanganRiwayat.visibility = View.VISIBLE
+                    binding.tvTantanganRiwayatKosong.visibility = View.GONE
+                }
                 setupTantanganAdapter(listTantanganSudah)
             }
 
             result.onFailure {
                 //Kalau gagal
             }
+        }
+
+        tantanganViewModel.liveDataIsLoading.observe(this){
+            showLoading(it)
         }
     }
 
@@ -76,6 +89,10 @@ class RiwayatTantanganActivity : AppCompatActivity() {
 
         })
 
+    }
+
+    fun showLoading(isLoading: Boolean){
+        binding.tantanganRiwayatLoading.visibility = if(isLoading) View.VISIBLE else View.GONE
     }
 
     fun getUser(userPref: SharedPreferences): User {
