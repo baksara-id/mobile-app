@@ -78,6 +78,10 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, TantanganActivity::class.java)
             startActivity(intent)
         }
+
+        homeViewModel.liveDataIsLoading.observe(requireActivity()){
+            showLoading(it)
+        }
     }
 
     override fun onResume() {
@@ -131,6 +135,10 @@ class HomeFragment : Fragment() {
         binding.tvMaxAccountExp.text = maxEXP.toString()
         binding.expBar.max = maxEXP
         binding.expBar.progress = currentEXP
+    }
+
+    fun showLoading(isLoading: Boolean){
+        binding.loadingTantanganHome.visibility = if(isLoading) View.VISIBLE else View.GONE
     }
 
     override fun onDestroyView() {

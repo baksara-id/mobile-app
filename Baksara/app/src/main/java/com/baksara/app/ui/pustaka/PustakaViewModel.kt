@@ -1,5 +1,6 @@
 package com.baksara.app.ui.pustaka
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,23 +14,25 @@ class PustakaViewModel(private val baksaraRepository: BaksaraRepository): ViewMo
     val liveDataCerita: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataDetailCerita: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataTranslatorResponse: MutableLiveData<Result<TranslatorResponse>> = MutableLiveData()
-
-    init {
-        fetchAllCerita()
-    }
+    private val _liveDataIsLoading:MutableLiveData<Boolean> = MutableLiveData()
+    val liveDataIsLoading: LiveData<Boolean> = _liveDataIsLoading
 
     fun fetchAllCerita(){
+        _liveDataIsLoading.value = true
         viewModelScope.launch {
             getAllCerita().collect{ ceritas->
                 liveDataCerita.value = ceritas
+                _liveDataIsLoading.value = false
             }
         }
     }
 
     fun fetchDetailCerita(id: Int){
+        _liveDataIsLoading.value = true
         viewModelScope.launch {
             getDetailCerita(id).collect{detailCerita ->
                 liveDataDetailCerita.value = detailCerita
+                _liveDataIsLoading.value = false
             }
         }
     }

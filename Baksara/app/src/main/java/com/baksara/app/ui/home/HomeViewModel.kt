@@ -12,12 +12,16 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val baksaraRepository: BaksaraRepository) : ViewModel() {
     val liveDataTantangan: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
+    private val _liveDataIsLoading:MutableLiveData<Boolean> = MutableLiveData()
+    val liveDataIsLoading: LiveData<Boolean> = _liveDataIsLoading
     fun getAllModul(): LiveData<List<Modul>> = baksaraRepository.getAllModul()
 
     fun fetchAllTantanganUser(userId: Int){
+        _liveDataIsLoading.value = true
         viewModelScope.launch {
             getAllTantanganUser(userId).collect{ tantangans->
                 liveDataTantangan.value = tantangans
+                _liveDataIsLoading.value = false
             }
         }
     }

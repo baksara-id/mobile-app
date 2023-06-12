@@ -35,6 +35,7 @@ class CeritaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ceritaViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext()))[PustakaViewModel::class.java]
+
         ceritaViewModel.liveDataCerita.observe(requireActivity()){ result ->
             result.onSuccess {
                 val listCerita = it.data?.ceritas?: emptyList()
@@ -44,6 +45,19 @@ class CeritaFragment : Fragment() {
                 // Kasih tau Error
             }
         }
+
+        ceritaViewModel.liveDataIsLoading.observe(requireActivity()){
+            showLoading(it)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ceritaViewModel.fetchAllCerita()
+    }
+
+    fun showLoading(isLoading: Boolean){
+        binding.loadingCerita.visibility = if(isLoading) View.VISIBLE else View.GONE
     }
 
     private fun setupCeritaAdapter(ceritas: List<Cerita>){

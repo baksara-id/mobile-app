@@ -1,6 +1,7 @@
 package com.baksara.app.ui.artikel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,20 +13,21 @@ import kotlinx.coroutines.launch
 class ArtikelViewModel(private val baksaraRepository: BaksaraRepository): ViewModel() {
     val liveDataArtikel: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataDetailArtikel: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
-
-    init {
-        fetchAllArtikel()
-    }
+    private val _liveDataIsLoading:MutableLiveData<Boolean> = MutableLiveData()
+    val liveDataIsLoading: LiveData<Boolean> = _liveDataIsLoading
 
     fun fetchAllArtikel(){
+        _liveDataIsLoading.value = true
         viewModelScope.launch {
             getAllArtikel().collect{ artikels->
                 liveDataArtikel.value = artikels
+                _liveDataIsLoading.value = false
             }
         }
     }
 
     fun fetchDetailArtikel(id: Int){
+        _liveDataIsLoading.value = true
         viewModelScope.launch {
             getDetailArtikel(id).collect{ detailArtikel ->
                 liveDataDetailArtikel.value = detailArtikel

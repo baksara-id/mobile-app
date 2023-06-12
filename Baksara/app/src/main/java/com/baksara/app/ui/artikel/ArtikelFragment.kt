@@ -46,7 +46,19 @@ class ArtikelFragment : Fragment() {
                 // Kalau gagal
             }
         }
+        artikelViewModel.liveDataIsLoading.observe(requireActivity()){
+            showLoading(it)
+        }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        artikelViewModel.fetchAllArtikel()
+    }
+
+    fun showLoading(isLoading: Boolean){
+        binding.loadingArtikel.visibility = if(isLoading) View.VISIBLE else View.GONE
     }
 
     private fun setupArtikelAdapter(listArtikel: List<Artikel>){

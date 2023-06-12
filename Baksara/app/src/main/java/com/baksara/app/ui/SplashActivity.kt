@@ -11,7 +11,7 @@ import com.baksara.app.R
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
-
+        private val SPLASHDELAY: Long = 4000
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
@@ -19,7 +19,6 @@ class SplashActivity : AppCompatActivity() {
 
         val preferences = this.getSharedPreferences(OnBoardingActivity.PREFNAME, Context.MODE_PRIVATE)
 
-        val delay = 4000.0.toLong()
         val seenBoarding = preferences.getBoolean(OnBoardingActivity.IS_SEEN, false)
         val loggedIn = preferences.getString(MainActivity.TOKEN, "") ?: ""
 
@@ -33,7 +32,7 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(intent)
             finish()
-        }, delay)
+        }, SPLASHDELAY)
     }
 
 
