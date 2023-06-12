@@ -36,29 +36,30 @@ interface BaksaraDao {
     @Query("SELECT * from modul")
     fun getAllModul(): LiveData<List<Modul>>
 
-    @Transaction
-    @Query("SELECT * from modul")
-    fun getAllModulAndPelajaran(): LiveData<List<ModulAndPelajaran>>
+    @Query("UPDATE modul SET selesai = :selesai WHERE id = :modulId")
+    fun setModulSelesai(selesai: Boolean, modulId : Int)
+
+    @Query("UPDATE modul SET terkunci = :terkunci WHERE id = :modulId")
+    fun setModulTerkunci(terkunci: Boolean, modulId : Int)
+
+    @Query("UPDATE pelajaran SET selesai = :selesai WHERE id = :pelajaranId")
+    suspend fun setPelajaranSelesai(selesai: Boolean, pelajaranId: Int)
+
+    @Query("UPDATE pelajaran SET terkunci = :terkunci WHERE id = :pelajaranId")
+    suspend fun setPelajaranTerkunci(terkunci: Boolean, pelajaranId : Int)
 
     @Query("SELECT * FROM pelajaran WHERE modulId = :modulId")
     fun getPelajaransByModul(modulId : Int): LiveData<List<Pelajaran>>
 
-    @Query("SELECT * from SoalBaca WHERE pelajaranId = :pelajaranId AND id = :urutan")
+
+    @Query("SELECT * from SoalBaca WHERE pelajaranId = :pelajaranId AND urutan = :urutan")
     fun getSoalBacaByPelajaran(pelajaranId: Int, urutan: Int): LiveData<SoalBaca>
 
-    @Query("SELECT * from soalgambar WHERE pelajaranId = :pelajaranId AND id = :urutan")
+    @Query("SELECT * from soalgambar WHERE pelajaranId = :pelajaranId AND urutan = :urutan")
     fun getSoalGambarByPelajaran(pelajaranId: Int, urutan: Int): LiveData<SoalGambar>
 
-    @Query("SELECT * from soalpilihan WHERE pelajaranId = :pelajaranId AND id = :urutan")
+    @Query("SELECT * from soalpilihan WHERE pelajaranId = :pelajaranId AND urutan = :urutan")
     fun getSoalPilihanByPelajaran(pelajaranId: Int, urutan: Int): LiveData<SoalPilihan>
-
-    @Transaction
-    @Query("SELECT * from pelajaran")
-    fun getAllPelajaranAndSoalGambar(): LiveData<List<PelajaranAndSoalGambar>>
-
-    @Transaction
-    @Query("SELECT * from pelajaran")
-    fun getAllPelajaranAndSoalPilihan(): LiveData<List<PelajaranAndSoalPilihan>>
 
     @Query("SELECT * from kamusbelajar")
     fun getAllKamusBelajar(): LiveData<List<KamusBelajar>>
@@ -68,10 +69,6 @@ interface BaksaraDao {
 
     @Query("SELECT * from penggunaan WHERE kamusId = :kamusId")
     fun getAllPenggunaanByKamus(kamusId: Int): LiveData<List<Penggunaan>>
-
-    @Transaction
-    @Query("SELECT * from kamus")
-    fun getAllKamusAndPenggunaan(): LiveData<List<KamusAndPenggunaan>>
 
 
 }

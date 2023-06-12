@@ -31,6 +31,11 @@ class KelasActivity : AppCompatActivity() {
         val viewModelFactory = ViewModelFactory.getInstance(this)
         kelasViewModel = ViewModelProvider(this, viewModelFactory)[KelasViewModel::class.java]
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         kelasViewModel.getAllPelajaranByModul(modulId).observe(this){pelajarans->
             if(pelajarans.isNotEmpty()){
                 val layoutManager = LinearLayoutManager(this)
@@ -42,25 +47,12 @@ class KelasActivity : AppCompatActivity() {
 
             }
         }
-
-  
     }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressedDispatcher.onBackPressed()
+        finish()
         return true
-    }
-
-    fun getListPelajaranByModul(modulId: Int): List<Pelajaran>{
-        val listPelajaran: MutableList<Pelajaran> = mutableListOf()
-
-        InitialDataSource.getPelajarans().forEach {pelajaran ->
-            if (pelajaran.modulId == modulId){
-                listPelajaran.add(pelajaran)
-            }
-        }
-
-        return listPelajaran
     }
 
     companion object {

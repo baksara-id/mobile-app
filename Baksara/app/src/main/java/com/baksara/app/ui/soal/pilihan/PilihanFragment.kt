@@ -108,7 +108,7 @@ class PilihanFragment : Fragment() {
             }, 1000)
         }else{
             // Cek jumlah benar
-            val berhasil = if(getJawabanBenar() >= 7) true else false
+            val berhasil = if(getJawabanBenar() >= 2) true else false
             if(berhasil)
             {
                 // Berhasil update riwayat belajar

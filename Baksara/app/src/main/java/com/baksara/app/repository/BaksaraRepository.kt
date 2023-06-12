@@ -1,16 +1,11 @@
 package com.baksara.app.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.baksara.app.database.BaksaraDao
 import com.baksara.app.database.Kamus
-import com.baksara.app.database.KamusAndPenggunaan
 import com.baksara.app.database.KamusBelajar
 import com.baksara.app.database.Modul
-import com.baksara.app.database.ModulAndPelajaran
 import com.baksara.app.database.Pelajaran
-import com.baksara.app.database.PelajaranAndSoalGambar
-import com.baksara.app.database.PelajaranAndSoalPilihan
 import com.baksara.app.database.Penggunaan
 import com.baksara.app.database.SoalBaca
 import com.baksara.app.database.SoalGambar
@@ -37,21 +32,24 @@ class BaksaraRepository(
     private val mlservice: ApiService
     ) {
     fun getAllModul():LiveData<List<Modul>> = baksaraDao.getAllModul()
-    fun getAllModulAndPelajaran():LiveData<List<ModulAndPelajaran>> =baksaraDao.getAllModulAndPelajaran()
     fun getAllPelajaransByModul(modulId: Int): LiveData<List<Pelajaran>> = baksaraDao.getPelajaransByModul(modulId)
+
+    fun setModulSelesai(selesai: Boolean, modulId: Int) = baksaraDao.setModulSelesai(selesai, modulId)
+    fun setModulTerkunci(terkunci: Boolean, modulId: Int) = baksaraDao.setModulSelesai(terkunci, modulId)
+
+    suspend fun setPelajaranSelesai(selesai: Boolean, modulId: Int) = baksaraDao.setPelajaranSelesai(selesai, modulId)
+    suspend fun setPelajaranTerkunci(terkunci: Boolean, modulId: Int) = baksaraDao.setPelajaranTerkunci(terkunci, modulId)
+
     fun getSoalBacaByPelajaran(pelajaranId: Int, urutan: Int):LiveData<SoalBaca> = baksaraDao.getSoalBacaByPelajaran(pelajaranId, urutan)
     fun getSoalGambarByPelajaran(pelajaranId: Int, urutan: Int):LiveData<SoalGambar> = baksaraDao.getSoalGambarByPelajaran(pelajaranId, urutan)
     fun getSoalPilihanByPelajaran(pelajaranId: Int, urutan: Int):LiveData<SoalPilihan> = baksaraDao.getSoalPilihanByPelajaran(pelajaranId, urutan)
 
-    fun getAllPelajaranAndSoalGambar():LiveData<List<PelajaranAndSoalGambar>> = baksaraDao.getAllPelajaranAndSoalGambar()
-    fun getAllPelajaranAndSoalPilihan():LiveData<List<PelajaranAndSoalPilihan>> = baksaraDao.getAllPelajaranAndSoalPilihan()
     fun getAllKamusBelajar():LiveData<List<KamusBelajar>> = baksaraDao.getAllKamusBelajar()
 
     fun getAllKamusByKamusBelajar(belajarId: Int):LiveData<List<Kamus>> = baksaraDao.getAllKamusByKamusBelajar(belajarId)
 
     fun getAllPenggunaanByKamus(kamusId: Int):LiveData<List<Penggunaan>> = baksaraDao.getAllPenggunaanByKamus(kamusId)
 
-    fun getAllKamusAndPenggunaan():LiveData<List<KamusAndPenggunaan>> = baksaraDao.getAllKamusAndPenggunaan()
 
     suspend fun insertAllData(){
         baksaraDao.insertModul(InitialDataSource.getModuls())

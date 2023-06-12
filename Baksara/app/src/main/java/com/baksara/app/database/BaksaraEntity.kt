@@ -25,17 +25,6 @@ data class Pelajaran(
     val selesai: Boolean,
 )
 
-data class ModulAndPelajaran(
-    @Embedded
-    val modul: Modul,
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "modulId"
-    )
-    val pelajaran: List<Pelajaran>
-)
-
-
 @Entity
 data class SoalBaca(
     @PrimaryKey
@@ -69,37 +58,6 @@ data class SoalPilihan(
     val urutan: Int,
 )
 
-
-data class PelajaranAndSoalBaca(
-    @Embedded
-    val pelajaran: Pelajaran,
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "pelajaranId"
-    )
-    val soalBaca: List<SoalBaca>
-)
-
-data class PelajaranAndSoalGambar(
-    @Embedded
-    val pelajaran: Pelajaran,
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "pelajaranId"
-    )
-    val soalGambar: List<SoalGambar>
-)
-
-data class PelajaranAndSoalPilihan(
-    @Embedded
-    val pelajaran: Pelajaran,
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "pelajaranId"
-    )
-    val soalPilihan : List<SoalPilihan>
-)
-
 @Entity
 data class KamusBelajar(
     @PrimaryKey
@@ -129,16 +87,6 @@ data class Penggunaan(
     val kamusId: Int,
     val aksara: String,
     val latin: String,
-)
-
-data class KamusAndPenggunaan(
-    @Embedded
-    val kamus: Kamus,
-    @Relation(
-        parentColumn = "id",
-        entityColumn = "kamusId"
-    )
-    val penggunaan : List<Penggunaan>
 )
 
 //====================================================================================================

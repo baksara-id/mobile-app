@@ -46,6 +46,25 @@ class BerhasilViewModel(private val baksaraRepository: BaksaraRepository): ViewM
         }
     }
 
+    fun setPelajaranSelesai(selesai: Boolean, pelajaranId : Int){
+        viewModelScope.launch {
+            baksaraRepository.setPelajaranSelesai(selesai, pelajaranId)
+        }
+    }
+
+    fun setPelajaranTerkunci(terkunci: Boolean, pelajaranId: Int){
+        viewModelScope.launch {
+            baksaraRepository.setPelajaranTerkunci(terkunci, pelajaranId)
+        }
+    }
+
+    fun setModulSelesai(selesai: Boolean, pelajaranId : Int){
+        viewModelScope.launch {
+            baksaraRepository.setModulSelesai(selesai, pelajaranId)
+        }
+    }
+
+
     suspend fun tambahRiwayatBelajar(userId: Int, pelajaranId: Int, modulId: Int): Flow<Result<GraphQLResponse>> =
         baksaraRepository.tambahRiwayatBelajar(modulId,userId,pelajaranId)
 

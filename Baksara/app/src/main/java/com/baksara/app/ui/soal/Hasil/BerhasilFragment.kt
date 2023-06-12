@@ -52,6 +52,11 @@ class BerhasilFragment : Fragment() {
         val userId = userPref.getInt(MainActivity.UNIQUEID, -1)
         berhasilViewModel = ViewModelProvider(this, viewModelFactory)[BerhasilViewModel::class.java]
 
+        //Unlock next pelajaran
+        berhasilViewModel.setPelajaranSelesai(true, pelajaranId)
+        berhasilViewModel.setPelajaranTerkunci(false, pelajaranId + 1)
+
+
         berhasilViewModel.fetchRiwayatBelajarResponse(userId,pelajaranId,modulId)
         berhasilViewModel.liveDataUpdateRiwayatResponse.observe(requireActivity()){ response->
             response.onSuccess {
@@ -62,6 +67,7 @@ class BerhasilFragment : Fragment() {
             }
         }
         if(pelajaranId == 4){
+            berhasilViewModel.setModulSelesai(true, modulId)
             berhasilViewModel.fetchLencana(userId, modulId)
         }
         berhasilViewModel.liveDataResponseLencana.observe(requireActivity()){response->
@@ -83,7 +89,7 @@ class BerhasilFragment : Fragment() {
         var counter = currentLevel
         while(earn >= expNeededToLevelUp){
             counter += 1 // Ini akan jadi patokan untuk menghitung kenaikan level
-            earn = expNeededToLevelUp - earn // Ini akan jadi sisa setelah iterasi berakhir
+            earn = earn - expNeededToLevelUp // Ini akan jadi sisa setelah iterasi berakhir
             expNeededToLevelUp = counter * 500
         }
         val levelIncrease = counter - currentLevel
@@ -97,7 +103,7 @@ class BerhasilFragment : Fragment() {
             }
         }
         else{
-            // Pangill update exp
+            // Panggil update exp
             userId.let{
                 berhasilViewModel.fetchResponseUpdateUserExp(earn, it)
             }

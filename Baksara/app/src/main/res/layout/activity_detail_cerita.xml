@@ -65,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitStart"
-                    app:srcCompat="@drawable/template_cerita" />
+                    app:srcCompat="@drawable/aksara2" />
             </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

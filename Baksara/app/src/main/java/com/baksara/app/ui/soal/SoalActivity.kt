@@ -43,36 +43,6 @@ class SoalActivity : AppCompatActivity() {
 
     }
 
-    fun getSoalBaca(pelajaranId: Int, nomor: Int): SoalBaca{
-        return InitialDataSource.getSoalBacas().first{
-            it.pelajaranId == pelajaranId && it.urutan == nomor
-        }
-    }
-
-    fun getListSoalGambarByPelajaran(pelajaranId: Int): List<SoalGambar>{
-        val listPelajaran: MutableList<SoalGambar> = mutableListOf()
-
-        InitialDataSource.getSoalGambars().forEach { soalGambar ->
-            if (soalGambar.pelajaranId == pelajaranId){
-                listPelajaran.add(soalGambar)
-            }
-        }
-
-        return listPelajaran
-    }
-
-    fun getListSoalPilihanByPelajaran(pelajaranId: Int): List<SoalPilihan>{
-        val listPelajaran: MutableList<SoalPilihan> = mutableListOf()
-
-        InitialDataSource.getSoalPilihans().forEach { soalPilihan ->
-            if (soalPilihan.pelajaranId == pelajaranId){
-                listPelajaran.add(soalPilihan)
-            }
-        }
-
-        return listPelajaran
-    }
-
     companion object {
         var totalJawabanBenar = 0
         var MODUL_ID = "modul_id"
