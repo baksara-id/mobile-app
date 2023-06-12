@@ -26,7 +26,9 @@ class ListTantanganAdapter(private val tantangans: List<Tantangan>): RecyclerVie
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding = ItemTantanganBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ListViewHolder(binding)    }
+
+        return ListViewHolder(binding)
+    }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val tantangan = tantangans[position]

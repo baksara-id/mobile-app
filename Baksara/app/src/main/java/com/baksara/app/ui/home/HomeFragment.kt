@@ -29,7 +29,7 @@ import com.baksara.app.ui.tantangan.TantanganActivity
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var userPref: SharedPreferences
     private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
@@ -43,8 +43,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userPref = requireActivity().getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
-        val userLogin = getUser(userPref)
+        userPref = requireActivity().getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
         val viewModelFactory = ViewModelFactory.getInstance(requireContext())
         homeViewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
 
@@ -55,12 +54,17 @@ class HomeFragment : Fragment() {
 
             }
         }
-        userLogin.let{
-            homeViewModel.fetchAllTantanganUser(it.id?:-1)
-        }
         homeViewModel.liveDataTantangan.observe(requireActivity()){ result ->
             result.onSuccess { tantangans->
                 val listTantanganBelum = tantangans.data?.tantanganBelum ?: emptyList()
+                if(listTantanganBelum.isEmpty()){
+                    binding.rvTantangan.visibility = View.GONE
+                    binding.tvNodata.visibility = View.VISIBLE
+                }
+                else{
+                    binding.rvTantangan.visibility = View.VISIBLE
+                    binding.tvNodata.visibility = View.GONE
+                }
                 setupTantanganAdapter(listTantanganBelum)
             }
 
@@ -68,11 +72,20 @@ class HomeFragment : Fragment() {
                 //Kalau gagal
             }
         }
-        setHomePage(userLogin)
+
         binding.btnTantanganSelengkapnya.setOnClickListener {
             val intent = Intent(activity, TantanganActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val userLogin = getUser(userPref)
+        userLogin.let{
+            homeViewModel.fetchAllTantanganUser(it.id?:-1)
+        }
+        setHomePage(userLogin)
     }
 
     private fun setupTantanganAdapter(listTantangan: List<Tantangan>){
@@ -115,7 +128,8 @@ class HomeFragment : Fragment() {
         binding.tvCurrentAccountExp.text = currentEXP.toString()
         val maxEXP = user.level?.times(500) ?: 500
         binding.tvMaxAccountExp.text = maxEXP.toString()
-        binding.expBar.progress = currentEXP/maxEXP
+        binding.expBar.progress = currentEXP
+        binding.expBar.max = maxEXP
     }
 
     override fun onDestroyView() {

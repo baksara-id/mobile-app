@@ -38,11 +38,11 @@ class BerhasilTantanganActivity : AppCompatActivity() {
         val currentLevel = userPref.getInt(MainActivity.LEVEL, 1)
         val currentEXP = userPref.getInt(MainActivity.EXP, 0)
         var earn = expEarned + currentEXP
-        var expNeededToLevelUp = calculateEXPNeeded(currentLevel + 1)
+        var expNeededToLevelUp = calculateEXPNeeded(currentLevel)
         var counter = currentLevel
         while(earn >= expNeededToLevelUp){
             counter += 1 // Ini akan jadi patokan untuk menghitung kenaikan level
-            earn = expNeededToLevelUp - earn // Ini akan jadi sisa setelah iterasi berakhir
+            earn = earn - expNeededToLevelUp // Ini akan jadi sisa setelah iterasi berakhir
             expNeededToLevelUp = counter * 500
         }
         val levelIncrease = counter - currentLevel

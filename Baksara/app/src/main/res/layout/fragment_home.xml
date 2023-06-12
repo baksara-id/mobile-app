@@ -224,7 +224,7 @@
                 android:textColor="@color/main_300"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rv_tantangan" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_nodata" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_modul"
@@ -238,6 +238,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_tantangan2" />
+
+            <TextView
+                android:id="@+id/tv_nodata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Tidak ada tantangan yang tersisa"
+                android:textColor="@color/main_300"
+                android:textSize="16sp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_tantangan" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.ViewModelFactory
 import com.baksara.app.databinding.ActivitySoalTantanganBinding
@@ -29,6 +30,8 @@ class SoalTantanganActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Soal Tantangan"
 
+        hideVisibility()
+
         val userPref = getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
         val userLogin = getUser(userPref)
 
@@ -41,9 +44,11 @@ class SoalTantanganActivity : AppCompatActivity() {
             result.onSuccess {
                 val tantanganDetail = it.data?.detailTantangan ?: Tantangan(1,"",1,"","","","")
                 setTantanganData(tantanganDetail, userLogin.id?: -1)
+                showVisibility()
             }
             result.onFailure {
                 // Kalau gagal
+                hideVisibility()
             }
         }
     }
@@ -74,6 +79,26 @@ class SoalTantanganActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun hideVisibility(){
+        binding.cvJawabTantangan.visibility = View.GONE
+        binding.cvSoalTantangan.visibility = View.GONE
+        binding.cvJudulTantangan.visibility = View.GONE
+        binding.tvLabelJawabanTantangan.visibility = View.GONE
+        binding.tvLabelSoalTantangan.visibility = View.GONE
+        binding.btnJawabTantangan.visibility = View.GONE
+        binding.progressBarSoalTantangan.visibility = View.VISIBLE
+    }
+
+    fun showVisibility(){
+        binding.cvJawabTantangan.visibility = View.VISIBLE
+        binding.cvSoalTantangan.visibility = View.VISIBLE
+        binding.cvJudulTantangan.visibility = View.VISIBLE
+        binding.tvLabelJawabanTantangan.visibility = View.VISIBLE
+        binding.tvLabelSoalTantangan.visibility = View.VISIBLE
+        binding.btnJawabTantangan.visibility = View.VISIBLE
+        binding.progressBarSoalTantangan.visibility = View.GONE
     }
 
     fun getUser(userPref: SharedPreferences): User {
