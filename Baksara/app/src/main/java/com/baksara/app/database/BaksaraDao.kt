@@ -6,41 +6,67 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
 
 @Dao
 interface BaksaraDao {
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertModul(modul: List<Modul>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertPelajaran(university: List<Pelajaran>)
+    suspend fun insertPelajaran(pelajaran: List<Pelajaran>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertSoalBaca(course: List<SoalBaca>)
+    suspend fun insertSoalBaca(soalBaca: List<SoalBaca>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertSoalGambar(course: List<SoalGambar>)
+    suspend fun insertSoalGambar(soalGambar: List<SoalGambar>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertSoalPilihan(course: List<SoalPilihan>)
+    suspend fun insertSoalPilihan(soalPilihan: List<SoalPilihan>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertKamusBelajar(course: List<KamusBelajar>)
+    suspend fun insertKamusBelajar(kamusBelajar: List<KamusBelajar>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertKamus(course: List<Kamus>)
+    suspend fun insertKamus(kamus: List<Kamus>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertPenggunaan(course: List<Penggunaan>)
+    suspend fun insertPenggunaan(penggunaan: List<Penggunaan>)
+
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun resetModul(modul: List<Modul>)
+
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun resetPelajaran(pelajaran: List<Pelajaran>)
+
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun resetSoalBaca(soalBaca: List<SoalBaca>)
+
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun resetSoalGambar(soalGambar: List<SoalGambar>)
+
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun resetSoalPilihan(soalPilihan: List<SoalPilihan>)
+
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun resetKamusBelajar(kamusBelajar: List<KamusBelajar>)
+
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun resetKamus(kamus: List<Kamus>)
+
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun resetPenggunaan(penggunaan: List<Penggunaan>)
 
     @Query("SELECT * from modul")
     fun getAllModul(): LiveData<List<Modul>>
 
     @Query("UPDATE modul SET selesai = :selesai WHERE id = :modulId")
-    fun setModulSelesai(selesai: Boolean, modulId : Int)
+    suspend fun setModulSelesai(selesai: Boolean, modulId : Int)
 
     @Query("UPDATE modul SET terkunci = :terkunci WHERE id = :modulId")
-    fun setModulTerkunci(terkunci: Boolean, modulId : Int)
+    suspend fun setModulTerkunci(terkunci: Boolean, modulId : Int)
 
     @Query("UPDATE pelajaran SET selesai = :selesai WHERE id = :pelajaranId")
     suspend fun setPelajaranSelesai(selesai: Boolean, pelajaranId: Int)

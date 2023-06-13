@@ -114,4 +114,9 @@ class RegisterActivity : AppCompatActivity() {
     private fun isValidEmail(email: String): Boolean{
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

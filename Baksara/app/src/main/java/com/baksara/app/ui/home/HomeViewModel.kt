@@ -25,7 +25,33 @@ class HomeViewModel(private val baksaraRepository: BaksaraRepository) : ViewMode
             }
         }
     }
+    fun syncPelajaranSelesai(selesai: Boolean, lastPelajaranId : Int, lastModulId: Int){
+        //membuka nomor pelajaran sebelumnya
+        val nomorPelajaranBefore = (lastModulId - 1)*4
+        for (pelajaranId in 1 until lastPelajaranId + nomorPelajaranBefore){
+            viewModelScope.launch {
+                baksaraRepository.setPelajaranSelesai(selesai, pelajaranId)
+            }
+        }
+    }
 
+    fun syncPelajaranTerkunci(terkunci: Boolean, lastPelajaranId : Int, lastModulId: Int){
+        //membuka nomor pelajaran sebelumnya
+        val nomorPelajaranBefore = (lastModulId - 1)*4
+        viewModelScope.launch {
+            for (pelajaranId in 1 .. lastPelajaranId + nomorPelajaranBefore){
+                baksaraRepository.setPelajaranTerkunci(terkunci, pelajaranId)
+            }
+        }
+    }
+
+    fun syncModulSelesai(selesai: Boolean, lastModulId : Int){
+        viewModelScope.launch {
+            for (modulId in 1 until lastModulId){
+                baksaraRepository.setModulSelesai(selesai, modulId)
+            }
+        }
+    }
     suspend fun getAllTantanganUser(userId: Int): Flow<Result<GraphQLResponse>> =
         baksaraRepository.getAllTantanganBelum(userId)
 }

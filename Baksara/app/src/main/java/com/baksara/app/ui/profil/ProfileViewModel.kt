@@ -1,5 +1,6 @@
 package com.baksara.app.ui.profil
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,7 +32,6 @@ class ProfileViewModel (private val baksaraRepository: BaksaraRepository): ViewM
             }
         }
     }
-
     fun fetchLaporanData(judul: String, isi: String, userId: Int){
         viewModelScope.launch {
             tambahLaporan(judul, isi, userId).collect{laporanResponse ->
@@ -48,4 +48,9 @@ class ProfileViewModel (private val baksaraRepository: BaksaraRepository): ViewM
 
     suspend fun tambahLaporan(judul: String, isi: String, userId: Int): Flow<Result<GraphQLResponse>> =
         baksaraRepository.tambahLaporan(judul, isi, userId)
+
+    fun resetDatabase() = viewModelScope.launch {
+        baksaraRepository.resetAllData()
+    }
+
 }

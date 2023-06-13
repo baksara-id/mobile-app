@@ -55,6 +55,11 @@ class KelasActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     companion object {
         const val MODUL_ID = "modul_id"
         const val MODUL_NAMA = "modul_nama"

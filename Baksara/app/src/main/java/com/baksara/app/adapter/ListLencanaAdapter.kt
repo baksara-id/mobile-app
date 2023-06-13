@@ -14,6 +14,8 @@ class ListLencanaAdapter(private val lencanas: List<Lencana>): RecyclerView.Adap
             Glide.with(itemView.context).load(lencana.url_gambar)
                 .centerCrop()
                 .into(binding.imgLencana)
+
+            binding.tvNamaLencana.text = lencana.nama
         }
     }
 

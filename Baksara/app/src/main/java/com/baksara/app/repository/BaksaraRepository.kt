@@ -35,11 +35,11 @@ class BaksaraRepository(
     fun getAllModul():LiveData<List<Modul>> = baksaraDao.getAllModul()
     fun getAllPelajaransByModul(modulId: Int): LiveData<List<Pelajaran>> = baksaraDao.getPelajaransByModul(modulId)
 
-    fun setModulSelesai(selesai: Boolean, modulId: Int) = baksaraDao.setModulSelesai(selesai, modulId)
-    fun setModulTerkunci(terkunci: Boolean, modulId: Int) = baksaraDao.setModulSelesai(terkunci, modulId)
+    suspend fun setModulSelesai(selesai: Boolean, modulId: Int) = baksaraDao.setModulSelesai(selesai, modulId)
+    suspend fun setModulTerkunci(terkunci: Boolean, modulId: Int) = baksaraDao.setModulSelesai(terkunci, modulId)
 
-    suspend fun setPelajaranSelesai(selesai: Boolean, modulId: Int) = baksaraDao.setPelajaranSelesai(selesai, modulId)
-    suspend fun setPelajaranTerkunci(terkunci: Boolean, modulId: Int) = baksaraDao.setPelajaranTerkunci(terkunci, modulId)
+    suspend fun setPelajaranSelesai(selesai: Boolean, pelajaranId: Int) = baksaraDao.setPelajaranSelesai(selesai, pelajaranId)
+    suspend fun setPelajaranTerkunci(terkunci: Boolean, pelajaranId: Int) = baksaraDao.setPelajaranTerkunci(terkunci, pelajaranId)
 
     fun getSoalBacaByPelajaran(pelajaranId: Int, urutan: Int):LiveData<SoalBaca> = baksaraDao.getSoalBacaByPelajaran(pelajaranId, urutan)
     fun getSoalGambarByPelajaran(pelajaranId: Int, urutan: Int):LiveData<SoalGambar> = baksaraDao.getSoalGambarByPelajaran(pelajaranId, urutan)
@@ -61,6 +61,17 @@ class BaksaraRepository(
         baksaraDao.insertKamusBelajar(InitialDataSource.getListKamus())
         baksaraDao.insertKamus(InitialDataSource.getAksaraKamus())
         baksaraDao.insertPenggunaan(InitialDataSource.getPenggunaanKamus())
+    }
+
+    suspend fun resetAllData(){
+        baksaraDao.resetModul(InitialDataSource.getModuls())
+        baksaraDao.resetPelajaran(InitialDataSource.getPelajarans())
+        baksaraDao.resetSoalBaca(InitialDataSource.getSoalBacas())
+        baksaraDao.resetSoalGambar(InitialDataSource.getSoalGambars())
+        baksaraDao.resetSoalPilihan(InitialDataSource.getSoalPilihans())
+        baksaraDao.resetKamusBelajar(InitialDataSource.getListKamus())
+        baksaraDao.resetKamus(InitialDataSource.getAksaraKamus())
+        baksaraDao.resetPenggunaan(InitialDataSource.getPenggunaanKamus())
     }
 
 

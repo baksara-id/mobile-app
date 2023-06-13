@@ -13,4 +13,13 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tv_nama_lencana"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:text="Nama lencana"
+        android:textColor="@color/main_300" />
 </LinearLayout>

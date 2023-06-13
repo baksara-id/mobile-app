@@ -26,11 +26,11 @@ class ListModulAdapter(private val moduls: List<Modul>): RecyclerView.Adapter<Li
             binding.tvItemDetail.text = modul.deskripsi
             binding.tvItemLogo.text = modul.url_background
 
-            if (modul.terkunci && !modul.selesai) {
+            if (modul.id != 1 && modul.terkunci && !moduls[position -1].selesai) {
                 binding.constraintModul.background =
                     ContextCompat.getDrawable(itemView.context, R.drawable.bg_locked_module)
                 binding.root.setOnClickListener {
-                    showLockedModuleDialog(itemView.context, modul.selesai, modul.terkunci)
+                    showLockedModuleDialog(itemView.context, moduls[position -1].selesai, modul.terkunci)
                 }
             } else {
                 binding.root.setOnClickListener {

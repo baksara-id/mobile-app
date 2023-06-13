@@ -164,6 +164,11 @@ class PilihanFragment : Fragment() {
         return SoalActivity.totalJawabanBenar
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     companion object {
         var MODUL_ID = "modul_id"
         var PELAJARAN_ID = "pelajaran_id"

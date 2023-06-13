@@ -16,6 +16,7 @@ class MainViewModel(private val baksaraRepository: BaksaraRepository) : ViewMode
         baksaraRepository.insertAllData()
     }
 
+
     suspend fun register(email: String, name: String, password: String): Flow<Result<GraphQLResponse>> =
         baksaraRepository.register(email, name, password)
 

@@ -87,9 +87,9 @@ class SoalActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         dialog?.dismiss()
+        _binding = null
         super.onDestroy()
     }
-
 
     companion object {
         var totalJawabanBenar = 0

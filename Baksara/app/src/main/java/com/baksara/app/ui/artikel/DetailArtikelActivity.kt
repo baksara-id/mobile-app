@@ -83,6 +83,10 @@ class DetailArtikelActivity : AppCompatActivity() {
         binding.loadingBarDetailArtikel.visibility = View.GONE
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
     companion object {
         const val ARTIKELID = "artikelID"

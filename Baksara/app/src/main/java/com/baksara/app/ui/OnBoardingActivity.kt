@@ -16,7 +16,7 @@ class OnBoardingActivity : AppCompatActivity(){
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        val preferences = this.getSharedPreferences(PREFNAME, Context.MODE_PRIVATE)
+        val preferences = this.getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
 
         binding.tvSkip.setOnClickListener {
             val editor = preferences.edit()
@@ -25,6 +25,8 @@ class OnBoardingActivity : AppCompatActivity(){
 
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+
+            finish()
         }
 
         binding.btnMulai.setOnClickListener {
@@ -35,10 +37,11 @@ class OnBoardingActivity : AppCompatActivity(){
             binding.btnMulai.isEnabled = false
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+
+            finish()
         }
     }
     companion object{
-        const val PREFNAME = "android_user"
         const val IS_SEEN = "is_seen"
     }
 }

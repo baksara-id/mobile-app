@@ -17,6 +17,11 @@ object InitialDataSource {
             Pelajaran(2,1, "2", "ꦣ ꦠ ꦱ ꦮ ꦭ", "Da   Ta   Sa   Wa   La",true, false),
             Pelajaran(3,1, "3", "ꦥ ꦣ ꦗ ꦪ ꦚ", "Pa  Dha   Ja   Ya   Nya",true, false),
             Pelajaran(4,1, "4", "ꦩ ꦒ ꦧ ꦠ ꦔ", "Ma   Ga   Ba   Ta   Nga",true, false),
+
+            Pelajaran(5,2, "1", "ꦶ ꦺ", "wulu   taling",false, false),
+            Pelajaran(6,2, "2", "ꦺꦴ ꦸ", "taling-tarung suku",true, false),
+            Pelajaran(7,2, "3", "ꦼ ꦁ", "pepet cecak",true, false),
+            Pelajaran(8,2, "4", "ꦂ ꦃ", "layar wignyan",true, false),
         )
     }
 

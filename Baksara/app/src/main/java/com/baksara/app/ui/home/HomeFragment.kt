@@ -93,7 +93,13 @@ class HomeFragment : Fragment() {
 
         val userLogin = getUser(userPref)
         userLogin.let{
-            homeViewModel.fetchAllTantanganUser(it.id?:-1)
+            val userId = it.id?:-1
+            val nomorModul = it.riwayatBelajar?.get(0)?.nomor_modul ?:-1
+            val nomorPelajaran = it.riwayatBelajar?.get(0)?.nomor_pelajaran ?:-1
+            homeViewModel.fetchAllTantanganUser(userId)
+            homeViewModel.syncModulSelesai(true, nomorModul)
+            homeViewModel.syncPelajaranSelesai(true, nomorPelajaran, nomorModul)
+            homeViewModel.syncPelajaranTerkunci(false, nomorPelajaran, nomorModul)
         }
         setHomePage(userLogin)
     }
