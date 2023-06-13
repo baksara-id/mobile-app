@@ -86,6 +86,11 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        // Loading Animation Setup
+        setupTantanganAdapter(emptyList())
+        binding.rvTantangan.visibility = View.VISIBLE
+        binding.tvNodata.visibility = View.GONE
+
         val userLogin = getUser(userPref)
         userLogin.let{
             homeViewModel.fetchAllTantanganUser(it.id?:-1)

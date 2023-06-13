@@ -17,6 +17,7 @@ import com.baksara.app.response.GraphQLRequest
 import com.baksara.app.response.GraphQLResponse
 import com.baksara.app.response.PredictResponse
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -316,106 +317,98 @@ class BaksaraRepository(
 
 //=========================================================QUERY============================================================
     suspend fun getAllCerita(): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        query Ceritas {
-                          ceritas {
-                            id
-                            judul
-                            url_gambar
-                            url_isi
-                            deskripsi
-                          }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    query Ceritas {
+                      ceritas {
+                        id
+                        judul
+                        url_gambar
+                        url_isi
+                        deskripsi
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
-    }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+    e.printStackTrace()
+    emit(Result.failure(e))
+}
 
     suspend fun getDetailCerita(id: Int): Flow<Result<GraphQLResponse>> = flow {
-        try {
             val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        query {
-                          cerita(id: $id) {
-                            deskripsi
-                            id
-                            judul
-                            url_gambar
-                            url_isi
-                          }
-                        }
-                    """.trimIndent()
-                )
+            "application/json",
+            GraphQLRequest(
+                """
+                    query {
+                      cerita(id: $id) {
+                        deskripsi
+                        id
+                        judul
+                        url_gambar
+                        url_isi
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun getAllArtikel(): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        query Artikels {
-                          artikels {
-                            id
-                            isi
-                            judul
-                            url_gambar
-                          }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    query Artikels {
+                      artikels {
+                        id
+                        isi
+                        judul
+                        url_gambar
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun getDetailArtikel(id: Int): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        query {
-                          artikel(id: $id) {
-                            id
-                            isi
-                            judul
-                            url_gambar
-                            createdAt
-                            kategori {
-                              id
-                              nama
-                            }
-                          }
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    query {
+                      artikel(id: $id) {
+                        id
+                        isi
+                        judul
+                        url_gambar
+                        createdAt
+                        kategori {
+                          id
+                          nama
                         }
-                    """.trimIndent()
-                )
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun getAllTantanganBelum(idUser: Int): Flow<Result<GraphQLResponse>> = flow {

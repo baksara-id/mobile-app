@@ -38,12 +38,14 @@ class ArtikelFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         artikelViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext()))[ArtikelViewModel::class.java]
         artikelViewModel.liveDataArtikel.observe(requireActivity()){result->
-            result.onSuccess {
-                val listArtikel = it.data?.artikels?: emptyList()
-                setupArtikelAdapter(listArtikel)
-            }
-            result.onFailure {
-                // Kalau gagal
+            if(isAdded){
+                result.onSuccess {
+                    val listArtikel = it.data?.artikels?: emptyList()
+                    setupArtikelAdapter(listArtikel)
+                }
+                result.onFailure {
+                    // Kalau gagal
+                }
             }
         }
         artikelViewModel.liveDataIsLoading.observe(requireActivity()){
@@ -54,6 +56,7 @@ class ArtikelFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        setupArtikelAdapter(emptyList())
         artikelViewModel.fetchAllArtikel()
     }
 
