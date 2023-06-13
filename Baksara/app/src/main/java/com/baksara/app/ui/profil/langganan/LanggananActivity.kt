@@ -42,7 +42,7 @@ class LanggananActivity : AppCompatActivity() {
         val userPref = getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
         val userLogin = getUser(userPref)
 
-        if(userLogin.langganan?.id != 0){
+        if(userLogin.langganan?.id != 1){
             // User Premium
             binding.cvBadgeUserLangganan.backgroundTintList = ContextCompat.getColorStateList(this, R.color.light_premium)
             binding.badgeUserPencapaianLangganan.text = "User Premium"
@@ -134,14 +134,14 @@ class LanggananActivity : AppCompatActivity() {
     }
 
     fun setCardLangganan(listLangganan: List<Langganan>){
-        binding.tvDurasiLangganan1.text = listLangganan[0].durasi.toString() + " Bulan"
-        binding.tvDurasiLangganan2.text = listLangganan[1].durasi.toString() + " Bulan"
-        binding.tvDurasiLangganan3.text = listLangganan[2].durasi.toString() + " Bulan"
-        binding.tvDurasiLangganan4.text = listLangganan[3].durasi.toString() + " Bulan"
-        binding.tvHarga1.text = rupiahformatter(listLangganan[0].harga?: 0.0f)
-        binding.tvHarga2.text = rupiahformatter(listLangganan[1].harga?: 0.0f)
-        binding.tvHarga3.text = rupiahformatter(listLangganan[2].harga?: 0.0f)
-        binding.tvHarga4.text = rupiahformatter(listLangganan[3].harga ?: 0.0f)
+        binding.tvDurasiLangganan1.text = listLangganan[1].durasi.toString() + " Bulan"
+        binding.tvDurasiLangganan2.text = listLangganan[2].durasi.toString() + " Bulan"
+        binding.tvDurasiLangganan3.text = listLangganan[3].durasi.toString() + " Bulan"
+        binding.tvDurasiLangganan4.text = listLangganan[4].durasi.toString() + " Bulan"
+        binding.tvHarga1.text = rupiahformatter(listLangganan[1].harga?: 0.0f)
+        binding.tvHarga2.text = rupiahformatter(listLangganan[2].harga?: 0.0f)
+        binding.tvHarga3.text = rupiahformatter(listLangganan[3].harga?: 0.0f)
+        binding.tvHarga4.text = rupiahformatter(listLangganan[4].harga ?: 0.0f)
     }
 
     fun rupiahformatter(harga: Float): String{
@@ -163,7 +163,7 @@ class LanggananActivity : AppCompatActivity() {
         val kelas = userPref.getInt(MainActivity.KELAS,0)
         val modul = userPref.getInt(MainActivity.MODUL,0)
         val token = userPref.getString(MainActivity.TOKEN,"")
-        val langganan = userPref.getInt(MainActivity.PREMIUM,0)
+        val langganan = userPref.getInt(MainActivity.PREMIUM,1)
         val _langgananObject = Langganan(langganan,"",0.0f,0)
         var listOfRiwayat = mutableListOf<RiwayatBelajar>()
         val _riwayatBelajarObject = RiwayatBelajar(0,id,modul,kelas)

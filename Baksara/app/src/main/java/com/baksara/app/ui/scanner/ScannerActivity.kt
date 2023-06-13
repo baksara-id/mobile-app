@@ -1,11 +1,13 @@
 package com.baksara.app.ui.scanner
 
+import android.Manifest
 import android.app.AlertDialog
 import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.icu.text.SimpleDateFormat
 import android.net.Uri
 import android.os.Build
@@ -26,6 +28,7 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.R
@@ -55,7 +58,7 @@ class ScannerActivity : AppCompatActivity() {
         val userPref = getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
         scannerViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this@ScannerActivity))[ScannerViewModel::class.java]
 
-        var langganan = if(userPref.getInt(MainActivity.PREMIUM, 0) == 0) false else true
+        var langganan = if(userPref.getInt(MainActivity.PREMIUM, 1) == 1) false else true
 
         binding.captureImage.setOnClickListener {
             if(userPref.getBoolean(MainActivity.LIMITREACH, false) && !langganan){
@@ -80,6 +83,15 @@ class ScannerActivity : AppCompatActivity() {
 
         binding.btnScantips.setOnClickListener {
             showScanTipsDialog(this)
+        }
+
+
+        if (!allPermissionsGranted()) {
+            ActivityCompat.requestPermissions(
+                this,
+                REQUIRED_PERMISSIONS,
+                REQUEST_CODE_PERMISSIONS
+            )
         }
     }
 
@@ -232,6 +244,28 @@ class ScannerActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (!allPermissionsGranted()) {
+                Toast.makeText(
+                    this,
+                    "Tidak mendapatkan permission.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                finish()
+            }
+        }
+    }
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
     private fun showMaxLimitScanDialog(context: Context) {
         val builder = AlertDialog.Builder(context)
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -283,5 +317,10 @@ class ScannerActivity : AppCompatActivity() {
         }
 
         dialog.show()
+    }
+
+    companion object{
+        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+        private const val REQUEST_CODE_PERMISSIONS = 10
     }
 }

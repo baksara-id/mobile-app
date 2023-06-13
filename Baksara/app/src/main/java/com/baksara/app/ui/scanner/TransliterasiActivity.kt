@@ -22,7 +22,7 @@ class TransliterasiActivity : AppCompatActivity() {
 
         val userPref = getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
         val userId = userPref.getInt(MainActivity.UNIQUEID, -1)
-        val langganan = if(userPref.getInt(MainActivity.PREMIUM, 0) == 0) false else true
+        val langganan = if(userPref.getInt(MainActivity.PREMIUM, 1) == 1) false else true
         val jumlahScan = userPref.getInt(MainActivity.CURRENTLIMIT, 0) + 1
         val editor = userPref.edit()
         val statusScan = intent.getStringExtra(STATUS) ?: "berhasil"

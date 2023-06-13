@@ -62,7 +62,7 @@ class ProfilFragment : Fragment() {
         userPref = requireActivity().getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
         val userLogin = getUser()
 
-        if(userLogin.langganan?.id != 0){
+        if(userLogin.langganan?.id != 1){
             // User Premium
             binding.cvBadgeUser.backgroundTintList = ContextCompat.getColorStateList(requireActivity(), R.color.light_premium)
             binding.badgeUser.text = "User Premium"
@@ -153,7 +153,7 @@ class ProfilFragment : Fragment() {
         val kelas = userPref.getInt(MainActivity.KELAS,0)
         val modul = userPref.getInt(MainActivity.MODUL,0)
         val token = userPref.getString(MainActivity.TOKEN,"")
-        val langganan = userPref.getInt(MainActivity.PREMIUM,0)
+        val langganan = userPref.getInt(MainActivity.PREMIUM,1)
         val _langgananObject = Langganan(langganan,"",0.0f,0)
         var listOfRiwayat = mutableListOf<RiwayatBelajar>()
         val _riwayatBelajarObject = RiwayatBelajar(0,id,modul,kelas)

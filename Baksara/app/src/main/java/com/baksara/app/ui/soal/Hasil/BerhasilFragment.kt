@@ -51,7 +51,7 @@ class BerhasilFragment : Fragment() {
         val userPref = requireActivity().getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
         val userId = userPref.getInt(MainActivity.UNIQUEID, -1)
         val pelajaranIdNext = if(pelajaranId != 4) pelajaranId + 1 else 1
-        val modulIdNext = if(modulId != 3) modulId + 1 else 4
+        val modulIdNext = if(modulId != 3) modulId + 1 else 3
 
         berhasilViewModel = ViewModelProvider(this, viewModelFactory)[BerhasilViewModel::class.java]
 
@@ -59,6 +59,7 @@ class BerhasilFragment : Fragment() {
         berhasilViewModel.setPelajaranSelesai(true, pelajaranId)
         berhasilViewModel.setPelajaranTerkunci(false, pelajaranId + 1)
 
+        // Update Riwayat Belajar Saat Ini Khusus Pelajaran/Kelas
         berhasilViewModel.fetchRiwayatBelajarResponse(userId,pelajaranIdNext,modulId)
         berhasilViewModel.liveDataUpdateRiwayatResponse.observe(requireActivity()){ response->
             response.onSuccess {
@@ -72,6 +73,7 @@ class BerhasilFragment : Fragment() {
             }
         }
 
+        // Update Riwayat belajar Saat Ini Khusus Naik Modul
         if(pelajaranId == 4){
             berhasilViewModel.fetchRiwayatBelajarResponse(userId, pelajaranIdNext, modulIdNext)
             berhasilViewModel.setModulSelesai(true, modulId)

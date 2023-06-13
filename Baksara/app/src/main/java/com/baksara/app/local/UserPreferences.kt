@@ -48,7 +48,7 @@ class UserPreferences constructor(context: Context) {
         editor.putInt(EXP, user.exp?:0)
         editor.putInt(LEVEL, user.level?:0)
         editor.putInt(CURRENTLIMIT, user.jumlah_scan?:0)
-        editor.putInt(PREMIUM, user.langganan?.id?:0)
+        editor.putInt(PREMIUM, user.langganan?.id?:1)
         editor.putString(TOKEN,user.token)
         editor.apply()
     }

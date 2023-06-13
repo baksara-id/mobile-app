@@ -47,7 +47,7 @@ class PencapaianActivity : AppCompatActivity() {
             }
         }
 
-        if(userLogin.langganan?.id != 0){
+        if(userLogin.langganan?.id != 1){
             // User Premium
             binding.cvBadgeUserPencapaian.backgroundTintList = ContextCompat.getColorStateList(this@PencapaianActivity, R.color.light_premium)
             binding.badgeUserPencapaian.text = "User Premium"
@@ -94,7 +94,7 @@ class PencapaianActivity : AppCompatActivity() {
         val kelas = userPref.getInt(MainActivity.KELAS,0)
         val modul = userPref.getInt(MainActivity.MODUL,0)
         val token = userPref.getString(MainActivity.TOKEN,"")
-        val langganan = userPref.getInt(MainActivity.PREMIUM,0)
+        val langganan = userPref.getInt(MainActivity.PREMIUM,1)
         val _langgananObject = Langganan(langganan,"",0.0f,0)
         var listOfRiwayat = mutableListOf<RiwayatBelajar>()
         val _riwayatBelajarObject = RiwayatBelajar(0,id,modul,kelas)

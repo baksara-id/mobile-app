@@ -106,7 +106,7 @@ class LoginActivity : AppCompatActivity() {
         editor.putInt(MainActivity.EXP, user?.exp?:0)
         editor.putInt(MainActivity.LEVEL, user?.level?:0)
         editor.putInt(MainActivity.CURRENTLIMIT, jumlahScan)
-        editor.putInt(MainActivity.PREMIUM, user?.langganan?.id?:0)
+        editor.putInt(MainActivity.PREMIUM, user?.langganan?.id?:1)
         editor.putInt(MainActivity.KELAS, user?.riwayatBelajar?.get(0)?.nomor_pelajaran ?:0)
         editor.putInt(MainActivity.MODUL, user?.riwayatBelajar?.get(0)?.nomor_modul ?:0)
         editor.putString(MainActivity.TOKEN,user?.token)
