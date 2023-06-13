@@ -1,10 +1,6 @@
 package com.baksara.app.network
 
-import com.baksara.app.response.GraphQLRequest
-import com.baksara.app.response.GraphQLResponse
-import com.baksara.app.response.TranslatorRequest
-import com.baksara.app.response.TranslatorResponse
-import com.baksara.app.response.PredictResponse
+import com.baksara.app.response.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Body
@@ -32,4 +28,8 @@ interface ApiService {
         @Body body: TranslatorRequest
     ) : TranslatorResponse
 
+    @POST("scanner")
+    suspend fun scanner(
+        @Part file:MultipartBody.Part,
+    ): ScannerResponse
 }

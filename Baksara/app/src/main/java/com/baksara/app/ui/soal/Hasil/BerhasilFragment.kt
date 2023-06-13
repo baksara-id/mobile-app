@@ -50,26 +50,34 @@ class BerhasilFragment : Fragment() {
         val modulId = arguments?.getInt(PilihanFragment.MODUL_ID) ?: 0
         val userPref = requireActivity().getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
         val userId = userPref.getInt(MainActivity.UNIQUEID, -1)
+        val pelajaranIdNext = if(pelajaranId != 4) pelajaranId + 1 else 1
+        val modulIdNext = if(modulId != 3) modulId + 1 else 4
+
         berhasilViewModel = ViewModelProvider(this, viewModelFactory)[BerhasilViewModel::class.java]
 
         //Unlock next pelajaran
         berhasilViewModel.setPelajaranSelesai(true, pelajaranId)
         berhasilViewModel.setPelajaranTerkunci(false, pelajaranId + 1)
 
-
-        berhasilViewModel.fetchRiwayatBelajarResponse(userId,pelajaranId,modulId)
+        berhasilViewModel.fetchRiwayatBelajarResponse(userId,pelajaranIdNext,modulId)
         berhasilViewModel.liveDataUpdateRiwayatResponse.observe(requireActivity()){ response->
             response.onSuccess {
+                val nomorModulBaru = it.data?.riwayatBelajar?.nomor_modul ?: 1
+                val nomorPelajranBaru = it.data?.riwayatBelajar?.nomor_pelajaran ?: 1
+                setModulPelajaranBaru(nomorModulBaru, nomorPelajranBaru, userPref)
                 Toast.makeText(requireContext(), "Anda berhasil menyelesaikan kelas dan memperoleh 400 EXP", Toast.LENGTH_SHORT).show()
             }
             response.onFailure {
 
             }
         }
+
         if(pelajaranId == 4){
+            berhasilViewModel.fetchRiwayatBelajarResponse(userId, pelajaranIdNext, modulIdNext)
             berhasilViewModel.setModulSelesai(true, modulId)
             berhasilViewModel.fetchLencana(userId, modulId)
         }
+
         berhasilViewModel.liveDataResponseLencana.observe(requireActivity()){response->
             response.onSuccess {
                 val lencana = it.data?.lencanaResponse?.lencana ?: Lencana(0,"a","")
@@ -185,6 +193,13 @@ class BerhasilFragment : Fragment() {
         editor.putInt(MainActivity.UNIQUEID, user?.id?:0)
         editor.putInt(MainActivity.EXP, user?.exp?:0)
         editor.putInt(MainActivity.LEVEL, user?.level?:0)
+        editor.apply()
+    }
+
+    fun setModulPelajaranBaru(nomorModulBaru: Int, nomorPelajranBaru: Int, userPref: SharedPreferences){
+        val editor = userPref.edit()
+        editor.putInt(MainActivity.MODUL, nomorModulBaru)
+        editor.putInt(MainActivity.KELAS, nomorPelajranBaru)
         editor.apply()
     }
 }

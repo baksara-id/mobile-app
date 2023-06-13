@@ -25,6 +25,13 @@ class TransliterasiActivity : AppCompatActivity() {
         val langganan = if(userPref.getInt(MainActivity.PREMIUM, 0) == 0) false else true
         val jumlahScan = userPref.getInt(MainActivity.CURRENTLIMIT, 0) + 1
         val editor = userPref.edit()
+        val statusScan = intent.getStringExtra(STATUS) ?: "berhasil"
+        val hasilScan = intent.getStringExtra(HASIL)
+
+        hasilScan.let{
+            scannerViewModel.fetchTranslatorResult(it?:"")
+        }
+
         editor.putInt(MainActivity.CURRENTLIMIT, jumlahScan)
         if(jumlahScan >= 3){
             editor.putBoolean(MainActivity.LIMITREACH, true)
@@ -49,7 +56,20 @@ class TransliterasiActivity : AppCompatActivity() {
             }
         }
 
-        binding.tvAksaraJawaTransliterasi.text = "ꦲꦫꦶꦆꦤꦶ"
-        binding.tvAksaraLatinTransliterasi.text = "Hari Ini"
+        scannerViewModel.liveDataTranslatorResponse.observe(this){ result->
+            result.onSuccess {
+                val hasilTranslate = it.hasil
+                binding.tvAksaraJawaTransliterasi.text = "$hasilTranslate"
+            }
+            result.onFailure {
+
+            }
+        }
+        binding.tvAksaraLatinTransliterasi.text = "$hasilScan"
+    }
+
+    companion object{
+        var HASIL = "HASILSCAN"
+        var STATUS = "STATUSSCAN"
     }
 }

@@ -315,6 +315,21 @@ class BaksaraRepository(
         }
     }
 
+    suspend fun scannerResult(
+        img: File,
+    ): Flow<Result<ScannerResponse>> = flow{
+        try {
+            val requestImageFile = img.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData("img", img.name, requestImageFile)
+            val response = mlservice.scanner(imageMultipart)
+
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
 //=========================================================QUERY============================================================
     suspend fun getAllCerita(): Flow<Result<GraphQLResponse>> = flow {
         val response = service.graphql(

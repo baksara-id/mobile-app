@@ -27,7 +27,9 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.R
+import com.baksara.app.ViewModelFactory
 import com.baksara.app.databinding.ActivityScannerBinding
 import com.baksara.app.response.Langganan
 import com.baksara.app.response.RiwayatBelajar
@@ -44,12 +46,14 @@ class ScannerActivity : AppCompatActivity() {
     private val binding get() = _binding!!
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private lateinit var scannerViewModel: ScannerViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityScannerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val userPref = getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
+        scannerViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this@ScannerActivity))[ScannerViewModel::class.java]
 
         var langganan = if(userPref.getInt(MainActivity.PREMIUM, 0) == 0) false else true
 
@@ -130,10 +134,23 @@ class ScannerActivity : AppCompatActivity() {
             val selectedImg = result.data?.data as Uri
             selectedImg.let { uri ->
                 val myFile = uriToFile(uri, this@ScannerActivity)
+                val intent = Intent(this@ScannerActivity, TransliterasiActivity::class.java)
                 // Kirim ke Transliterasi Activity
                 // Kirim Gambarnya ke Network
-                val intent = Intent(this@ScannerActivity, TransliterasiActivity::class.java)
-                startActivity(intent)
+                scannerViewModel.fetchScannerResponse(myFile)
+                scannerViewModel.liveDataResponseScanner.observe(this@ScannerActivity){ result->
+                    result.onSuccess {
+                        val resultScanner = it.result
+                        intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
+                    }
+                    result.onFailure {
+                        val status = "gagal"
+                        val resultFail = "Gagal terdapat kesalahan pada sistem"
+                        intent.putExtra(TransliterasiActivity.STATUS, status)
+                        intent.putExtra(TransliterasiActivity.HASIL, resultFail)
+                    }
+                    startActivity(intent)
+                }
             }
         }
     }
