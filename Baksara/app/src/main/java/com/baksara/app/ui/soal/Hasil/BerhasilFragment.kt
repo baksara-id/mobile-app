@@ -60,7 +60,7 @@ class BerhasilFragment : Fragment() {
         berhasilViewModel.fetchRiwayatBelajarResponse(userId,pelajaranId,modulId)
         berhasilViewModel.liveDataUpdateRiwayatResponse.observe(requireActivity()){ response->
             response.onSuccess {
-                Toast.makeText(requireContext(), "Anda berhasil menyelesaikan kelas dan memperoleh x EXP", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Anda berhasil menyelesaikan kelas dan memperoleh 400 EXP", Toast.LENGTH_SHORT).show()
             }
             response.onFailure {
 
@@ -85,7 +85,7 @@ class BerhasilFragment : Fragment() {
         val currentLevel = userPref.getInt(MainActivity.LEVEL, 1)
         val currentEXP = userPref.getInt(MainActivity.EXP, 0)
         var earn = expEarned + currentEXP
-        var expNeededToLevelUp = calculateEXPNeeded(currentLevel + 1)
+        var expNeededToLevelUp = calculateEXPNeeded(currentLevel)
         var counter = currentLevel
         while(earn >= expNeededToLevelUp){
             counter += 1 // Ini akan jadi patokan untuk menghitung kenaikan level
@@ -127,6 +127,7 @@ class BerhasilFragment : Fragment() {
                 // Kalau Gagal
             }
         }
+        binding.tvBerhasilExp.text = "+ 400XP"
 
         fadeInAnimator = ObjectAnimator.ofFloat(binding.tvBerhasilExp, "alpha", 0f, 1f)
             .apply {

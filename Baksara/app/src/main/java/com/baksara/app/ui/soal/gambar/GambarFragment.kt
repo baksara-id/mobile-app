@@ -49,17 +49,13 @@ class GambarFragment : Fragment() {
 
 
             binding.btnJawabSoalGambar.setOnClickListener {
+                binding.btnJawabSoalGambar.isEnabled = false
+                binding.btnHapusSoalGambar.isEnabled = false
                 fillProgressBar()
-
-                //Get Bitmap from Canvas
-//                val imageBytes = binding.drawViewAksara.convertToJpg()
-//                val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-
 
                 val actualClass = KelasActivity.modulNama?.lowercase() + "_" + soalGambar.latin.lowercase()
 
-
-                //predict image
+                // predict image
                 val imageFile = binding.drawViewAksara.saveDrawingToFile()
                 if (imageFile != null) {
                     gambarViewModel.fetchPredictImage(imageFile, actualClass)
@@ -67,7 +63,6 @@ class GambarFragment : Fragment() {
 
                 gambarViewModel.liveDataPredict.observe(requireActivity()){ result ->
                     result.onSuccess {
-
                         //cek predict
                         if (it.result > 0.7f){
                             updateJawabanBenar()
@@ -77,7 +72,6 @@ class GambarFragment : Fragment() {
                         }
 
                         Toast.makeText(requireActivity(), it.result.toString(), Toast.LENGTH_SHORT).show()
-
                         //ganti transisi ke kelas baca atau ke kelas pilihan
                         if(nomorUrutan != 5){
                             val bundle = Bundle()

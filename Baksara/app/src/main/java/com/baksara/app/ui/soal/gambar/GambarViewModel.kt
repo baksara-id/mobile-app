@@ -16,7 +16,6 @@ import java.io.File
 class GambarViewModel(private val baksaraRepository: BaksaraRepository): ViewModel() {
     val liveDataPredict: MutableLiveData<Result<PredictResponse>> = MutableLiveData()
 
-
     fun getSoalGambarByPelajaran(pelajaranId : Int, urutan: Int): LiveData<SoalGambar> = baksaraRepository.getSoalGambarByPelajaran(pelajaranId, urutan)
 
     fun fetchPredictImage(img: File, actualClass: String){
