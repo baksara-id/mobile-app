@@ -2,6 +2,7 @@ package com.baksara.app.ui.pustaka
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.R
 import com.baksara.app.ViewModelFactory
@@ -17,7 +18,7 @@ class DetailCeritaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityDetailCeritaBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        hideVisibility()
         ceritaViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this@DetailCeritaActivity))[PustakaViewModel::class.java]
         val ceritaId = intent.getIntExtra(CERITA_ID, -1)
         ceritaId.let {
@@ -29,17 +30,33 @@ class DetailCeritaActivity : AppCompatActivity() {
                     .load(detailCerita.data?.detailCerita?.url_gambar)
                     .placeholder(R.drawable.arjunadummy2)
                     .fitCenter()
-                    .into(binding.ivPlaceholder);
+                    .into(binding.ivPlaceholder)
                 Glide.with(this)
                     .load(detailCerita.data?.detailCerita?.url_isi)
                     .placeholder(R.drawable.template_cerita)
                     .fitCenter()
-                    .into(binding.contentCerita);
+                    .into(binding.contentCerita)
+                showVisibility()
             }
             result.onFailure {
                 // Kalau Gagal
+                hideVisibility()
             }
         }
+    }
+
+    fun hideVisibility(){
+        binding.cvContainerCerita.visibility = View.GONE
+        binding.view5.visibility = View.GONE
+        binding.ivPlaceholder.visibility = View.GONE
+        binding.loadingBarDetailCerita.visibility = View.VISIBLE
+    }
+
+    fun showVisibility(){
+        binding.cvContainerCerita.visibility = View.VISIBLE
+        binding.view5.visibility = View.VISIBLE
+        binding.ivPlaceholder.visibility = View.VISIBLE
+        binding.loadingBarDetailCerita.visibility = View.GONE
     }
 
     companion object {

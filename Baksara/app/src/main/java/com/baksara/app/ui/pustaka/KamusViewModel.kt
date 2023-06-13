@@ -7,4 +7,6 @@ import com.baksara.app.repository.BaksaraRepository
 
 class KamusViewModel(private val baksaraRepository: BaksaraRepository): ViewModel() {
     fun getAllKamusBelajar(): LiveData<List<KamusBelajar>> = baksaraRepository.getAllKamusBelajar()
+
+    fun synchronizeKamus(): LiveData<List<KamusBelajar>> = baksaraRepository.getAllKamusBelajar()
 }

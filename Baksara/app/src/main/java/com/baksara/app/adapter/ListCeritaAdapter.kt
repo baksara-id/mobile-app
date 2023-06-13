@@ -1,5 +1,6 @@
 package com.baksara.app.adapter
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,10 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.baksara.app.R
 import com.baksara.app.databinding.ItemCeritaBinding
 import com.baksara.app.response.Cerita
+import com.baksara.app.response.Tantangan
 import com.baksara.app.ui.pustaka.DetailCeritaActivity
 import com.bumptech.glide.Glide
 
-class ListCeritaAdapter(private val ceritas: List<Cerita>): RecyclerView.Adapter<ListCeritaAdapter.ListViewHolder>() {
+class ListCeritaAdapter(private var ceritas: List<Cerita>): RecyclerView.Adapter<ListCeritaAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(private val binding: ItemCeritaBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -46,4 +48,10 @@ class ListCeritaAdapter(private val ceritas: List<Cerita>): RecyclerView.Adapter
     }
 
     override fun getItemCount(): Int = ceritas.size
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setListCerita(ceritaBaru: List<Cerita>) {
+        ceritas = ceritaBaru
+        notifyDataSetChanged()
+    }
 }

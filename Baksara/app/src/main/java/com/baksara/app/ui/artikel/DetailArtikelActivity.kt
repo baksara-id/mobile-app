@@ -3,6 +3,7 @@ package com.baksara.app.ui.artikel
 import android.icu.text.SimpleDateFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.R
 import com.baksara.app.ViewModelFactory
@@ -20,7 +21,7 @@ class DetailArtikelActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityDetailArtikelBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        hideVisibility()
         artikelViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this@DetailArtikelActivity))[ArtikelViewModel::class.java]
         val artikelID = intent.getIntExtra(ARTIKELID, -1)
 
@@ -48,12 +49,26 @@ class DetailArtikelActivity : AppCompatActivity() {
                     .load(detailArtikel.data?.detailArtikel?.url_gambar)
                     .placeholder(R.drawable.arjunadummy2)
                     .fitCenter()
-                    .into(binding.ivPlaceholder2);
+                    .into(binding.ivPlaceholder2)
+                showVisibility()
             }
             result.onFailure {
                 // Kalau error
+                hideVisibility()
             }
         }
+    }
+
+    fun hideVisibility(){
+        binding.cardViewDeskripsiDetailArtikel.visibility = View.GONE
+        binding.cardViewJudulDetailArtikel.visibility = View.GONE
+        binding.loadingBarDetailArtikel.visibility = View.VISIBLE
+    }
+
+    fun showVisibility(){
+        binding.cardViewJudulDetailArtikel.visibility = View.VISIBLE
+        binding.cardViewDeskripsiDetailArtikel.visibility = View.VISIBLE
+        binding.loadingBarDetailArtikel.visibility = View.GONE
     }
 
     companion object {

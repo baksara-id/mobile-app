@@ -1,6 +1,8 @@
 package com.baksara.app.ui.pustaka
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -69,6 +71,22 @@ class CeritaFragment : Fragment() {
         binding.rvCerita.layoutManager = layoutManager
         val adapter = ListCeritaAdapter(ceritas)
         binding.rvCerita.adapter = adapter
+        binding.inputCariCerita.addTextChangedListener (object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val query = s.toString().lowercase()
+                val filteredList = ceritas.filter {
+                    it.judul?.lowercase()?.contains(query) == true
+                }
+                adapter.setListCerita(filteredList)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
     }
 
     companion object {

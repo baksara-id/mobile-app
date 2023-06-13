@@ -1,12 +1,15 @@
 package com.baksara.app.ui.scanner
 
 import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.ViewModelFactory
 import com.baksara.app.databinding.ActivityTransliterasiBinding
+import com.baksara.app.response.User
 import com.baksara.app.ui.MainActivity
 
 class TransliterasiActivity : AppCompatActivity() {
@@ -50,6 +53,7 @@ class TransliterasiActivity : AppCompatActivity() {
                     "Jumlah Limit anda sudah mencapai 3 kali scan!",
                     Toast.LENGTH_SHORT
                 ).show()
+                setUser(jumlahScan, userPref)
             }
             result.onFailure {
 
@@ -66,6 +70,24 @@ class TransliterasiActivity : AppCompatActivity() {
             }
         }
         binding.tvAksaraLatinTransliterasi.text = "$hasilScan"
+
+        binding.btnDeteksiUlang.setOnClickListener {
+            val intent = Intent(this@TransliterasiActivity, ScannerActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    fun setUser(jumlahScan: Int, userPreferences: SharedPreferences){
+        val editor = userPreferences.edit()
+        editor.putInt(MainActivity.CURRENTLIMIT, jumlahScan)
+        if(jumlahScan >= 3){
+            editor.putBoolean(MainActivity.LIMITREACH, true)
+        }
+        else{
+            editor.putBoolean(MainActivity.LIMITREACH, false)
+        }
+        editor.apply()
     }
 
     companion object{
