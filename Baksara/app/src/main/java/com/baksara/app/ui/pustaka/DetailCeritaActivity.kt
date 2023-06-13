@@ -18,6 +18,10 @@ class DetailCeritaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityDetailCeritaBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Detail Cerita"
+
         hideVisibility()
         ceritaViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this@DetailCeritaActivity))[PustakaViewModel::class.java]
         val ceritaId = intent.getIntExtra(CERITA_ID, -1)
@@ -43,6 +47,12 @@ class DetailCeritaActivity : AppCompatActivity() {
                 hideVisibility()
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        finish()
+        return true
     }
 
     fun hideVisibility(){

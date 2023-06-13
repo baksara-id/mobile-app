@@ -26,6 +26,9 @@ class ContohKamusActivity : AppCompatActivity() {
         _binding = ActivityContohKamusBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Detail Kamus"
+
         aksaraId = intent.getIntExtra(AKSARAJAWA_ID, 0)
         binding.tvDisplayAksaraText.text = intent.getStringExtra(JAWA_AKSARA)
         binding.tvDisplayLatinText.text = intent.getStringExtra(JAWA_LATIN)
@@ -48,6 +51,12 @@ class ContohKamusActivity : AppCompatActivity() {
 
         val adapter = ListKamusContohAdapter(penggunaans)
         binding.rvPenggunaan.adapter = adapter
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        finish()
+        return true
     }
 
 

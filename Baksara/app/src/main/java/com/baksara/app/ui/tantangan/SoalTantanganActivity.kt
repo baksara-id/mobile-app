@@ -81,6 +81,12 @@ class SoalTantanganActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        finish()
+        return true
+    }
+
     fun hideVisibility(){
         binding.cvJawabTantangan.visibility = View.GONE
         binding.cvSoalTantangan.visibility = View.GONE

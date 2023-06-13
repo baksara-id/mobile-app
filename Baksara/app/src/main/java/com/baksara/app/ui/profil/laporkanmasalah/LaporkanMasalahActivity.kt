@@ -52,6 +52,12 @@ class LaporkanMasalahActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        finish()
+        return true
+    }
+
     private fun showDialogLaporGagal(context: Context) {
         val builder = AlertDialog.Builder(context)
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

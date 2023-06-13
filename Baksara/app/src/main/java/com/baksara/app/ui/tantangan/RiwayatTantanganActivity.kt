@@ -66,6 +66,12 @@ class RiwayatTantanganActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        finish()
+        return true
+    }
+
     private fun setupTantanganAdapter(listTantanganSudah: List<Tantangan>){
         val layoutManager = LinearLayoutManager(this)
         binding.rvTantanganRiwayat.layoutManager = layoutManager

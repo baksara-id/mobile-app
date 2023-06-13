@@ -65,7 +65,6 @@ class TantanganActivity : AppCompatActivity() {
         binding.btnTantanganSelengkapnya3.setOnClickListener {
             val intent = Intent(this, RiwayatTantanganActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         tantanganViewModel.liveDataIsLoading.observe(this){
@@ -96,6 +95,12 @@ class TantanganActivity : AppCompatActivity() {
 
         })
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        finish()
+        return true
     }
 
     fun showLoading(isLoading: Boolean){

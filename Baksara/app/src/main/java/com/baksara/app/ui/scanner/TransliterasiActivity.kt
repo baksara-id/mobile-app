@@ -21,6 +21,9 @@ class TransliterasiActivity : AppCompatActivity() {
         _binding = ActivityTransliterasiBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Hasil Transliterasi"
+
         scannerViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this@TransliterasiActivity))[ScannerViewModel::class.java]
 
         val userPref = getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
@@ -76,6 +79,12 @@ class TransliterasiActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        finish()
+        return true
     }
 
     fun setUser(jumlahScan: Int, userPreferences: SharedPreferences){

@@ -65,6 +65,12 @@ class PencapaianActivity : AppCompatActivity() {
         setupAkun(userLogin)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        finish()
+        return true
+    }
+
     private fun setupLencanaAdapter(listLencana : List<Lencana>){
         val layoutManager = GridLayoutManager(this, 4)
         binding.rvLencana.layoutManager = layoutManager

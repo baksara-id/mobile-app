@@ -3,11 +3,13 @@ package com.baksara.app.ui.artikel
 import android.icu.text.SimpleDateFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.R
 import com.baksara.app.ViewModelFactory
 import com.baksara.app.databinding.ActivityDetailArtikelBinding
+import com.baksara.app.ui.kelas.KelasActivity
 import com.baksara.app.ui.pustaka.DetailCeritaActivity
 import com.bumptech.glide.Glide
 import java.util.Date
@@ -21,6 +23,10 @@ class DetailArtikelActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityDetailArtikelBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Detail Artikel"
+
         hideVisibility()
         artikelViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this@DetailArtikelActivity))[ArtikelViewModel::class.java]
         val artikelID = intent.getIntExtra(ARTIKELID, -1)
@@ -59,6 +65,12 @@ class DetailArtikelActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        finish()
+        return true
+    }
+
     fun hideVisibility(){
         binding.cardViewDeskripsiDetailArtikel.visibility = View.GONE
         binding.cardViewJudulDetailArtikel.visibility = View.GONE
@@ -70,6 +82,7 @@ class DetailArtikelActivity : AppCompatActivity() {
         binding.cardViewDeskripsiDetailArtikel.visibility = View.VISIBLE
         binding.loadingBarDetailArtikel.visibility = View.GONE
     }
+
 
     companion object {
         const val ARTIKELID = "artikelID"

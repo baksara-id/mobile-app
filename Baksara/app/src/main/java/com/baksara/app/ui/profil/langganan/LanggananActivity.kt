@@ -97,6 +97,12 @@ class LanggananActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        finish()
+        return true
+    }
+
     private fun showDialogBeli(context: Context) {
         val builder = AlertDialog.Builder(context)
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

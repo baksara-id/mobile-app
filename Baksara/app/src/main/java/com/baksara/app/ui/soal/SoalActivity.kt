@@ -29,6 +29,9 @@ class SoalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySoalBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.hide()
+
         // Ambil pelajaran ID dan modul ID
         val pelajaranId = intent.getIntExtra(PELAJARAN_ID, 0)
         val modulId = intent.getIntExtra(MODUL_ID, 0)
@@ -64,7 +67,7 @@ class SoalActivity : AppCompatActivity() {
         val buttonInformation: Button = dialogView.findViewById(R.id.btn_information)
 
         imgInformation.setImageResource(R.drawable.img_logo_danger_information)
-        textTitle.text = "Pesan Informasi"
+        textTitle.text = "Pesan Peringatan"
         textDesc.text = "Apakah anda yakin ingin keluar dari kelas?"
         buttonInformation.text = "Keluar"
         buttonInformation.background.setTint(resources.getColor(R.color.danger))

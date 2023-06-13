@@ -22,6 +22,9 @@ class DetailKamusActivity : AppCompatActivity() {
         _binding = ActivityDetailKamusBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Kamus"
+
         kamusBelajarId = intent.getIntExtra(KAMUSID, 0)
 
         binding.tvJudulKamus.text = intent.getStringExtra(KAMUSJUDUL)
@@ -37,6 +40,12 @@ class DetailKamusActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        finish()
+        return true
     }
 
     private fun setupListKamus(listKamus: List<Kamus>){
