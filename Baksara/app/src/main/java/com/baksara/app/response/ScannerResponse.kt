@@ -7,5 +7,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class ScannerResponse (
     @field:SerializedName("result")
-    val result: List<List<String>>
+    val result: List<List<String>>,
+    @field:SerializedName("error")
+    val error: String,
 ): Parcelable

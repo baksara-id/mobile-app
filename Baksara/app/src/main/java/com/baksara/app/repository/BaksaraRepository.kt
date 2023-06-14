@@ -66,253 +66,233 @@ class BaksaraRepository(
 
 
     suspend fun register(email: String, name: String, password: String): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        mutation {
-                             createUser(name: "$name", email: "$email", password: "$password") {
-                                token
-                              }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    mutation {
+                         createUser(name: "$name", email: "$email", password: "$password") {
+                            token
+                          }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun login(email: String, password: String): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        mutation {
-                            loginUser(email: "$email", password: "$password") {
-                                id
-                                name
-                                email
-                                token
-                                avatar
-                                exp
-                                level
-                                jumlah_scan
-                                kadaluwarsa
-                                riwayat_belajars {
-                                  nomor_modul
-                                  nomor_pelajaran
-                                  id
-                                }
-                                lencanas {
-                                  id
-                                  url_gambar
-                                }
-                                langganan {
-                                  id
-                                }
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    mutation {
+                        loginUser(email: "$email", password: "$password") {
+                            id
+                            name
+                            email
+                            token
+                            avatar
+                            exp
+                            level
+                            jumlah_scan
+                            kadaluwarsa
+                            riwayat_belajars {
+                              nomor_modul
+                              nomor_pelajaran
+                              id
+                            }
+                            lencanas {
+                              id
+                              url_gambar
+                            }
+                            langganan {
+                              id
                             }
                         }
-                    """.trimIndent()
-                )
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun submitJawabanTantangan(userId: Int, tantanganId: Int, jawaban: String): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        mutation {
-                          createUserTantangan(user_id: $userId, tantangan_id: $tantanganId, jawaban: "$jawaban") {
-                            is_approved
-                            jawaban
-                          }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    mutation {
+                      createUserTantangan(user_id: $userId, tantangan_id: $tantanganId, jawaban: "$jawaban") {
+                        is_approved
+                        jawaban
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun tambahLaporan(judul: String, isi: String, userId: Int): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        mutation {
-                          createLaporan(user_id: $userId, judul: "$judul", isi: "$isi") {
-                            id
-                            isi
-                            judul
-                          }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    mutation {
+                      createLaporan(user_id: $userId, judul: "$judul", isi: "$isi") {
+                        id
+                        isi
+                        judul
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun tambahRiwayatBelajar(modulId: Int, userId: Int, pelajaranId: Int): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        mutation {
-                          createRiwayatBelajar(user_id: $userId, nomor_modul: $modulId, nomor_pelajaran: $pelajaranId) {
-                            id
-                            nomor_modul
-                            nomor_pelajaran
-                          }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    mutation {
+                      createRiwayatBelajar(user_id: $userId, nomor_modul: $modulId, nomor_pelajaran: $pelajaranId) {
+                        id
+                        nomor_modul
+                        nomor_pelajaran
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun tambahLencana(modulId: Int, userId: Int): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        mutation {
-                          createUserLencana(user_id: $userId, lencana_id: $modulId) {
-                            token
-                          }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    mutation {
+                      createUserLencana(user_id: $userId, lencana_id: $modulId) {
+                        token
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun updateUserEXP(newEXP: Int, userId: Int): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        mutation {
-                          updateUser(id: $userId, exp: $newEXP) {
-                            name
-                            level
-                            id
-                            exp
-                          }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    mutation {
+                      updateUser(id: $userId, exp: $newEXP) {
+                        name
+                        level
+                        id
+                        exp
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun updateUserLevel(newLevel: Int, userId: Int, newEXP: Int): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        mutation {
-                          updateUser(id: $userId, level: $newLevel, exp: $newEXP) {
-                            name
-                            level
-                            id
-                            exp
-                          }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    mutation {
+                      updateUser(id: $userId, level: $newLevel, exp: $newEXP) {
+                        name
+                        level
+                        id
+                        exp
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun updateUserScan(newJumlahScan: Int, userId: Int): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        mutation {
-                          updateUser(id: $userId, jumlah_scan: $newJumlahScan) {
-                            name
-                            id
-                            jumlah_scan
-                          }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    mutation {
+                      updateUser(id: $userId, jumlah_scan: $newJumlahScan) {
+                        name
+                        id
+                        jumlah_scan
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun updateUserLangganan(langgananId: Int, userId: Int): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        mutation {
-                          updateUser(id: $userId, langganan_id: $langgananId) {
-                            name
-                            id
-                            langganan {
-                              durasi
-                              id
-                              harga
-                              nama
-                            }
-                          }
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    mutation {
+                      updateUser(id: $userId, langganan_id: $langgananId) {
+                        name
+                        id
+                        langganan {
+                          durasi
+                          id
+                          harga
+                          nama
                         }
-                    """.trimIndent()
-                )
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
 //    MACHINE LEARNING API
@@ -326,9 +306,9 @@ class BaksaraRepository(
             emit(Result.failure(e))
         }
     }.catch{ e->
-    e.printStackTrace()
-    emit(Result.failure(e))
-}
+        e.printStackTrace()
+        emit(Result.failure(e))
+    }
     suspend fun translator2(text: String): Flow<Result<TranslatorResponse>> = flow {
         try {
             val response = libraryservice.translatorScanner(
@@ -392,9 +372,9 @@ class BaksaraRepository(
         )
         emit(Result.success(response))
     }.catch{ e->
-    e.printStackTrace()
-    emit(Result.failure(e))
-}
+        e.printStackTrace()
+        emit(Result.failure(e))
+    }
 
     suspend fun getDetailCerita(id: Int): Flow<Result<GraphQLResponse>> = flow {
             val response = service.graphql(
@@ -469,131 +449,121 @@ class BaksaraRepository(
     }
 
     suspend fun getAllTantanganBelum(idUser: Int): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        query {
-                          getTantangans(user_id: $idUser) {
-                            id
-                            nama
-                            exp
-                            soal
-                            pertanyaan
-                            kunci_jawaban
-                            url_gambar
-                          }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    query {
+                      getTantangans(user_id: $idUser) {
+                        id
+                        nama
+                        exp
+                        soal
+                        pertanyaan
+                        kunci_jawaban
+                        url_gambar
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun getDetailTantangan(id: Int): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        query {
-                          tantangan(id: $id) {
-                            id
-                            nama
-                            exp
-                            soal
-                            pertanyaan
-                            kunci_jawaban
-                            url_gambar
-                          }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    query {
+                      tantangan(id: $id) {
+                        id
+                        nama
+                        exp
+                        soal
+                        pertanyaan
+                        kunci_jawaban
+                        url_gambar
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun getAllTantanganSudah(idUser: Int): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        query {
-                          riwayat_tantangans(user_id: $idUser) {
-                            id
-                            nama
-                            exp
-                            soal
-                            pertanyaan
-                            kunci_jawaban
-                            url_gambar
-                          }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    query {
+                      riwayat_tantangans(user_id: $idUser) {
+                        id
+                        nama
+                        exp
+                        soal
+                        pertanyaan
+                        kunci_jawaban
+                        url_gambar
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun getAllLangganans(): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        query {
-                            langganans {
-                            durasi
-                            harga
-                            id
-                            nama
-                          }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    query {
+                        langganans {
+                        durasi
+                        harga
+                        id
+                        nama
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun getUserLencanas(userId: Int): Flow<Result<GraphQLResponse>> = flow {
-        try {
-            val response = service.graphql(
-                "application/json",
-                GraphQLRequest(
-                    """
-                        query {
-                          user_lencanas(user_id: $userId) {
-                            id
-                            nama
-                            url_gambar
-                          }
-                        }
-                    """.trimIndent()
-                )
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    query {
+                      user_lencanas(user_id: $userId) {
+                        id
+                        nama
+                        url_gambar
+                      }
+                    }
+                """.trimIndent()
             )
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
 }

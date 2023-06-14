@@ -145,23 +145,29 @@ class ScannerActivity : AppCompatActivity() {
                 scannerViewModel.liveDataResponseScanner.observe(this@ScannerActivity){ result->
                     result.onSuccess {
                         var resultScanner = ""
-                        it.result.forEach { baris->
-                            baris.forEach {
-                                resultScanner += it
+                        if(it.error.isEmpty()){
+                            it.result.forEach { baris->
+                                baris.forEach {
+                                    resultScanner += it
+                                }
+                                resultScanner+="\n"
                             }
-                            resultScanner+="\n"
+                            intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
+                            intent.putExtra(TransliterasiActivity.STATUS, "berhasil")
+                        }else{
+                            val status = "gagal"
+                            resultScanner = "Gagal terdapat kesalahan pada sistem"
+                            intent.putExtra(TransliterasiActivity.STATUS, status)
+                            intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
                         }
-                        intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
-                        intent.putExtra(TransliterasiActivity.STATUS, "berhasil")
-                        startActivity(intent)
                     }
                     result.onFailure {
                         val status = "gagal"
                         val resultFail = "Gagal terdapat kesalahan pada sistem"
                         intent.putExtra(TransliterasiActivity.STATUS, status)
                         intent.putExtra(TransliterasiActivity.HASIL, resultFail)
-                        startActivity(intent)
                     }
+                    startActivity(intent)
                 }
             }
         }
@@ -206,14 +212,20 @@ class ScannerActivity : AppCompatActivity() {
                         scannerViewModel.liveDataResponseScanner.observe(this@ScannerActivity){ result->
                             result.onSuccess {
                                 var resultScanner = ""
-                                it.result.forEach { baris->
-                                    baris.forEach {
-                                        resultScanner += it
+                                if(it.error.isEmpty()){
+                                    it.result.forEach { baris->
+                                        baris.forEach {
+                                            resultScanner += it
+                                        }
+                                        resultScanner+="\n"
                                     }
-                                    resultScanner+="\n"
+                                    intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
+                                }else{
+                                    val status = "gagal"
+                                    resultScanner = "Gagal terdapat kesalahan pada sistem"
+                                    intent.putExtra(TransliterasiActivity.STATUS, status)
+                                    intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
                                 }
-                                ToastUtils.showToast(this@ScannerActivity, "RESULT MASUK HARUSNYA")
-                                intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
                             }
                             result.onFailure {
                                 val status = "gagal"

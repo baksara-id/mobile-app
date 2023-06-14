@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.utils.ViewModelFactory
@@ -35,7 +36,9 @@ class TransliterasiActivity : AppCompatActivity() {
         val hasilScan = intent.getStringExtra(HASIL)
 
         hasilScan.let{
-            scannerViewModel.fetchTranslatorResult(it?:"")
+            if(statusScan != "gagal"){
+                scannerViewModel.fetchTranslatorResult(it?:"")
+            }
         }
 
         editor.putInt(MainActivity.CURRENTLIMIT, jumlahScan)
@@ -50,8 +53,7 @@ class TransliterasiActivity : AppCompatActivity() {
 
         scannerViewModel.liveDataResponseUpdateUser.observe(this){ result->
             result.onSuccess {
-                if(it.data?.update?.jumlah_scan == 3)
-                ToastUtils.showToast(this, "Jumlah Limit anda sudah mencapai 3 kali scan!")
+                if(it.data?.update?.jumlah_scan == 3) ToastUtils.showToast(this, "Jumlah Limit anda sudah mencapai 3 kali scan!")
                 setUser(jumlahScan, userPref)
             }
             result.onFailure {
@@ -61,14 +63,20 @@ class TransliterasiActivity : AppCompatActivity() {
 
         scannerViewModel.liveDataTranslatorResponse.observe(this){ result->
             result.onSuccess {
-                val hasilTranslate = it.hasil
+                val hasilTranslate = Html.fromHtml("${it.hasil}", Html.FROM_HTML_MODE_LEGACY)
                 binding.tvAksaraJawaTransliterasi.text = "$hasilTranslate"
             }
             result.onFailure {
 
             }
         }
-        binding.tvAksaraLatinTransliterasi.text = "$hasilScan"
+
+        if(statusScan == "berhasil"){
+            binding.tvAksaraLatinTransliterasi.text = "$hasilScan"
+        }
+        else{
+            ToastUtils.showToast(this, hasilScan.toString())
+        }
 
         binding.btnDeteksiUlang.setOnClickListener {
             val intent = Intent(this@TransliterasiActivity, ScannerActivity::class.java)

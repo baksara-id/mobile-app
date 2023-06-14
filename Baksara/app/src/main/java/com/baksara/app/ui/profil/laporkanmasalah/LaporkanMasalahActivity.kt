@@ -43,7 +43,11 @@ class LaporkanMasalahActivity : AppCompatActivity() {
 
         profileViewModel.liveDataLaporan.observe(this){ response->
             response.onSuccess {
-                showDialogLaporSukses(this)
+                if(it.data?.laporan?.judul != ""){
+                    showDialogLaporSukses(this)
+                }else{
+                    showDialogLaporGagal(this)
+                }
             }
             response.onFailure {
                 showDialogLaporGagal(this)
