@@ -4,6 +4,7 @@ import android.content.Context
 import com.baksara.app.database.BaksaraDatabase
 import com.baksara.app.local.UserPreferences
 import com.baksara.app.network.ApiConfig
+import com.baksara.app.network.ApiLibraryConfig
 import com.baksara.app.network.ApiMLConfig
 import com.baksara.app.network.ApiService
 import com.baksara.app.repository.BaksaraRepository
@@ -13,7 +14,8 @@ object Injection {
         val baksaraDatabase = BaksaraDatabase.getDatabase(context)
         val service: ApiService = ApiConfig.getApiService()
         val mlservice: ApiService = ApiMLConfig.getApiService()
-        return BaksaraRepository(baksaraDatabase.baksaraDao(), service, mlservice)
+        val libraryservice: ApiService = ApiLibraryConfig.getApiService()
+        return BaksaraRepository(baksaraDatabase.baksaraDao(), service, mlservice, libraryservice)
     }
 
 }

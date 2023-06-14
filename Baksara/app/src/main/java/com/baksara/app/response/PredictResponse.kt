@@ -6,6 +6,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PredictResponse (
-    @field:SerializedName("result")
-    val result: Float
+    @field:SerializedName("prob")
+    val result: String?,
+//    @field:SerializedName("kelas_tertinggi")
+//    val kelas_tertinggi: String
 ): Parcelable

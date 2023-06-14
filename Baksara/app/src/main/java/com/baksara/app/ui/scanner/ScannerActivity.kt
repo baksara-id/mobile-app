@@ -33,6 +33,7 @@ import com.baksara.app.R
 import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.ActivityScannerBinding
 import com.baksara.app.ui.MainActivity
+import com.baksara.app.utils.ToastUtils
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -107,7 +108,7 @@ class ScannerActivity : AppCompatActivity() {
                 }
 
             imageCapture = ImageCapture.Builder().build()
-
+            ToastUtils.showToast(this, "Berhasil Kamera")
             try {
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(
@@ -199,9 +200,28 @@ class ScannerActivity : AppCompatActivity() {
                         "Berhasil mengambil gambar.",
                         Toast.LENGTH_SHORT
                     ).show()
-                    // Kirim Gambarnya ke Network
                     val intent = Intent(this@ScannerActivity, TransliterasiActivity::class.java)
-                    startActivity(intent)
+                    val savedUri = output.savedUri
+                    val imageFile = savedUri?.let { uriToFile(savedUri, this@ScannerActivity) }
+                    if (imageFile != null) {
+                        ToastUtils.showToast(this@ScannerActivity, "masuk sini dan mengirim imageFIle")
+                        // Kirim Gambarnya ke Network
+                        scannerViewModel.fetchScannerResponse(imageFile)
+                        scannerViewModel.liveDataResponseScanner.observe(this@ScannerActivity){ result->
+                            result.onSuccess {
+                                val resultScanner = it.result
+                                ToastUtils.showToast(this@ScannerActivity, "RESULT MASUK HARUSNYA")
+                                intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
+                            }
+                            result.onFailure {
+                                val status = "gagal"
+                                val resultFail = "Gagal terdapat kesalahan pada sistem"
+                                intent.putExtra(TransliterasiActivity.STATUS, status)
+                                intent.putExtra(TransliterasiActivity.HASIL, resultFail)
+                            }
+                        }
+                        startActivity(intent)
+                    }
                 }
             }
         )

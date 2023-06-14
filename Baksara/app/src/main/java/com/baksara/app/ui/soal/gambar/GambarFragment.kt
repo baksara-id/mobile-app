@@ -15,6 +15,7 @@ import com.baksara.app.ui.kelas.KelasActivity
 import com.baksara.app.ui.soal.SoalActivity
 import com.baksara.app.ui.soal.baca.BacaFragment
 import com.baksara.app.ui.soal.pilihan.PilihanFragment
+import com.baksara.app.utils.ToastUtils
 
 class GambarFragment : Fragment() {
 
@@ -62,14 +63,16 @@ class GambarFragment : Fragment() {
                 gambarViewModel.liveDataPredict.observe(requireActivity()){ result ->
                     result.onSuccess {
                         //cek predict
-                        if (it.result > 0.7f){
+                        val responseMLDouble = it.result?.toDouble() ?: 0.0
+                        val responseML = it.result
+                        ToastUtils.showToast(requireActivity(), responseML.toString())
+                        if (responseMLDouble > 0.7){
                             updateJawabanBenar()
                             binding.cvDrawAksara.strokeColor = resources.getColor(R.color.success)
                         }else{
                             binding.cvDrawAksara.strokeColor = resources.getColor(R.color.danger)
                         }
 
-                        Toast.makeText(requireActivity(), it.result.toString(), Toast.LENGTH_SHORT).show()
                         //ganti transisi ke kelas baca atau ke kelas pilihan
                         if(nomorUrutan != 5){
                             val bundle = Bundle()

@@ -17,7 +17,7 @@ interface ApiService {
     ): GraphQLResponse
 
     @Multipart
-    @POST("predict")
+    @POST("kelas")
     suspend fun predict(
         @Part file: MultipartBody.Part,
         @Part("actual_class") description: RequestBody,
@@ -28,8 +28,9 @@ interface ApiService {
         @Body body: TranslatorRequest
     ) : TranslatorResponse
 
+    @Multipart
     @POST("scanner")
     suspend fun scanner(
-        @Part file:MultipartBody.Part,
+        @Part file: MultipartBody.Part,
     ): ScannerResponse
 }

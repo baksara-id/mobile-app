@@ -30,7 +30,8 @@ import java.io.File
 class BaksaraRepository(
     private val baksaraDao: BaksaraDao,
     private val service: ApiService,
-    private val mlservice: ApiService
+    private val mlservice: ApiService,
+    private val libraryservice: ApiService
     ) {
     fun getAllModul():LiveData<List<Modul>> = baksaraDao.getAllModul()
     fun getAllPelajaransByModul(modulId: Int): LiveData<List<Pelajaran>> = baksaraDao.getPelajaransByModul(modulId)
@@ -317,45 +318,44 @@ class BaksaraRepository(
 //    MACHINE LEARNING API
     suspend fun translator(text: String): Flow<Result<TranslatorResponse>> = flow {
         try {
-            val response = mlservice.translator(
+            val response = libraryservice.translator(
                 TranslatorRequest(text)
             )
             emit(Result.success(response))
         } catch (e: Exception) {
             emit(Result.failure(e))
         }
-    }
+    }.catch{ e->
+    e.printStackTrace()
+    emit(Result.failure(e))
+}
 
     suspend fun predictResult(
         img: File,
         aksaraClass : String
     ): Flow<Result<PredictResponse>> = flow{
-        try {
-            val requestImageFile = img.asRequestBody("image/jpeg".toMediaTypeOrNull())
-            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData("img", img.name, requestImageFile)
-            val actualClass : RequestBody = aksaraClass.toRequestBody("text/plain".toMediaType())
-            val response = mlservice.predict(imageMultipart, actualClass)
+        val requestImageFile = img.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData("image", img.name, requestImageFile)
+        val actualClass : RequestBody = aksaraClass.toRequestBody("text/plain".toMediaType())
+        val response = mlservice.predict(imageMultipart, actualClass)
 
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
     suspend fun scannerResult(
         img: File,
     ): Flow<Result<ScannerResponse>> = flow{
-        try {
-            val requestImageFile = img.asRequestBody("image/jpeg".toMediaTypeOrNull())
-            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData("img", img.name, requestImageFile)
-            val response = mlservice.scanner(imageMultipart)
+        val requestImageFile = img.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData("image", img.name, requestImageFile)
+        val response = mlservice.scanner(imageMultipart)
 
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
     }
 
 //=========================================================QUERY============================================================
