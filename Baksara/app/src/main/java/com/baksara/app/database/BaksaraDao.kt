@@ -35,30 +35,6 @@ interface BaksaraDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertPenggunaan(penggunaan: List<Penggunaan>)
 
-    @Update(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun resetModul(modul: List<Modul>)
-
-    @Update(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun resetPelajaran(pelajaran: List<Pelajaran>)
-
-    @Update(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun resetSoalBaca(soalBaca: List<SoalBaca>)
-
-    @Update(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun resetSoalGambar(soalGambar: List<SoalGambar>)
-
-    @Update(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun resetSoalPilihan(soalPilihan: List<SoalPilihan>)
-
-    @Update(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun resetKamusBelajar(kamusBelajar: List<KamusBelajar>)
-
-    @Update(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun resetKamus(kamus: List<Kamus>)
-
-    @Update(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun resetPenggunaan(penggunaan: List<Penggunaan>)
-
     @Query("SELECT * from modul")
     fun getAllModul(): LiveData<List<Modul>>
 

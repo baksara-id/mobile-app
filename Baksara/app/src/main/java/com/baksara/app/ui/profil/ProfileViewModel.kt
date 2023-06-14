@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.baksara.app.database.BaksaraDatabase
 import com.baksara.app.repository.BaksaraRepository
 import com.baksara.app.response.GraphQLResponse
 import kotlinx.coroutines.flow.Flow
@@ -49,8 +50,5 @@ class ProfileViewModel (private val baksaraRepository: BaksaraRepository): ViewM
     suspend fun tambahLaporan(judul: String, isi: String, userId: Int): Flow<Result<GraphQLResponse>> =
         baksaraRepository.tambahLaporan(judul, isi, userId)
 
-    fun resetDatabase() = viewModelScope.launch {
-        baksaraRepository.resetAllData()
-    }
-
+    fun resetDatabase(context: Context) = BaksaraDatabase.destroyDatabase(context)
 }

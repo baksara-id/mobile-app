@@ -29,5 +29,11 @@ abstract class BaksaraDatabase: RoomDatabase() {
                 instance
             }
         }
+
+        fun destroyDatabase(context: Context){
+            val dbFile = context.getDatabasePath("baksara_db")
+            dbFile.delete()
+            INSTANCE = null
+        }
     }
 }

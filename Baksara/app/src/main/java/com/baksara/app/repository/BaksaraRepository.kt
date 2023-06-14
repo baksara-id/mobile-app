@@ -63,17 +63,6 @@ class BaksaraRepository(
         baksaraDao.insertPenggunaan(InitialDataSource.getPenggunaanKamus())
     }
 
-    suspend fun resetAllData(){
-        baksaraDao.resetModul(InitialDataSource.getModuls())
-        baksaraDao.resetPelajaran(InitialDataSource.getPelajarans())
-        baksaraDao.resetSoalBaca(InitialDataSource.getSoalBacas())
-        baksaraDao.resetSoalGambar(InitialDataSource.getSoalGambars())
-        baksaraDao.resetSoalPilihan(InitialDataSource.getSoalPilihans())
-        baksaraDao.resetKamusBelajar(InitialDataSource.getListKamus())
-        baksaraDao.resetKamus(InitialDataSource.getAksaraKamus())
-        baksaraDao.resetPenggunaan(InitialDataSource.getPenggunaanKamus())
-    }
-
 
     suspend fun register(email: String, name: String, password: String): Flow<Result<GraphQLResponse>> = flow {
         try {

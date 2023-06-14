@@ -137,7 +137,7 @@ class ProfilFragment : Fragment() {
             val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
             activity?.finish()
-            profileViewModel.resetDatabase()
+            profileViewModel.resetDatabase(requireContext())
         }
 
         dialog.show()
