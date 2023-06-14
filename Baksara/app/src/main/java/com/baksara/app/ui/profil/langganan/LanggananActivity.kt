@@ -96,7 +96,7 @@ class LanggananActivity : AppCompatActivity() {
         }
 
         binding.btnBeli.setOnClickListener {
-            showDialogBeli(this, currentSelected, userLogin)
+            showDialogBeli(this, currentSelected, userLogin, userPref)
         }
     }
 
@@ -106,7 +106,7 @@ class LanggananActivity : AppCompatActivity() {
         return true
     }
 
-    private fun showDialogBeli(context: Context, selected: Int?, userLogin: User) {
+    private fun showDialogBeli(context: Context, selected: Int?, userLogin: User, userPref: SharedPreferences) {
         val builder = AlertDialog.Builder(context)
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val dialogView: View = inflater.inflate(R.layout.item_dialog_information, null)
@@ -133,6 +133,7 @@ class LanggananActivity : AppCompatActivity() {
             binding.badgeUserPencapaianLangganan.text = "User Premium"
             binding.badgeUserPencapaianLangganan.setBackgroundResource(R.drawable.bg_border_premium)
             binding.badgeUserPencapaianLangganan.setTextColor(ContextCompat.getColor(this, R.color.premium))
+            setUser(userPref)
         }
         buttonInformation.text = "Mengerti"
 
@@ -169,6 +170,12 @@ class LanggananActivity : AppCompatActivity() {
         val numberFormat = NumberFormat.getCurrencyInstance(localeId)
         numberFormat.currency = currency
         return numberFormat.format(harga)
+    }
+
+    fun setUser(userPref: SharedPreferences){
+        val editor = userPref.edit()
+        editor.putInt(MainActivity.PREMIUM, currentSelected?:1)
+        editor.apply()
     }
 
     fun getUser(userPref: SharedPreferences): User {
