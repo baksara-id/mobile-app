@@ -119,3 +119,10 @@ data class Lencana(
     val nama: String,
     val url_img: String
 )
+
+data class InAppBanner(
+    val id:Int,
+    val nama: String,
+    val url_tujuan: String,
+    val url_gambar: String,
+)

@@ -12,10 +12,13 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.baksara.app.ViewModelFactory
+import com.baksara.app.adapter.ListInAppBannerAdapter
 import com.baksara.app.adapter.ListModulAdapter
 import com.baksara.app.adapter.ListTantanganAdapter
+import com.baksara.app.database.InAppBanner
 import com.baksara.app.database.Modul
 import com.baksara.app.databinding.FragmentHomeBinding
+import com.baksara.app.helper.InitialDataSource
 import com.baksara.app.helper.InitialDataSource.getModuls
 import com.baksara.app.helper.InitialDataSource.getTantangans
 import com.baksara.app.response.Langganan
@@ -82,6 +85,8 @@ class HomeFragment : Fragment() {
         homeViewModel.liveDataIsLoading.observe(requireActivity()){
             showLoading(it)
         }
+
+        setupInAppBannerAdapter(InitialDataSource.getInAppBanners())
     }
 
     override fun onResume() {
@@ -110,6 +115,14 @@ class HomeFragment : Fragment() {
 
         val adapter = ListTantanganAdapter(listTantangan)
         binding.rvTantangan.adapter = adapter
+    }
+
+    private fun setupInAppBannerAdapter(listInAppBanner: List<InAppBanner>){
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvInappBanner.layoutManager = layoutManager
+
+        val adapter = ListInAppBannerAdapter(listInAppBanner)
+        binding.rvInappBanner.adapter = adapter
     }
 
     private fun setupModulAdapter(moduls: List<Modul>){

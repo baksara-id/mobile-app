@@ -171,7 +171,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="28dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
@@ -179,7 +179,7 @@
                 android:textColor="@color/main_300"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cv_exp" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_modul" />
 
             <Button
                 android:id="@+id/btn_tantangan_selengkapnya"
@@ -194,8 +194,21 @@
                 android:textSize="12sp"
                 app:cornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cv_exp"
+                app:layout_constraintTop_toBottomOf="@+id/rv_modul"
                 app:strokeColor="@color/main_300" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_inapp_banner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:paddingEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cv_exp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_tantangan"
@@ -207,14 +220,14 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_tantangan" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_tantangan_selengkapnya" />
 
             <TextView
                 android:id="@+id/tv_tantangan2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
@@ -222,7 +235,7 @@
                 android:textColor="@color/main_300"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nodata" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_inapp_banner" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_modul"
@@ -231,8 +244,6 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_tantangan2" />

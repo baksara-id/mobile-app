@@ -300,4 +300,14 @@ object InitialDataSource {
         )
     }
 
+    fun getInAppBanners(): List<InAppBanner>{
+        return listOf(
+            InAppBanner(1,"GoTo","www.goto.com","goto.jpg"),
+            InAppBanner(2,"Traveloka","www.traveloka.com","traveloka.jpg"),
+            InAppBanner(3,"Gojek","www.gojek.com","gojek.jpg"),
+            InAppBanner(4,"Google","www.google.com","google.jpg"),
+            InAppBanner(5,"Dicoding","www.dicoding.com","dicoding.jpg"),
+        )
+    }
+
 }
