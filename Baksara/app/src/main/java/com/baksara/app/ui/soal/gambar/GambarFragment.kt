@@ -63,10 +63,10 @@ class GambarFragment : Fragment() {
                 gambarViewModel.liveDataPredict.observe(requireActivity()){ result ->
                     result.onSuccess {
                         //cek predict
-                        val responseMLDouble = it.result?.toDouble() ?: 0.0
+//                        val responseMLDouble = it.result?.toDouble() ?: 0.0
                         val responseML = it.result
                         ToastUtils.showToast(requireActivity(), responseML.toString())
-                        if (responseMLDouble > 0.7){
+                        if (responseML != null){
                             updateJawabanBenar()
                             binding.cvDrawAksara.strokeColor = resources.getColor(R.color.success)
                         }else{

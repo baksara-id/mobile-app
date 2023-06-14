@@ -28,6 +28,11 @@ interface ApiService {
         @Body body: TranslatorRequest
     ) : TranslatorResponse
 
+    @POST("revtojavanese")
+    suspend fun translatorScanner(
+        @Body body: TranslatorRequest
+    ) : TranslatorResponse
+
     @Multipart
     @POST("scanner")
     suspend fun scanner(

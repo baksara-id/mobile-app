@@ -47,5 +47,5 @@ class ScannerViewModel(private val baksaraRepository: BaksaraRepository): ViewMo
         baksaraRepository.scannerResult(img)
 
     suspend fun getTranslator(text:String): Flow<Result<TranslatorResponse>> =
-        baksaraRepository.translator(text)
+        baksaraRepository.translator2(text)
 }

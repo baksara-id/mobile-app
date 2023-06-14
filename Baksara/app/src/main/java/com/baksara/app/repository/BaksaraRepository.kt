@@ -329,6 +329,20 @@ class BaksaraRepository(
     e.printStackTrace()
     emit(Result.failure(e))
 }
+    suspend fun translator2(text: String): Flow<Result<TranslatorResponse>> = flow {
+        try {
+            val response = libraryservice.translatorScanner(
+                TranslatorRequest(text)
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            emit(Result.failure(e))
+        }
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
+
+    }
 
     suspend fun predictResult(
         img: File,
