@@ -35,6 +35,4 @@ class SplashActivity : AppCompatActivity() {
             finish()
         }, SPLASHDELAY)
     }
-
-
 }

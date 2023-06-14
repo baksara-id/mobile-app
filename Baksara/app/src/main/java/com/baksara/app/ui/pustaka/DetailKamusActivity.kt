@@ -53,6 +53,11 @@ class DetailKamusActivity : AppCompatActivity() {
         binding.rvDetailKamus.adapter = adapter
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     companion object {
         const val KAMUSID = "kamus_id"
         const val KAMUSJUDUL = "kamus_judul"

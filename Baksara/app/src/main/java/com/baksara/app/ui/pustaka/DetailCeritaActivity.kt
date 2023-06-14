@@ -69,6 +69,11 @@ class DetailCeritaActivity : AppCompatActivity() {
         binding.loadingBarDetailCerita.visibility = View.GONE
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     companion object {
         const val CERITA_ID = "cerita_id"
     }

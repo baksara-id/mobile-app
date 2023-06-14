@@ -52,6 +52,10 @@ class ContohKamusActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
     companion object {
         const val AKSARAJAWA_ID = "aksara_id"

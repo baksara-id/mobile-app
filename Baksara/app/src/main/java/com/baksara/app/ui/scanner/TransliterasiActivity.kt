@@ -95,6 +95,11 @@ class TransliterasiActivity : AppCompatActivity() {
         editor.apply()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     companion object{
         var HASIL = "HASILSCAN"
         var STATUS = "STATUSSCAN"

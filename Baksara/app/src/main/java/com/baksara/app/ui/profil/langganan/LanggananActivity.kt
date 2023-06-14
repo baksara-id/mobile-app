@@ -196,4 +196,9 @@ class LanggananActivity : AppCompatActivity() {
         listOfRiwayat.add(_riwayatBelajarObject)
         return User(id,_langgananObject,name,email,token,avatar, exp,level,limit,kadaluarsa = null,null,listOfRiwayat)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

@@ -66,6 +66,11 @@ class KamusFragment : Fragment() {
         binding.rvListkamus.adapter = adapter
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     companion object {
         @JvmStatic
         fun newInstance() =

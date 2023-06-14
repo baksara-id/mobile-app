@@ -41,6 +41,12 @@ class OnBoardingActivity : AppCompatActivity(){
             finish()
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     companion object{
         const val IS_SEEN = "is_seen"
     }

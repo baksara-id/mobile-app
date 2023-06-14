@@ -176,6 +176,11 @@ class ProfilFragment : Fragment() {
         editor.apply()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =

@@ -126,6 +126,11 @@ class BerhasilTantanganActivity : AppCompatActivity() {
         return expNeededNow - expCummulative
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     companion object{
         const val USERID = "user_id"
         const val EXPEARNED = "expdidapat"
