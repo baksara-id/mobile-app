@@ -286,6 +286,34 @@ class BaksaraRepository(
         }
     }
 
+    suspend fun updateUserLangganan(langgananId: Int, userId: Int): Flow<Result<GraphQLResponse>> = flow {
+        try {
+            val response = service.graphql(
+                "application/json",
+                GraphQLRequest(
+                    """
+                        mutation {
+                          updateUser(id: $userId, langganan_id: $langgananId) {
+                            name
+                            id
+                            langganan {
+                              durasi
+                              id
+                              harga
+                              nama
+                            }
+                          }
+                        }
+                    """.trimIndent()
+                )
+            )
+            emit(Result.success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(Result.failure(e))
+        }
+    }
+
 //    MACHINE LEARNING API
     suspend fun translator(text: String): Flow<Result<TranslatorResponse>> = flow {
         try {

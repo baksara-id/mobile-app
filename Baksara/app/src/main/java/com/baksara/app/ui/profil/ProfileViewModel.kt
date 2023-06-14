@@ -14,6 +14,7 @@ class ProfileViewModel (private val baksaraRepository: BaksaraRepository): ViewM
     val liveDataLangganan: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataLencana: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataLaporan: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
+    val liveDataUserLangganan: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
 
     init {
         fetchLanggananData()
@@ -41,6 +42,14 @@ class ProfileViewModel (private val baksaraRepository: BaksaraRepository): ViewM
         }
     }
 
+    fun fetchUpdateLanggananResponse(langgananId: Int, userId: Int){
+        viewModelScope.launch {
+            updateLangganan(langgananId, userId).collect{ langgananResponse ->
+                liveDataUserLangganan.value = langgananResponse
+            }
+        }
+    }
+
     suspend fun getAllLangganans(): Flow<Result<GraphQLResponse>> =
         baksaraRepository.getAllLangganans()
 
@@ -49,6 +58,9 @@ class ProfileViewModel (private val baksaraRepository: BaksaraRepository): ViewM
 
     suspend fun tambahLaporan(judul: String, isi: String, userId: Int): Flow<Result<GraphQLResponse>> =
         baksaraRepository.tambahLaporan(judul, isi, userId)
+
+    suspend fun updateLangganan(langgananId: Int, userId: Int): Flow<Result<GraphQLResponse>> =
+        baksaraRepository.updateUserLangganan(langgananId,userId)
 
     fun resetDatabase(context: Context) = BaksaraDatabase.destroyDatabase(context)
 }

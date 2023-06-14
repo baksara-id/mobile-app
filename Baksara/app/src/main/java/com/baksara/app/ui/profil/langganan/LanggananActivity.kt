@@ -29,6 +29,7 @@ class LanggananActivity : AppCompatActivity() {
     private var _binding: ActivityLanggananBinding? = null
     private val binding get() = _binding!!
     private lateinit var profileViewModel: ProfileViewModel
+    private var currentSelected: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +55,6 @@ class LanggananActivity : AppCompatActivity() {
             binding.badgeUserPencapaianLangganan.text = "User Standard"
             binding.badgeUserPencapaianLangganan.setBackgroundResource(R.drawable.bg_border_standard)
             binding.badgeUserPencapaianLangganan.setTextColor(ContextCompat.getColor(this, R.color.neutral_300))
-
         }
 
         Glide.with(this)
@@ -77,22 +77,26 @@ class LanggananActivity : AppCompatActivity() {
         binding.cvPaketLangganan1.setOnClickListener {
             resetBackground()
             binding.layout1.setBackgroundResource(R.drawable.bg_border_main300)
+            currentSelected = 2
         }
         binding.cvPaketLangganan2.setOnClickListener {
             resetBackground()
             binding.layout2.setBackgroundResource(R.drawable.bg_border_main300)
+            currentSelected = 3
         }
         binding.cvPaketLangganan3.setOnClickListener {
             resetBackground()
             binding.layout3.setBackgroundResource(R.drawable.bg_border_main300)
+            currentSelected = 4
         }
         binding.cvPaketLangganan4.setOnClickListener {
             resetBackground()
             binding.layout4.setBackgroundResource(R.drawable.bg_border_main300)
+            currentSelected = 5
         }
 
         binding.btnBeli.setOnClickListener {
-            showDialogBeli(this)
+            showDialogBeli(this, currentSelected, userLogin)
         }
     }
 
@@ -102,7 +106,7 @@ class LanggananActivity : AppCompatActivity() {
         return true
     }
 
-    private fun showDialogBeli(context: Context) {
+    private fun showDialogBeli(context: Context, selected: Int?, userLogin: User) {
         val builder = AlertDialog.Builder(context)
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val dialogView: View = inflater.inflate(R.layout.item_dialog_information, null)
@@ -113,19 +117,29 @@ class LanggananActivity : AppCompatActivity() {
         val textDesc: TextView = dialogView.findViewById(R.id.tv_information_description)
         val buttonInformation: Button = dialogView.findViewById(R.id.btn_information)
 
-        imgInformation.setImageResource(R.drawable.img_logo_confirmation)
-        textTitle.text = "Pembelian Berhasil"
-        textDesc.text = "Selamat anda telah menjadi user premium. Hak akses fitur premium telah diberikan."
+        if(selected == null){
+            imgInformation.setImageResource(R.drawable.img_logo_danger_information)
+            textTitle.text = "Pembelian Gagal"
+            textDesc.text = "Tolong untuk memilih paket dari user premium yang hendak dibeli!"
+            buttonInformation.background.setTint(resources.getColor(R.color.danger))
+        }else{
+            imgInformation.setImageResource(R.drawable.img_logo_confirmation)
+            textTitle.text = "Pembelian Berhasil"
+            textDesc.text = "Selamat anda telah menjadi user premium. Hak akses fitur premium telah diberikan."
+            buttonInformation.background.setTint(resources.getColor(R.color.success))
+            profileViewModel.fetchUpdateLanggananResponse(selected, userLogin.id ?: -1)
+            // User Premium
+            binding.cvBadgeUserLangganan.backgroundTintList = ContextCompat.getColorStateList(this, R.color.light_premium)
+            binding.badgeUserPencapaianLangganan.text = "User Premium"
+            binding.badgeUserPencapaianLangganan.setBackgroundResource(R.drawable.bg_border_premium)
+            binding.badgeUserPencapaianLangganan.setTextColor(ContextCompat.getColor(this, R.color.premium))
+        }
         buttonInformation.text = "Mengerti"
-        buttonInformation.background.setTint(resources.getColor(R.color.success))
 
         builder.setView(dialogView)
         val dialog: AlertDialog = builder.create()
         buttonInformation.setOnClickListener {
             dialog.dismiss()
-//            val intent = Intent(this, LoginActivity::class.java)
-//            startActivity(intent)
-//            finish()
         }
 
         dialog.show()
