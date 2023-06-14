@@ -20,7 +20,7 @@
             android:layout_marginEnd="48dp"
             android:fontFamily="@font/poppins"
             android:gravity="center"
-            android:text="Gambarkan aksara berikut ini"
+            android:text="Arti dari aksara ini adalah"
             android:textColor="@color/main_300"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

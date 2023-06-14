@@ -19,7 +19,7 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="@string/aksara_latin"
+            android:text="Tulisan Latin"
             android:textColor="@color/main_400"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
