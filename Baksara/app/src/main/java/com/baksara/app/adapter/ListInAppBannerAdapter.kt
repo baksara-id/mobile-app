@@ -12,7 +12,7 @@ class ListInAppBannerAdapter(private val appbanners: List<InAppBanner>): Recycle
 
     inner class ListViewHolder(private val binding: ItemAppbannerBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(banner: InAppBanner, position:Int){
-            binding.imgBanner.setImageResource(R.drawable.arjunadummy2)
+            binding.imgBanner.setImageResource(R.drawable.img_banner_app_purchase)
             binding.imgBanner.setOnClickListener {
                 ToastUtils.showToast(itemView.context, "Pergi ke Halaman ${banner.url_tujuan}")
             }

@@ -8,22 +8,28 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/main_400"
         tools:context=".ui.RegisterActivity">
 
-        <TextView
-            android:id="@+id/textAppRegisterHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="34dp"
-            android:fontFamily="@font/poppins_bold"
-            android:letterSpacing="0"
-            android:text="Baksara"
-            android:textColor="@color/accent_white"
-            android:textSize="32sp"
-            app:layout_constraintBottom_toTopOf="@+id/cardViewRegister"
+        <ImageView
+            android:id="@+id/img_backgorund2"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/main_pattern_background" />
+
+        <ImageView
+            android:id="@+id/img_logo_long2"
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo_panjang" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewRegister"
