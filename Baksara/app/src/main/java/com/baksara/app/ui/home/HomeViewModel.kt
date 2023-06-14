@@ -45,6 +45,12 @@ class HomeViewModel(private val baksaraRepository: BaksaraRepository) : ViewMode
         }
     }
 
+    fun syncModulTerkunci(terkunci: Boolean){
+        viewModelScope.launch {
+            baksaraRepository.setModulTerkunci(terkunci)
+        }
+    }
+
     fun syncModulSelesai(selesai: Boolean, lastModulId : Int){
         viewModelScope.launch {
             for (modulId in 1 until lastModulId){

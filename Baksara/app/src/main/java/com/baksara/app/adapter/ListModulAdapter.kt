@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.media.Image
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,16 +22,19 @@ import com.baksara.app.ui.kelas.KelasActivity
 class ListModulAdapter(private val moduls: List<Modul>): RecyclerView.Adapter<ListModulAdapter.ListViewHolder>() {
     inner class ListViewHolder(private val binding: ItemModuleBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        private var modulSelesaiBefore = false
         fun bind(modul: Modul, position: Int) {
             binding.tvItemJudul.text = "Modul " + modul.nomor
             binding.tvItemDetail.text = modul.deskripsi
             binding.tvItemLogo.text = modul.url_background
 
-            if (modul.id != 1 && modul.terkunci && !moduls[position -1].selesai) {
+            Log.d("terkunci", modul.terkunci.toString())
+
+            if (modul.id != 1 && (modul.terkunci || !moduls[position-1].selesai)) {
                 binding.constraintModul.background =
                     ContextCompat.getDrawable(itemView.context, R.drawable.bg_locked_module)
                 binding.root.setOnClickListener {
-                    showLockedModuleDialog(itemView.context, moduls[position -1].selesai, modul.terkunci)
+                    showLockedModuleDialog(itemView.context, modul.selesai, modul.terkunci)
                 }
             } else {
                 binding.root.setOnClickListener {

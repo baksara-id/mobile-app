@@ -41,14 +41,17 @@ interface BaksaraDao {
     @Query("UPDATE modul SET selesai = :selesai WHERE id = :modulId")
     suspend fun setModulSelesai(selesai: Boolean, modulId : Int)
 
-    @Query("UPDATE modul SET terkunci = :terkunci WHERE id = :modulId")
-    suspend fun setModulTerkunci(terkunci: Boolean, modulId : Int)
+    @Query("UPDATE modul SET terkunci = :terkunci")
+    suspend fun setModulTerkunci(terkunci: Boolean)
 
     @Query("UPDATE pelajaran SET selesai = :selesai WHERE id = :pelajaranId")
     suspend fun setPelajaranSelesai(selesai: Boolean, pelajaranId: Int)
 
     @Query("UPDATE pelajaran SET terkunci = :terkunci WHERE id = :pelajaranId")
     suspend fun setPelajaranTerkunci(terkunci: Boolean, pelajaranId : Int)
+
+    @Query("UPDATE kamusbelajar SET terkunci = :terkunci")
+    suspend fun setKamusTerkunci(terkunci: Boolean)
 
     @Query("SELECT * FROM pelajaran WHERE modulId = :modulId")
     fun getPelajaransByModul(modulId : Int): LiveData<List<Pelajaran>>

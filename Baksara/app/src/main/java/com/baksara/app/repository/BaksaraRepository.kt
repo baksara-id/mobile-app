@@ -37,10 +37,10 @@ class BaksaraRepository(
     fun getAllPelajaransByModul(modulId: Int): LiveData<List<Pelajaran>> = baksaraDao.getPelajaransByModul(modulId)
 
     suspend fun setModulSelesai(selesai: Boolean, modulId: Int) = baksaraDao.setModulSelesai(selesai, modulId)
-    suspend fun setModulTerkunci(terkunci: Boolean, modulId: Int) = baksaraDao.setModulSelesai(terkunci, modulId)
-
+    suspend fun setModulTerkunci(terkunci: Boolean) = baksaraDao.setModulTerkunci(terkunci)
     suspend fun setPelajaranSelesai(selesai: Boolean, pelajaranId: Int) = baksaraDao.setPelajaranSelesai(selesai, pelajaranId)
     suspend fun setPelajaranTerkunci(terkunci: Boolean, pelajaranId: Int) = baksaraDao.setPelajaranTerkunci(terkunci, pelajaranId)
+    suspend fun setKamusTerkunci(terkunci: Boolean) = baksaraDao.setKamusTerkunci(terkunci)
 
     fun getSoalBacaByPelajaran(pelajaranId: Int, urutan: Int):LiveData<SoalBaca> = baksaraDao.getSoalBacaByPelajaran(pelajaranId, urutan)
     fun getSoalGambarByPelajaran(pelajaranId: Int, urutan: Int):LiveData<SoalGambar> = baksaraDao.getSoalGambarByPelajaran(pelajaranId, urutan)

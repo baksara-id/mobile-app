@@ -14,9 +14,9 @@ object InitialDataSource {
     fun getPelajarans(): List<Pelajaran>{
         return listOf(
             Pelajaran(1,1, "1", "ꦲ ꦤ ꦕ ꦫ ꦏ", "Ha   Na   Ca   Ra   Ka",false, false),
-            Pelajaran(2,1, "2", "ꦣ ꦠ ꦱ ꦮ ꦭ", "Da   Ta   Sa   Wa   La",true, false),
+            Pelajaran(2,1, "2", "ꦢ ꦠ ꦱ ꦮ ꦭ", "Da   Ta   Sa   Wa   La",true, false),
             Pelajaran(3,1, "3", "ꦥ ꦣ ꦗ ꦪ ꦚ", "Pa  Dha   Ja   Ya   Nya",true, false),
-            Pelajaran(4,1, "4", "ꦩ ꦒ ꦧ ꦠ ꦔ", "Ma   Ga   Ba   Ta   Nga",true, false),
+            Pelajaran(4,1, "4", "ꦩ ꦒ ꦧ ꦛ ꦔ", "Ma   Ga   Ba   Tha   Nga",true, false),
 
             Pelajaran(5,2, "1", "ꦶ ꦺ", "wulu   taling",false, false),
             Pelajaran(6,2, "2", "ꦺꦴ ꦸ", "taling-tarung suku",true, false),
@@ -33,7 +33,7 @@ object InitialDataSource {
             SoalBaca(4,1, "ꦫ", "Ra", 4),
             SoalBaca(5,1, "ꦏ", "Ka", 5),
 
-            SoalBaca(6,2, "ꦣ", "Da", 1),
+            SoalBaca(6,2, "ꦢ", "Da", 1),
             SoalBaca(7,2, "ꦠ", "Ta", 2),
             SoalBaca(8,2, "ꦱ", "Sa", 3),
             SoalBaca(9,2, "ꦮ", "Wa", 4),
@@ -48,7 +48,7 @@ object InitialDataSource {
             SoalBaca(16,4, "ꦩ", "Ma", 1),
             SoalBaca(17,4, "ꦒ", "Ga", 2),
             SoalBaca(18,4, "ꦧ", "Ba", 3),
-            SoalBaca(19,4, "ꦠ", "Ta", 4),
+            SoalBaca(19,4, "ꦛ", "Tha", 4),
             SoalBaca(20,4, "ꦔ", "Nga", 5),
         )
     }
@@ -76,7 +76,7 @@ object InitialDataSource {
             SoalGambar(16,4, "Ma", 1),
             SoalGambar(17,4, "Ga", 2),
             SoalGambar(18,4, "Ba", 3),
-            SoalGambar(19,4, "Ta", 4),
+            SoalGambar(19,4, "Tha", 4),
             SoalGambar(20,4, "Nga", 5),
         )
     }
@@ -88,7 +88,7 @@ object InitialDataSource {
             SoalPilihan(4,1, "ꦫ", "Ka", "Ra", "Ma", "Ha", "Ra", 4),
             SoalPilihan(5,1, "ꦏ", "Na", "Ra", "Ka", "Ma", "Ka", 5),
 
-            SoalPilihan(6,2, "ꦣ", "Sa", "Da", "Ta", "Wa", "Da", 1),
+            SoalPilihan(6,2, "ꦢ", "Sa", "Da", "Ta", "Wa", "Da", 1),
             SoalPilihan(7,2, "ꦠ", "Ta", "Ra", "Ka", "Nga","Ta", 2),
             SoalPilihan(8,2, "ꦱ", "La", "Ga", "Sa", "Da","Sa", 3),
             SoalPilihan(9,2, "ꦮ", "Da", "Wa", "La", "Na","Wa", 4),
@@ -103,7 +103,7 @@ object InitialDataSource {
             SoalPilihan(16,4, "ꦩ", "Ga", "Ma", "Ta", "Nga","Ma", 1),
             SoalPilihan(17,4, "ꦒ", "Ja", "Ma", "Nga", "Ta","Ga", 2),
             SoalPilihan(18,4, "ꦧ", "La", "Ba", "Ja", "Ya","Ba", 3),
-            SoalPilihan(19,4, "ꦠ", "Ma", "Na", "Ta", "Ja","Ta", 4),
+            SoalPilihan(19,4, "ꦛ", "Ma", "Na", "Ta", "Ja","Ta", 4),
             SoalPilihan(20,4, "ꦔ", "Ga", "Ma", "Ta", "Nga","Nga", 5),
         )
     }

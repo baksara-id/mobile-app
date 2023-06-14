@@ -54,9 +54,7 @@ class BerhasilFragment : Fragment() {
 
         berhasilViewModel = ViewModelProvider(this, viewModelFactory)[BerhasilViewModel::class.java]
 
-        //Unlock next pelajaran
-//        berhasilViewModel.setPelajaranSelesai(true, pelajaranId)
-//        berhasilViewModel.setPelajaranTerkunci(false, pelajaranId + 1)
+
 
         // Update Riwayat Belajar Saat Ini Khusus Pelajaran/Kelas
         berhasilViewModel.fetchRiwayatBelajarResponse(userId,pelajaranIdNext,modulId)
@@ -72,11 +70,18 @@ class BerhasilFragment : Fragment() {
             }
         }
 
-        // Update Riwayat belajar Saat Ini Khusus Naik Modul
         if(pelajaranId % 4 == 0){
+            // Update Riwayat belajar Saat Ini Khusus Naik Modul
             berhasilViewModel.fetchRiwayatBelajarResponse(userId, pelajaranIdNext, modulIdNext)
-            berhasilViewModel.setModulSelesai(true, modulId)
             berhasilViewModel.fetchLencana(userId, modulId)
+
+            //set modul& pelajaran selesai
+            berhasilViewModel.setModulSelesai(true, modulId)
+            berhasilViewModel.setPelajaranSelesai(true, pelajaranId)
+        }else{
+            //Unlock next pelajaran
+            berhasilViewModel.setPelajaranSelesai(true, pelajaranId)
+            berhasilViewModel.setPelajaranTerkunci(false, pelajaranId + 1)
         }
 
         berhasilViewModel.liveDataResponseLencana.observe(requireActivity()){response->

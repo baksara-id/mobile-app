@@ -47,13 +47,7 @@ class HomeFragment : Fragment() {
         val viewModelFactory = ViewModelFactory.getInstance(requireContext())
         homeViewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
 
-        homeViewModel.getAllModul().observe(requireActivity()){ moduls ->
-            if(moduls.isNotEmpty()){
-                setupModulAdapter(moduls)
-            }else{
 
-            }
-        }
         homeViewModel.liveDataTantangan.observe(requireActivity()){ result ->
             result.onSuccess { tantangans->
                 val listTantanganBelum = tantangans.data?.tantanganBelum ?: emptyList()
@@ -97,12 +91,27 @@ class HomeFragment : Fragment() {
             val userId = it.id?:-1
             val nomorModul = it.riwayatBelajar?.get(0)?.nomor_modul ?:-1
             val nomorPelajaran = it.riwayatBelajar?.get(0)?.nomor_pelajaran ?:-1
+
+            //ambil langganan selain 1 (user biasa)
+            if(it.langganan?.id != 1){
+                homeViewModel.syncModulTerkunci(false)
+            }
+
             homeViewModel.fetchAllTantanganUser(userId)
             homeViewModel.syncModulSelesai(true, nomorModul)
             homeViewModel.syncPelajaranSelesai(true, nomorPelajaran, nomorModul)
             homeViewModel.syncPelajaranTerkunci(false, nomorPelajaran, nomorModul)
         }
         setHomePage(userLogin)
+
+        homeViewModel.getAllModul().observe(requireActivity()){ moduls ->
+            if(moduls.isNotEmpty()){
+                setupModulAdapter(moduls)
+            }else{
+
+            }
+        }
+
     }
 
     private fun setupTantanganAdapter(listTantangan: List<Tantangan>){

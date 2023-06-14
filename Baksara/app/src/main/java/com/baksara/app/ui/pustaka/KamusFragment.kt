@@ -1,5 +1,7 @@
 package com.baksara.app.ui.pustaka
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,16 +13,17 @@ import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.adapter.ListKamusAdapter
 import com.baksara.app.database.KamusBelajar
 import com.baksara.app.databinding.FragmentKamusBinding
+import com.baksara.app.ui.MainActivity
 
 class KamusFragment : Fragment() {
     private var _binding: FragmentKamusBinding? = null
     private val binding get() = _binding!!
+    private lateinit var userPref: SharedPreferences
     private lateinit var kamusViewModel: KamusViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
+        userPref = requireActivity().getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
     }
 
     override fun onCreateView(
@@ -29,6 +32,16 @@ class KamusFragment : Fragment() {
     ): View {
         _binding = FragmentKamusBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val langganan = userPref.getInt(MainActivity.PREMIUM,1)
+
+        //ambil langganan selain 1 (user biasa)
+        if(langganan != 1){
+            kamusViewModel.syncKamusTerkunci(false)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
