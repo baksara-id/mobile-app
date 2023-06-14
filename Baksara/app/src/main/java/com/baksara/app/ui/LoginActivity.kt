@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.ActivityLoginBinding
 import com.baksara.app.response.User
+import com.baksara.app.utils.ToastUtils
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
@@ -51,16 +52,16 @@ class LoginActivity : AppCompatActivity() {
                                 if (it.errors == null) {
                                     setUser(it.data?.loginUser, userPref)
                                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                    Toast.makeText(this@LoginActivity, "Berhasil Login", Toast.LENGTH_SHORT).show()
+                                    ToastUtils.showToast(this@LoginActivity, "Berhasil Login!")
                                     startActivity(intent)
                                     finish()
                                 } else {
-                                    Toast.makeText(this@LoginActivity, it.errors[0].message, Toast.LENGTH_SHORT).show()
+                                    ToastUtils.showToast(this@LoginActivity, it.errors[0].message.toString())
                                 }
                             }
 
                             response.onFailure { error ->
-                                Toast.makeText(this@LoginActivity, "Terjadi error pada aplikasi", Toast.LENGTH_SHORT).show()
+                                ToastUtils.showToast(this@LoginActivity, "Terjadi error pada aplikasi")
                                 Log.e("error", error.message.toString())
                             }
                         }
@@ -68,27 +69,15 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             else if(passwordLength >= 8 && !isValidEmail(email)) {
-                Toast.makeText(
-                    this,
-                    "Email harus memiliki format email!",
-                    Toast.LENGTH_SHORT
-                ).show()
+                ToastUtils.showToast(this, "Email harus memiliki format email!")
                 binding.btnLogin.isEnabled = true
             }
             else if (isValidEmail(email) && passwordLength < 8){
-                Toast.makeText(
-                    this,
-                    "Password harus memiliki 8 karakter!",
-                    Toast.LENGTH_SHORT
-                ).show()
+                ToastUtils.showToast(this, "Password harus memiliki 8 karakter!")
                 binding.btnLogin.isEnabled = true
             }
             else {
-                Toast.makeText(
-                    this,
-                    "Password harus 8 karakter dan Email harus memiliki format email",
-                    Toast.LENGTH_SHORT
-                ).show()
+                ToastUtils.showToast(this, "Password harus 8 karakter dan Email harus memiliki format email")
                 binding.btnLogin.isEnabled = true
             }
         }

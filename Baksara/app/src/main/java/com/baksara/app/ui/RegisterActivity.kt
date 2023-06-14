@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.ActivityRegisterBinding
+import com.baksara.app.utils.ToastUtils
 import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
@@ -35,11 +36,11 @@ class RegisterActivity : AppCompatActivity() {
             val namaLengkap = binding.inputNamaLengkap.text.toString()
             val email = binding.inputEmail.text.toString()
             if(binding.checkBox.isChecked == false) {
-                Toast.makeText(this@RegisterActivity, "Anda belum menyetujui pernyataan kami", Toast.LENGTH_SHORT).show()
+                ToastUtils.showToast(this@RegisterActivity, "Anda belum menyetujui pernyataan kami")
                 binding.btnRegister.isEnabled = true
                 return@setOnClickListener
             }
-            if(password != repassword) Toast.makeText(this@RegisterActivity, "Password tidak sama dengan Repassword", Toast.LENGTH_SHORT).show()
+            if(password != repassword) ToastUtils.showToast(this@RegisterActivity, "Password tidak sama dengan repassword")
 
             if(!password.isEmpty() && !repassword.isEmpty() && !namaLengkap.isEmpty() && !email.isEmpty()){
                 if(passwordLength >= 8 && isValidEmail(email)) {
@@ -51,15 +52,15 @@ class RegisterActivity : AppCompatActivity() {
                                     if (it.errors == null) {
                                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                                         startActivity(intent)
-                                        Toast.makeText(this@RegisterActivity, "Berhasil Register", Toast.LENGTH_SHORT).show()
+                                        ToastUtils.showToast(this@RegisterActivity, "Berhasil Register!")
                                         finish()
                                     } else {
-                                        Toast.makeText(this@RegisterActivity, it.errors[0].message, Toast.LENGTH_SHORT).show()
+                                        ToastUtils.showToast(this@RegisterActivity, it.errors[0].message.toString())
                                     }
                                 }
 
                                 response.onFailure { error ->
-                                    Toast.makeText(this@RegisterActivity, "Terjadi error pada aplikasi", Toast.LENGTH_SHORT).show()
+                                    ToastUtils.showToast(this@RegisterActivity, "Terjadi error pada aplikasi")
                                     Log.e("error", error.message.toString())
                                 }
                             }
@@ -67,36 +68,20 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
                 else if(passwordLength >= 8 && !isValidEmail(email)) {
-                    Toast.makeText(
-                        this,
-                        "Email harus memiliki format email!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    ToastUtils.showToast(this@RegisterActivity, "Email harus memiliki format email!")
                     binding.btnRegister.isEnabled = true
                 }
                 else if (isValidEmail(email) && passwordLength < 8){
-                    Toast.makeText(
-                        this,
-                        "Password harus memiliki 8 karakter!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    ToastUtils.showToast(this@RegisterActivity, "Password harus memiliki 8 karakter!")
                     binding.btnRegister.isEnabled = true
                 }
                 else {
-                    Toast.makeText(
-                        this,
-                        "Password harus 8 karakter dan Email harus memiliki format email",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    ToastUtils.showToast(this@RegisterActivity, "Password harus 8 karakter dan Email harus memiliki format email")
                     binding.btnRegister.isEnabled = true
                 }
             }
             else{
-                Toast.makeText(
-                    this,
-                    "Terdapat data yang kosong!",
-                    Toast.LENGTH_SHORT
-                ).show()
+                ToastUtils.showToast(this@RegisterActivity, "Terdapat data yang kosong!")
                 binding.btnRegister.isEnabled = true
             }
         }

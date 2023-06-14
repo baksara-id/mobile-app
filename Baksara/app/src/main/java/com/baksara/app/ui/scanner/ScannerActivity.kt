@@ -118,11 +118,7 @@ class ScannerActivity : AppCompatActivity() {
                     imageCapture
                 )
             } catch (exc: Exception) {
-                Toast.makeText(
-                    this@ScannerActivity,
-                    "Gagal memunculkan kamera.",
-                    Toast.LENGTH_SHORT
-                ).show()
+                ToastUtils.showToast(this@ScannerActivity, "Gagal memunculkan kamera.")
             }
         }, ContextCompat.getMainExecutor(this))
     }
@@ -148,16 +144,24 @@ class ScannerActivity : AppCompatActivity() {
                 scannerViewModel.fetchScannerResponse(myFile)
                 scannerViewModel.liveDataResponseScanner.observe(this@ScannerActivity){ result->
                     result.onSuccess {
-                        val resultScanner = it.result
+                        var resultScanner = ""
+                        it.result.forEach { baris->
+                            baris.forEach {
+                                resultScanner += it
+                            }
+                            resultScanner+="\n"
+                        }
                         intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
+                        intent.putExtra(TransliterasiActivity.STATUS, "berhasil")
+                        startActivity(intent)
                     }
                     result.onFailure {
                         val status = "gagal"
                         val resultFail = "Gagal terdapat kesalahan pada sistem"
                         intent.putExtra(TransliterasiActivity.STATUS, status)
                         intent.putExtra(TransliterasiActivity.HASIL, resultFail)
+                        startActivity(intent)
                     }
-                    startActivity(intent)
                 }
             }
         }
@@ -188,18 +192,10 @@ class ScannerActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onError(exc: ImageCaptureException) {
-                    Toast.makeText(
-                        this@ScannerActivity,
-                        "Gagal mengambil gambar.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    ToastUtils.showToast(this@ScannerActivity, "Gagal mengambil gambar.")
                 }
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    Toast.makeText(
-                        this@ScannerActivity,
-                        "Berhasil mengambil gambar.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    ToastUtils.showToast(this@ScannerActivity, "Berhasil mengambil gambar.")
                     val intent = Intent(this@ScannerActivity, TransliterasiActivity::class.java)
                     val savedUri = output.savedUri
                     val imageFile = savedUri?.let { uriToFile(savedUri, this@ScannerActivity) }
@@ -209,7 +205,13 @@ class ScannerActivity : AppCompatActivity() {
                         scannerViewModel.fetchScannerResponse(imageFile)
                         scannerViewModel.liveDataResponseScanner.observe(this@ScannerActivity){ result->
                             result.onSuccess {
-                                val resultScanner = it.result
+                                var resultScanner = ""
+                                it.result.forEach { baris->
+                                    baris.forEach {
+                                        resultScanner += it
+                                    }
+                                    resultScanner+="\n"
+                                }
                                 ToastUtils.showToast(this@ScannerActivity, "RESULT MASUK HARUSNYA")
                                 intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
                             }
@@ -267,11 +269,7 @@ class ScannerActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (!allPermissionsGranted()) {
-                Toast.makeText(
-                    this,
-                    "Tidak mendapatkan permission.",
-                    Toast.LENGTH_SHORT
-                ).show()
+                ToastUtils.showToast(this@ScannerActivity, "Tidak mendapatkan permission.")
                 finish()
             }
         }

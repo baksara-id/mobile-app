@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.ActivityTransliterasiBinding
 import com.baksara.app.ui.MainActivity
+import com.baksara.app.utils.ToastUtils
 
 class TransliterasiActivity : AppCompatActivity() {
     private var _binding: ActivityTransliterasiBinding? = null
@@ -50,11 +51,7 @@ class TransliterasiActivity : AppCompatActivity() {
         scannerViewModel.liveDataResponseUpdateUser.observe(this){ result->
             result.onSuccess {
                 if(it.data?.update?.jumlah_scan == 3)
-                Toast.makeText(
-                    this@TransliterasiActivity,
-                    "Jumlah Limit anda sudah mencapai 3 kali scan!",
-                    Toast.LENGTH_SHORT
-                ).show()
+                ToastUtils.showToast(this, "Jumlah Limit anda sudah mencapai 3 kali scan!")
                 setUser(jumlahScan, userPref)
             }
             result.onFailure {

@@ -22,6 +22,7 @@ import com.baksara.app.response.Lencana
 import com.baksara.app.response.User
 import com.baksara.app.ui.MainActivity
 import com.baksara.app.ui.soal.pilihan.PilihanFragment
+import com.baksara.app.utils.ToastUtils
 import com.bumptech.glide.Glide
 
 
@@ -64,7 +65,7 @@ class BerhasilFragment : Fragment() {
                 val nomorModulBaru = it.data?.riwayatBelajar?.nomor_modul ?: 1
                 val nomorPelajranBaru = it.data?.riwayatBelajar?.nomor_pelajaran ?: 1
                 setModulPelajaranBaru(nomorModulBaru, nomorPelajranBaru, userPref)
-                Toast.makeText(requireContext(), "Anda berhasil menyelesaikan kelas dan memperoleh 400 EXP", Toast.LENGTH_SHORT).show()
+                ToastUtils.showToast(requireActivity(), "Anda berhasil menyelesaikan kelas dan memperoleh 400 EXP")
             }
             response.onFailure {
 

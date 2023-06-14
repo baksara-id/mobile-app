@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.FragmentTranslatorBinding
+import com.baksara.app.utils.ToastUtils
 
 class TranslatorFragment : Fragment() {
     private var _binding: FragmentTranslatorBinding? = null
@@ -44,7 +45,7 @@ class TranslatorFragment : Fragment() {
                 if(hasilTranslator != null){
                     binding.tvAksaraJawa.text = hasilTranslator
                 }
-                else Toast.makeText(activity, "Translator tidak bisa mengenali text anda", Toast.LENGTH_SHORT).show()
+                else ToastUtils.showToast(requireActivity(), "Translator tidak bisa mengenali tulisan anda")
             }
             result.onFailure {
                 // Kasih tau Error
