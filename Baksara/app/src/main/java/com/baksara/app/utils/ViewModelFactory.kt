@@ -1,4 +1,4 @@
-package com.baksara.app
+package com.baksara.app.utils
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

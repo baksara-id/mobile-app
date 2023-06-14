@@ -12,8 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.R
-import com.baksara.app.ViewModelFactory
-import com.baksara.app.databinding.ActivityLanggananBinding
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.ActivityLaporkanMasalahBinding
 import com.baksara.app.response.Langganan
 import com.baksara.app.response.RiwayatBelajar

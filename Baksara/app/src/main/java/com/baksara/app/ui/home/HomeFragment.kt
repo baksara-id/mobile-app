@@ -4,14 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.adapter.ListInAppBannerAdapter
 import com.baksara.app.adapter.ListModulAdapter
 import com.baksara.app.adapter.ListTantanganAdapter
@@ -19,14 +18,11 @@ import com.baksara.app.database.InAppBanner
 import com.baksara.app.database.Modul
 import com.baksara.app.databinding.FragmentHomeBinding
 import com.baksara.app.helper.InitialDataSource
-import com.baksara.app.helper.InitialDataSource.getModuls
-import com.baksara.app.helper.InitialDataSource.getTantangans
 import com.baksara.app.response.Langganan
 import com.baksara.app.response.RiwayatBelajar
 import com.baksara.app.response.Tantangan
 import com.baksara.app.response.User
 import com.baksara.app.ui.MainActivity
-import com.baksara.app.ui.MainViewModel
 import com.baksara.app.ui.tantangan.TantanganActivity
 
 

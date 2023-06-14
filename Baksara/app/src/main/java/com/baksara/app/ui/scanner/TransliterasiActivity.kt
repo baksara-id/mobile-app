@@ -7,9 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.ActivityTransliterasiBinding
-import com.baksara.app.response.User
 import com.baksara.app.ui.MainActivity
 
 class TransliterasiActivity : AppCompatActivity() {

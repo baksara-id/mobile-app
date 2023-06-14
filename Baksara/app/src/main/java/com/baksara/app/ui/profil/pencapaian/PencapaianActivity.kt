@@ -8,15 +8,12 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.baksara.app.R
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.adapter.ListLencanaAdapter
 import com.baksara.app.databinding.ActivityPencapaianBinding
-import com.baksara.app.databinding.FragmentCeritaBinding
-import com.baksara.app.helper.InitialDataSource
 import com.baksara.app.response.*
 import com.baksara.app.ui.MainActivity
 import com.baksara.app.ui.profil.ProfileViewModel
-import com.baksara.app.ui.soal.pilihan.PilihanViewModel
 
 class PencapaianActivity : AppCompatActivity() {
     private var _binding: ActivityPencapaianBinding? = null

@@ -15,9 +15,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.R
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.FragmentProfilBinding
-import com.baksara.app.local.UserPreferences
 import com.baksara.app.response.Langganan
 import com.baksara.app.response.RiwayatBelajar
 import com.baksara.app.response.User
@@ -28,7 +27,6 @@ import com.baksara.app.ui.profil.langganan.LanggananActivity
 import com.baksara.app.ui.profil.laporkanmasalah.LaporkanMasalahActivity
 import com.baksara.app.ui.profil.pencapaian.PencapaianActivity
 import com.baksara.app.ui.profil.tentangaplikasi.TentangAplikasiActivity
-import com.baksara.app.ui.tantangan.hasil.BerhasilTantanganActivity
 import com.bumptech.glide.Glide
 
 class ProfilFragment : Fragment() {

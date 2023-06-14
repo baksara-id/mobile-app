@@ -9,12 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.adapter.ListCeritaAdapter
 import com.baksara.app.databinding.FragmentCeritaBinding
-import com.baksara.app.helper.InitialDataSource
 import com.baksara.app.response.Cerita
-import com.baksara.app.ui.MainViewModel
 
 class CeritaFragment : Fragment() {
     private var _binding: FragmentCeritaBinding? = null

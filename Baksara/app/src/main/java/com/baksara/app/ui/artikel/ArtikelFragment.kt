@@ -9,11 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.adapter.ListArtikelAdapter
-import com.baksara.app.adapter.ListModulAdapter
 import com.baksara.app.databinding.FragmentArtikelBinding
-import com.baksara.app.helper.InitialDataSource
 import com.baksara.app.response.Artikel
 
 

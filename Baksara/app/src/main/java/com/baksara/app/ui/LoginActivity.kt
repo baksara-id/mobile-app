@@ -11,9 +11,8 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.ActivityLoginBinding
-import com.baksara.app.local.UserPreferences
 import com.baksara.app.response.User
 import kotlinx.coroutines.launch
 

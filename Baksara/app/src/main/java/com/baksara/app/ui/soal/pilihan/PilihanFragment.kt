@@ -1,26 +1,20 @@
 package com.baksara.app.ui.soal.pilihan
 
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.R
-import com.baksara.app.ViewModelFactory
-import com.baksara.app.database.SoalPilihan
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.FragmentPilihanBinding
-import com.baksara.app.helper.InitialDataSource
 import com.baksara.app.ui.soal.Hasil.BerhasilFragment
 import com.baksara.app.ui.soal.Hasil.GagalFragment
 import com.baksara.app.ui.soal.SoalActivity
 import com.baksara.app.ui.soal.baca.BacaFragment
-import com.baksara.app.ui.soal.gambar.GambarViewModel
 
 class PilihanFragment : Fragment() {
 

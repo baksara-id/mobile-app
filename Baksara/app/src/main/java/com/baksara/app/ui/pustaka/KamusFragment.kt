@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.adapter.ListKamusAdapter
 import com.baksara.app.database.KamusBelajar
 import com.baksara.app.databinding.FragmentKamusBinding

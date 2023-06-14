@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.adapter.ListPelajaranAdapter
-import com.baksara.app.database.Pelajaran
 import com.baksara.app.databinding.ActivityKelasBinding
-import com.baksara.app.helper.InitialDataSource
 
 class KelasActivity : AppCompatActivity() {
     private var _binding: ActivityKelasBinding? = null

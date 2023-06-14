@@ -9,11 +9,9 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.baksara.app.ViewModelFactory
-import com.baksara.app.adapter.ListTantanganWideAdapter
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.adapter.ListTantanganWideRiwayatAdapter
 import com.baksara.app.databinding.ActivityRiwayatTantanganBinding
-import com.baksara.app.helper.InitialDataSource
 import com.baksara.app.response.Langganan
 import com.baksara.app.response.RiwayatBelajar
 import com.baksara.app.response.Tantangan

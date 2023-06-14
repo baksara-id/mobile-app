@@ -2,19 +2,12 @@ package com.baksara.app.ui.pustaka
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.adapter.ListKamusContohAdapter
-import com.baksara.app.adapter.ListKamusDetailAdapter
-import com.baksara.app.adapter.ListTantanganAdapter
-import com.baksara.app.database.Kamus
 import com.baksara.app.database.Penggunaan
 import com.baksara.app.databinding.ActivityContohKamusBinding
-import com.baksara.app.helper.InitialDataSource
-import com.baksara.app.ui.home.HomeViewModel
 
 class ContohKamusActivity : AppCompatActivity() {
     private var _binding: ActivityContohKamusBinding? = null

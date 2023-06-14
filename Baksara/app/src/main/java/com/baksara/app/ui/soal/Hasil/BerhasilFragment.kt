@@ -16,14 +16,12 @@ import android.widget.Toast
 import androidx.core.animation.doOnEnd
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.R
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.FragmentBerhasilBinding
 import com.baksara.app.response.Lencana
 import com.baksara.app.response.User
 import com.baksara.app.ui.MainActivity
-import com.baksara.app.ui.soal.baca.BacaFragment
 import com.baksara.app.ui.soal.pilihan.PilihanFragment
-import com.baksara.app.ui.tantangan.hasil.BerhasilTantanganActivity
 import com.bumptech.glide.Glide
 
 

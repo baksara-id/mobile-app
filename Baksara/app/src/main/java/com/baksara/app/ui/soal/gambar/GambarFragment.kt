@@ -1,8 +1,6 @@
 package com.baksara.app.ui.soal.gambar
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.Environment
 import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.R
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.FragmentGambarBinding
 import com.baksara.app.ui.kelas.KelasActivity
 import com.baksara.app.ui.soal.SoalActivity

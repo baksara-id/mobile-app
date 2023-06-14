@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.adapter.ListKamusDetailAdapter
 import com.baksara.app.database.Kamus
 import com.baksara.app.databinding.ActivityDetailKamusBinding
-import com.baksara.app.helper.InitialDataSource
-import com.baksara.app.ui.kelas.KelasViewModel
 
 class DetailKamusActivity : AppCompatActivity() {
     private var _binding: ActivityDetailKamusBinding? = null

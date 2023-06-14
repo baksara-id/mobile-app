@@ -1,15 +1,8 @@
 package com.baksara.app.ui
 
-import android.Manifest
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -17,12 +10,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.baksara.app.R
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.ActivityMainBinding
-import com.baksara.app.local.UserPreferences
-import com.baksara.app.response.Langganan
-import com.baksara.app.response.RiwayatBelajar
-import com.baksara.app.response.User
 import com.baksara.app.ui.scanner.ScannerActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

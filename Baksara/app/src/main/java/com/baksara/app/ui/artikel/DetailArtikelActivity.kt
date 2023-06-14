@@ -3,14 +3,11 @@ package com.baksara.app.ui.artikel
 import android.icu.text.SimpleDateFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.R
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.ActivityDetailArtikelBinding
-import com.baksara.app.ui.kelas.KelasActivity
-import com.baksara.app.ui.pustaka.DetailCeritaActivity
 import com.bumptech.glide.Glide
 import java.util.Date
 import java.util.Locale

@@ -7,11 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.adapter.ListTantanganWideAdapter
 import com.baksara.app.databinding.ActivityTantanganBinding
 import com.baksara.app.response.Langganan
@@ -19,7 +18,6 @@ import com.baksara.app.response.RiwayatBelajar
 import com.baksara.app.response.Tantangan
 import com.baksara.app.response.User
 import com.baksara.app.ui.MainActivity
-import java.util.Locale
 
 class TantanganActivity : AppCompatActivity() {
 

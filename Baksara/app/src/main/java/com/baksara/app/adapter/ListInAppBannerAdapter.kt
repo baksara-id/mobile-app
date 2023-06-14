@@ -1,15 +1,12 @@
 package com.baksara.app.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.baksara.app.R
 import com.baksara.app.database.InAppBanner
 import com.baksara.app.databinding.ItemAppbannerBinding
-import com.baksara.app.response.Tantangan
-import com.baksara.app.ui.tantangan.SoalTantanganActivity
+import com.baksara.app.utils.ToastUtils
 
 class ListInAppBannerAdapter(private val appbanners: List<InAppBanner>): RecyclerView.Adapter<ListInAppBannerAdapter.ListViewHolder>() {
 
@@ -17,7 +14,7 @@ class ListInAppBannerAdapter(private val appbanners: List<InAppBanner>): Recycle
         fun bind(banner: InAppBanner, position:Int){
             binding.imgBanner.setImageResource(R.drawable.arjunadummy2)
             binding.imgBanner.setOnClickListener {
-                Toast.makeText(itemView.context,"Pergi ke Halaman ${banner.url_tujuan}",Toast.LENGTH_SHORT).show()
+                ToastUtils.showToast(itemView.context, "Pergi ke Halaman ${banner.url_tujuan}")
             }
         }
 

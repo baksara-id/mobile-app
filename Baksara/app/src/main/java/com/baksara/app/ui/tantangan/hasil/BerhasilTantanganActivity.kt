@@ -8,15 +8,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.animation.doOnEnd
 import androidx.lifecycle.ViewModelProvider
-import com.baksara.app.R
-import com.baksara.app.ViewModelFactory
+import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.ActivityBerhasilTantanganBinding
-import com.baksara.app.databinding.ActivityLoginBinding
-import com.baksara.app.databinding.FragmentBerhasilBinding
-import com.baksara.app.local.UserPreferences
 import com.baksara.app.response.User
 import com.baksara.app.ui.MainActivity
-import com.baksara.app.ui.tantangan.SoalTantanganActivity
 import com.baksara.app.ui.tantangan.TantanganViewModel
 
 class BerhasilTantanganActivity : AppCompatActivity() {
