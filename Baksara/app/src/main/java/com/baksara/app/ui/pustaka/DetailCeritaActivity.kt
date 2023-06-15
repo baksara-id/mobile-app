@@ -55,14 +55,14 @@ class DetailCeritaActivity : AppCompatActivity() {
     }
 
     fun hideVisibility(){
-//        binding.cvContainerCerita.visibility = View.GONE
+        binding.contentCerita.visibility = View.GONE
         binding.view5.visibility = View.GONE
         binding.ivPlaceholder.visibility = View.GONE
         binding.loadingBarDetailCerita.visibility = View.VISIBLE
     }
 
     fun showVisibility(){
-//        binding.cvContainerCerita.visibility = View.VISIBLE
+        binding.contentCerita.visibility = View.VISIBLE
         binding.view5.visibility = View.VISIBLE
         binding.ivPlaceholder.visibility = View.VISIBLE
         binding.loadingBarDetailCerita.visibility = View.GONE
