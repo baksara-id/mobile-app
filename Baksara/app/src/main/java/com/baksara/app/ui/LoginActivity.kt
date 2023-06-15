@@ -95,10 +95,10 @@ class LoginActivity : AppCompatActivity() {
                 binding.btnLogin.isEnabled = true
             }
         }
-
+        val webclient_id = "555559030387-bivktottkohcp9jq9tk1uvjt1rlf063r.apps.googleusercontent.com"
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken(webclient_id)
 //            .requestIdToken(coba)
             .requestEmail()
             .build()
@@ -123,7 +123,9 @@ class LoginActivity : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         Log.d("checkpoint 2", "masuk")
+        Log.d("checkpoint 2", "${result.data}")
         if (result.resultCode == Activity.RESULT_OK) {
+            Log.d("checkpoint 3", "masuk")
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
             try {
                 // Google Sign In was successful, authenticate with Firebase
