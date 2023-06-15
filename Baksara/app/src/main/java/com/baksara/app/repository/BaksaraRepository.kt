@@ -570,4 +570,25 @@ class BaksaraRepository(
         emit(Result.failure(e))
     }
 
+    suspend fun getLencana(lencanaId: Int): Flow<Result<GraphQLResponse>> = flow {
+        val response = service.graphql(
+            "application/json",
+            GraphQLRequest(
+                """
+                    query {
+                      lencana(id: $lencanaId) {
+                        id
+                        nama
+                        url_gambar
+                      }
+                    }
+                """.trimIndent()
+            )
+        )
+        emit(Result.success(response))
+    }.catch{ e->
+        e.printStackTrace()
+        emit(Result.failure(e))
+    }
+
 }

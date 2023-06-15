@@ -11,7 +11,7 @@ data class MutationResponse(
     @field: SerializedName("jawaban")
     val jawaban:String?,
     @field: SerializedName("lencanas")
-    val lencana:Lencana?,
+    val lencana:List<Lencana>?,
     @field: SerializedName("token")
     val token:String?
 ): Parcelable

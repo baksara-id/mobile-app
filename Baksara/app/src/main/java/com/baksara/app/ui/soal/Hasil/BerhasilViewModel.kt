@@ -41,6 +41,16 @@ class BerhasilViewModel(private val baksaraRepository: BaksaraRepository): ViewM
     fun fetchLencana(userId: Int, modulId: Int){
         viewModelScope.launch {
             tambahLencana(userId,modulId).collect{ response ->
+                response.onSuccess {
+                    fetchDataLencana(modulId)
+                }
+            }
+        }
+    }
+
+    fun fetchDataLencana(lencanaId: Int){
+        viewModelScope.launch {
+            getLencana(lencanaId).collect{response->
                 liveDataResponseLencana.value = response
             }
         }
@@ -76,4 +86,7 @@ class BerhasilViewModel(private val baksaraRepository: BaksaraRepository): ViewM
 
     suspend fun tambahLencana(userId: Int, modulId: Int): Flow<Result<GraphQLResponse>> =
         baksaraRepository.tambahLencana(modulId, userId)
+
+    suspend fun getLencana(lencanaId: Int): Flow<Result<GraphQLResponse>> =
+        baksaraRepository.getLencana(lencanaId)
 }

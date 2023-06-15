@@ -32,6 +32,8 @@ data class Data(
     val userLencana: List<Lencana>?,
     @field:SerializedName("langganans")
     val userLangganan: List<Langganan>?,
+    @field:SerializedName("lencana")
+    val spesifikLencana: Lencana?,
     // Mutation
     @field:SerializedName("createUser")
     val registerToken: User?,//token

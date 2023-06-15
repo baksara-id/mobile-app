@@ -54,8 +54,6 @@ class BerhasilFragment : Fragment() {
 
         berhasilViewModel = ViewModelProvider(this, viewModelFactory)[BerhasilViewModel::class.java]
 
-
-
         // Update Riwayat Belajar Saat Ini Khusus Pelajaran/Kelas
         berhasilViewModel.fetchRiwayatBelajarResponse(userId,pelajaranIdNext,modulId)
         berhasilViewModel.liveDataUpdateRiwayatResponse.observe(requireActivity()){ response->
@@ -86,7 +84,7 @@ class BerhasilFragment : Fragment() {
 
         berhasilViewModel.liveDataResponseLencana.observe(requireActivity()){response->
             response.onSuccess {
-                val lencana = it.data?.lencanaResponse?.lencana ?: Lencana(0,"a","")
+                val lencana = it.data?.spesifikLencana ?: Lencana(0,"a","")
                 showLencanaGetDialog(requireActivity(),lencana)
             }
             response.onFailure {
