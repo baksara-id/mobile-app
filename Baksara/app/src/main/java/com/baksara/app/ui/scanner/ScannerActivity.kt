@@ -155,7 +155,6 @@ class ScannerActivity : AppCompatActivity() {
                                 baris.forEach {
                                     resultScanner += it
                                 }
-                                resultScanner+="\n"
                             }
                             intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
                             intent.putExtra(TransliterasiActivity.STATUS, "berhasil")
@@ -220,7 +219,6 @@ class ScannerActivity : AppCompatActivity() {
                                         baris.forEach {
                                             resultScanner += it
                                         }
-                                        resultScanner+="\n"
                                     }
                                     intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
                                     intent.putExtra(TransliterasiActivity.STATUS, "berhasil")

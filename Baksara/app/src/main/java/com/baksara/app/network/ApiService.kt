@@ -28,10 +28,10 @@ interface ApiService {
         @Body body: TranslatorRequest
     ) : TranslatorResponse
 
-    @POST("revtojavanese")
-    suspend fun translatorScanner(
-        @Body body: TranslatorRequest
-    ) : TranslatorResponse
+    @POST("insidemyhead")
+    suspend fun translator_tuan_scanner(
+        @Body body: Translatorv2Request
+    ) : Translatorv2Response
 
     @Multipart
     @POST("scanner")

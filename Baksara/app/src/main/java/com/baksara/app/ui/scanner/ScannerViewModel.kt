@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.baksara.app.repository.BaksaraRepository
 import com.baksara.app.response.GraphQLResponse
 import com.baksara.app.response.ScannerResponse
-import com.baksara.app.response.TranslatorResponse
+import com.baksara.app.response.Translatorv2Response
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import java.io.File
@@ -14,7 +14,7 @@ import java.io.File
 class ScannerViewModel(private val baksaraRepository: BaksaraRepository): ViewModel() {
     val liveDataResponseUpdateUser: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataResponseScanner: MutableLiveData<Result<ScannerResponse>> = MutableLiveData()
-    val liveDataTranslatorResponse: MutableLiveData<Result<TranslatorResponse>> = MutableLiveData()
+    val liveDataTranslatorResponse: MutableLiveData<Result<Translatorv2Response>> = MutableLiveData()
 
     fun fetchUserResponse(newJumlahScan: Int, userId: Int){
         viewModelScope.launch {
@@ -46,6 +46,6 @@ class ScannerViewModel(private val baksaraRepository: BaksaraRepository): ViewMo
     suspend fun performScanner(img: File): Flow<Result<ScannerResponse>> =
         baksaraRepository.scannerResult(img)
 
-    suspend fun getTranslator(text:String): Flow<Result<TranslatorResponse>> =
+    suspend fun getTranslator(text:String): Flow<Result<Translatorv2Response>> =
         baksaraRepository.translator2(text)
 }

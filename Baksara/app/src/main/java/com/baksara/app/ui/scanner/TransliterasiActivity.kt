@@ -81,7 +81,10 @@ class TransliterasiActivity : AppCompatActivity() {
 
         scannerViewModel.liveDataTranslatorResponse.observe(this){ result->
             result.onSuccess {
-                val hasilTranslate = Html.fromHtml("${it.hasil}", Html.FROM_HTML_MODE_LEGACY)
+                var hasilTranslate = ""
+                it.hasil?.forEach {
+                    hasilTranslate += it
+                }
                 binding.tvAksaraJawaTransliterasi.text = "$hasilTranslate"
             }
             result.onFailure {
