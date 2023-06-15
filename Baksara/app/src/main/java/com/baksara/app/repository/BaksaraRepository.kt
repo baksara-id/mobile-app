@@ -193,6 +193,11 @@ class BaksaraRepository(
                     mutation {
                       createUserLencana(user_id: $userId, lencana_id: $modulId) {
                         token
+                        lencanas {
+                          id
+                          nama
+                          url_gambar
+                        }
                       }
                     }
                 """.trimIndent()

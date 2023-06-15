@@ -101,9 +101,9 @@ object InitialDataSource {
             SoalPilihan(15,3, "ꦚ", "Nya", "Ja", "Ma", "Ta","Nya", 5),
 
             SoalPilihan(16,4, "ꦩ", "Ga", "Ma", "Ta", "Nga","Ma", 1),
-            SoalPilihan(17,4, "ꦒ", "Ja", "Ma", "Nga", "Ta","Ga", 2),
+            SoalPilihan(17,4, "ꦒ", "Ja", "Ga", "Nga", "Ta","Ga", 2),
             SoalPilihan(18,4, "ꦧ", "La", "Ba", "Ja", "Ya","Ba", 3),
-            SoalPilihan(19,4, "ꦛ", "Ma", "Na", "Ta", "Ja","Ta", 4),
+            SoalPilihan(19,4, "ꦛ", "Ma", "Na", "Tha", "Ja","Tha", 4),
             SoalPilihan(20,4, "ꦔ", "Ga", "Ma", "Ta", "Nga","Nga", 5),
         )
     }
