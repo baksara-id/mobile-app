@@ -63,7 +63,7 @@ class BerhasilFragment : Fragment() {
                 val nomorModulBaru = it.data?.riwayatBelajar?.nomor_modul ?: 1
                 val nomorPelajranBaru = it.data?.riwayatBelajar?.nomor_pelajaran ?: 1
                 setModulPelajaranBaru(nomorModulBaru, nomorPelajranBaru, userPref)
-                ToastUtils.showToast(requireActivity(), "Anda berhasil menyelesaikan kelas dan memperoleh 400 EXP")
+                ToastUtils.showToast(requireActivity(), "Anda berhasil menyelesaikan kelas\nAnda memperoleh 400 EXP")
             }
             response.onFailure {
 

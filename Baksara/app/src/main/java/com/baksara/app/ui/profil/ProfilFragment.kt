@@ -31,7 +31,7 @@ import com.bumptech.glide.Glide
 
 class ProfilFragment : Fragment() {
     private var _binding: FragmentProfilBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw IllegalStateException("Binding is null. Fragment is not attached or onDestroyView() has been called.")
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var userPref: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -178,7 +178,6 @@ class ProfilFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 
     companion object {

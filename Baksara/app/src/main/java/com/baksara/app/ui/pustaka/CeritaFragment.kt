@@ -16,7 +16,7 @@ import com.baksara.app.response.Cerita
 
 class CeritaFragment : Fragment() {
     private var _binding: FragmentCeritaBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw IllegalStateException("Binding is null. Fragment is not attached or onDestroyView() has been called.")
     private lateinit var ceritaViewModel: PustakaViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,7 +89,6 @@ class CeritaFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 
     companion object {

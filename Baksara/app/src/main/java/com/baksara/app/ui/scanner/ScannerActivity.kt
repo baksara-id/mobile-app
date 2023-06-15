@@ -51,14 +51,19 @@ class ScannerActivity : AppCompatActivity() {
         _binding = ActivityScannerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Ambil sharedPreferences untuk ambil data user
         val userPref = getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
+        // Declare ViewModel
         scannerViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this@ScannerActivity))[ScannerViewModel::class.java]
 
+        // Lakukan cek pada data user jika data user langganan_id (pd database) 1 maka dia user biasa
         var langganan = if(userPref.getInt(MainActivity.PREMIUM, 1) == 1) false else true
 
+        // Tambahkan click event pada fab captureImage jika user belum memiliki jumlah scan 3 maka bisa
+        // melakukan takePhoto() kalau tidak tampilkan modal
         binding.captureImage.setOnClickListener {
+            // Kalau user sudah limit reach dan belum berlangganan maka tidak bisa melakukan scan dg kamera
             if(userPref.getBoolean(MainActivity.LIMITREACH, false) && !langganan){
-                // Kalau udah LimitReach dan Tidak Langganan
                 showMaxLimitScanDialog(this)
             }
             else{
@@ -66,9 +71,11 @@ class ScannerActivity : AppCompatActivity() {
             }
         }
 
+        // Tambahkan click event pada fab captureImage jika user belum memiliki jumlah scan 3 maka bisa
+        // melakukan startGallery() kalau tidak tampilkan modal
         binding.btnGallery.setOnClickListener {
+            // Kalau user sudah limit reach dan belum berlangganan maka tidak bisa melakukan scan aksara dg galeri
             if(userPref.getBoolean(MainActivity.LIMITREACH, false) && !langganan){
-                // Kalau udah LimitReach dan Tidak Langganan
                 showMaxLimitScanDialog(this)
             }
             else{
@@ -80,7 +87,6 @@ class ScannerActivity : AppCompatActivity() {
         binding.btnScantips.setOnClickListener {
             showScanTipsDialog(this)
         }
-
 
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
@@ -94,6 +100,7 @@ class ScannerActivity : AppCompatActivity() {
     public override fun onResume() {
         super.onResume()
         hideSystemUI()
+        // Jalankan Kamera
         startCamera()
     }
 
@@ -108,7 +115,6 @@ class ScannerActivity : AppCompatActivity() {
                 }
 
             imageCapture = ImageCapture.Builder().build()
-            ToastUtils.showToast(this, "Berhasil Kamera")
             try {
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(
@@ -118,7 +124,7 @@ class ScannerActivity : AppCompatActivity() {
                     imageCapture
                 )
             } catch (exc: Exception) {
-                ToastUtils.showToast(this@ScannerActivity, "Gagal memunculkan kamera.")
+                ToastUtils.showToast(this@ScannerActivity, "Gagal memunculkan kamera.\nTerdapat kesalahan pada aplikasi")
             }
         }, ContextCompat.getMainExecutor(this))
     }
@@ -139,13 +145,12 @@ class ScannerActivity : AppCompatActivity() {
             selectedImg.let { uri ->
                 val myFile = uriToFile(uri, this@ScannerActivity)
                 val intent = Intent(this@ScannerActivity, TransliterasiActivity::class.java)
-                // Kirim ke Transliterasi Activity
                 // Kirim Gambarnya ke Network
                 scannerViewModel.fetchScannerResponse(myFile)
                 scannerViewModel.liveDataResponseScanner.observe(this@ScannerActivity){ result->
                     result.onSuccess {
                         var resultScanner = ""
-                        if(it.error.isEmpty()){
+                        if(it.error == null){
                             it.result.forEach { baris->
                                 baris.forEach {
                                     resultScanner += it
@@ -201,18 +206,16 @@ class ScannerActivity : AppCompatActivity() {
                     ToastUtils.showToast(this@ScannerActivity, "Gagal mengambil gambar.")
                 }
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    ToastUtils.showToast(this@ScannerActivity, "Berhasil mengambil gambar.")
                     val intent = Intent(this@ScannerActivity, TransliterasiActivity::class.java)
                     val savedUri = output.savedUri
                     val imageFile = savedUri?.let { uriToFile(savedUri, this@ScannerActivity) }
                     if (imageFile != null) {
-                        ToastUtils.showToast(this@ScannerActivity, "masuk sini dan mengirim imageFIle")
                         // Kirim Gambarnya ke Network
                         scannerViewModel.fetchScannerResponse(imageFile)
                         scannerViewModel.liveDataResponseScanner.observe(this@ScannerActivity){ result->
                             result.onSuccess {
                                 var resultScanner = ""
-                                if(it.error.isEmpty()){
+                                if(it.error == null){
                                     it.result.forEach { baris->
                                         baris.forEach {
                                             resultScanner += it
@@ -220,6 +223,7 @@ class ScannerActivity : AppCompatActivity() {
                                         resultScanner+="\n"
                                     }
                                     intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
+                                    intent.putExtra(TransliterasiActivity.STATUS, "berhasil")
                                 }else{
                                     val status = "gagal"
                                     resultScanner = "Gagal terdapat kesalahan pada sistem"

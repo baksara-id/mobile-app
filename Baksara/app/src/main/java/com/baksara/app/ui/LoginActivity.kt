@@ -77,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
                 binding.btnLogin.isEnabled = true
             }
             else {
-                ToastUtils.showToast(this, "Password harus 8 karakter dan Email harus memiliki format email")
+                ToastUtils.showToast(this, "Password harus 8 karakter dan \nEmail harus memiliki format email")
                 binding.btnLogin.isEnabled = true
             }
         }

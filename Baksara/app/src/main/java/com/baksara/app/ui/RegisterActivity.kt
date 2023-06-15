@@ -76,7 +76,7 @@ class RegisterActivity : AppCompatActivity() {
                     binding.btnRegister.isEnabled = true
                 }
                 else {
-                    ToastUtils.showToast(this@RegisterActivity, "Password harus 8 karakter dan Email harus memiliki format email")
+                    ToastUtils.showToast(this@RegisterActivity, "Password harus 8 karakter dan\n Email harus memiliki format email")
                     binding.btnRegister.isEnabled = true
                 }
             }

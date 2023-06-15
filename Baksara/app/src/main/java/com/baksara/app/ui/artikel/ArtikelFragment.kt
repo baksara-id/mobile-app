@@ -17,7 +17,7 @@ import com.baksara.app.response.Artikel
 
 class ArtikelFragment : Fragment() {
     private var _binding: FragmentArtikelBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw IllegalStateException("Binding is null. Fragment is not attached or onDestroyView() has been called.")
     private lateinit var artikelViewModel: ArtikelViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,7 +89,6 @@ class ArtikelFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 
     companion object {

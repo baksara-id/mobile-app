@@ -21,35 +21,53 @@ class TransliterasiActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityTransliterasiBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        // Setup Top Bar di Android
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Hasil Transliterasi"
 
+        // Setup ViewModel
         scannerViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(this@TransliterasiActivity))[ScannerViewModel::class.java]
 
+        // Ambil SharedPreferences
         val userPref = getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
+        // Ambil UserId
         val userId = userPref.getInt(MainActivity.UNIQUEID, -1)
+        // Cek Langganan dari Data User di SharedPreferences
         val langganan = if(userPref.getInt(MainActivity.PREMIUM, 1) == 1) false else true
+        // Update Jumlah Scan user dari data user di SharedPreferences (lgsg tambahkan satu)
         val jumlahScan = userPref.getInt(MainActivity.CURRENTLIMIT, 0) + 1
+        // bikin editor untuk sharedpreferences
         val editor = userPref.edit()
+        // Ambil status dari ScannerActivity
         val statusScan = intent.getStringExtra(STATUS) ?: "berhasil"
+        // Ambil hasil dari ScannerActivity
         val hasilScan = intent.getStringExtra(HASIL)
 
         hasilScan.let{
+            // Kalau status Scan tidak gagal tampilkan hasilnya kalau gagal toast scan gagal!
             if(statusScan != "gagal"){
+                // Perbaruhi data di sharedPreferences jika berhasil scan
+                editor.putInt(MainActivity.CURRENTLIMIT, jumlahScan)
+                // Jika jumlahScannya berhasil dan bernilai >= 3 perbaruhi bahwa user sudah menghabiskan
+                // Free Trial 3x Scan
+                if(jumlahScan >= 3){
+                    editor.putBoolean(MainActivity.LIMITREACH, true)
+                }
+                // Kalau user tidak berlangganan update database di CC
+                if(!langganan){
+                    scannerViewModel.fetchUserResponse(jumlahScan, userId)
+                }
+                // Buat Tampilan
                 scannerViewModel.fetchTranslatorResult(it?:"")
+
+                binding.tvAksaraLatinTransliterasi.text = "$hasilScan"
+            }else
+            {
+                ToastUtils.showToast(this@TransliterasiActivity, "Scan Gagal Tolong ulangi lagi")
             }
         }
-
-        editor.putInt(MainActivity.CURRENTLIMIT, jumlahScan)
-        if(jumlahScan >= 3){
-            editor.putBoolean(MainActivity.LIMITREACH, true)
-        }
+        // Simpan perubahan sharedPreferences
         editor.apply()
-
-        if(!langganan){
-            scannerViewModel.fetchUserResponse(jumlahScan, userId)
-        }
 
         scannerViewModel.liveDataResponseUpdateUser.observe(this){ result->
             result.onSuccess {
@@ -69,13 +87,6 @@ class TransliterasiActivity : AppCompatActivity() {
             result.onFailure {
 
             }
-        }
-
-        if(statusScan == "berhasil"){
-            binding.tvAksaraLatinTransliterasi.text = "$hasilScan"
-        }
-        else{
-            ToastUtils.showToast(this, hasilScan.toString())
         }
 
         binding.btnDeteksiUlang.setOnClickListener {

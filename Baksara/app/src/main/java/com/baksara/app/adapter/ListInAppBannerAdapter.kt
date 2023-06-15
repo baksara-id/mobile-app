@@ -14,7 +14,7 @@ class ListInAppBannerAdapter(private val appbanners: List<InAppBanner>): Recycle
         fun bind(banner: InAppBanner, position:Int){
             binding.imgBanner.setImageResource(R.drawable.img_banner_app_purchase)
             binding.imgBanner.setOnClickListener {
-                ToastUtils.showToast(itemView.context, "Pergi ke Halaman ${banner.url_tujuan}")
+                ToastUtils.showToast(itemView.context, "Pergi ke Halaman\n${banner.url_tujuan}")
             }
         }
 

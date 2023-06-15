@@ -28,7 +28,7 @@ import com.baksara.app.ui.tantangan.TantanganActivity
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw IllegalStateException("Binding is null. Fragment is not attached or onDestroyView() has been called.")
     private lateinit var userPref: SharedPreferences
     private lateinit var homeViewModel: HomeViewModel
 
@@ -172,6 +172,5 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 }

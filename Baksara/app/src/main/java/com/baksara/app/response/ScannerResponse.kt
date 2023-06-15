@@ -9,5 +9,5 @@ data class ScannerResponse (
     @field:SerializedName("result")
     val result: List<List<String>>,
     @field:SerializedName("error")
-    val error: String,
+    val error: String?,
 ): Parcelable
