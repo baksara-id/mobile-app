@@ -8,6 +8,7 @@ import com.baksara.app.R
 import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.ActivityDetailCeritaBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.TransformationUtils.centerCrop
 
 class DetailCeritaActivity : AppCompatActivity() {
     private var _binding: ActivityDetailCeritaBinding? = null
@@ -37,8 +38,6 @@ class DetailCeritaActivity : AppCompatActivity() {
                     .into(binding.ivPlaceholder)
                 Glide.with(this)
                     .load(detailCerita.data?.detailCerita?.url_isi)
-                    .placeholder(R.drawable.template_cerita)
-                    .fitCenter()
                     .into(binding.contentCerita)
                 showVisibility()
             }
@@ -56,14 +55,14 @@ class DetailCeritaActivity : AppCompatActivity() {
     }
 
     fun hideVisibility(){
-        binding.cvContainerCerita.visibility = View.GONE
+//        binding.cvContainerCerita.visibility = View.GONE
         binding.view5.visibility = View.GONE
         binding.ivPlaceholder.visibility = View.GONE
         binding.loadingBarDetailCerita.visibility = View.VISIBLE
     }
 
     fun showVisibility(){
-        binding.cvContainerCerita.visibility = View.VISIBLE
+//        binding.cvContainerCerita.visibility = View.VISIBLE
         binding.view5.visibility = View.VISIBLE
         binding.ivPlaceholder.visibility = View.VISIBLE
         binding.loadingBarDetailCerita.visibility = View.GONE
