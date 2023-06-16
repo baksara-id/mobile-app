@@ -1,5 +1,6 @@
 package com.baksara.app.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.baksara.app.database.BaksaraDao
 import com.baksara.app.database.Kamus

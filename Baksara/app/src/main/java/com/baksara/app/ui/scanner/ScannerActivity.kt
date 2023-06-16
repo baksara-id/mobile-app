@@ -9,18 +9,14 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.icu.text.SimpleDateFormat
 import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -37,6 +33,7 @@ import com.baksara.app.ui.MainActivity
 import com.baksara.app.utils.ToastUtils
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.Locale
@@ -104,7 +101,6 @@ class ScannerActivity : AppCompatActivity() {
 
     public override fun onResume() {
         super.onResume()
-        hideSystemUI()
         // Jalankan Kamera
         startCamera()
     }
@@ -186,16 +182,24 @@ class ScannerActivity : AppCompatActivity() {
         val contentResolver: ContentResolver = context.contentResolver
         val myFile = createFile(application)
 
-        val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
-        val outputStream: OutputStream = FileOutputStream(myFile)
-        val buf = ByteArray(1024)
-        var len: Int
-        while (inputStream.read(buf).also { len = it } > 0) outputStream.write(buf, 0, len)
-        outputStream.close()
-        inputStream.close()
+        try {
+            val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
+            val outputStream: OutputStream = FileOutputStream(myFile)
+            val buf = ByteArray(1024)
+            var len: Int
+            while (inputStream.read(buf).also { len = it } > 0) {
+                outputStream.write(buf, 0, len)
+            }
+            outputStream.close()
+            inputStream.close()
+        } catch (e: IOException) {
+            // Handle the exception here, such as logging an error message or displaying a toast
+            e.printStackTrace()
+        }
 
         return myFile
     }
+
 
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
@@ -210,46 +214,67 @@ class ScannerActivity : AppCompatActivity() {
                     ToastUtils.showToast(this@ScannerActivity, "Gagal mengambil gambar.")
                 }
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val intent = Intent(this@ScannerActivity, TransliterasiActivity::class.java)
                     val savedUri = output.savedUri
-                    val imageFile = savedUri?.let { uriToFile(savedUri, this@ScannerActivity) }
+                    val imageFile = savedUri?.let {
+                        uriToFile2(savedUri, this@ScannerActivity)
+                    }
                     if (imageFile != null) {
-                        // Kirim Gambarnya ke Network
-                        scannerViewModel.fetchScannerResponse(imageFile)
-                        scannerViewModel.liveDataResponseScanner.observe(this@ScannerActivity){ result->
-                            result.onSuccess {
-                                var resultScanner = ""
-                                if(it.error == null){
-                                    it.result.forEach { baris->
-                                        baris.forEach {
-                                            resultScanner += it
-                                        }
-                                    }
-                                    intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
-                                    intent.putExtra(TransliterasiActivity.STATUS, "berhasil")
-                                }else{
-                                    val status = "gagal"
-                                    resultScanner = "Gagal terdapat kesalahan pada sistem"
-                                    intent.putExtra(TransliterasiActivity.STATUS, status)
-                                    intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
-                                }
-                            }
-                            result.onFailure {
-                                val status = "gagal"
-                                val resultFail = "Gagal terdapat kesalahan pada sistem"
-                                intent.putExtra(TransliterasiActivity.STATUS, status)
-                                intent.putExtra(TransliterasiActivity.HASIL, resultFail)
-                            }
-                        }
-                        startActivity(intent)
+                        performNetworkRequest(imageFile)
                     }
                 }
             }
         )
     }
 
+    private fun uriToFile2(uri: Uri, context: Context): File? {
+        val file = File(context.cacheDir, "temp_image.jpg")
+        try {
+            val inputStream = context.contentResolver.openInputStream(uri)
+            val outputStream = FileOutputStream(file)
+            inputStream?.copyTo(outputStream)
+            inputStream?.close()
+            outputStream.close()
+            return file
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return null
+    }
+
+    fun performNetworkRequest(imageFile: File){
+        val intent = Intent(this@ScannerActivity, TransliterasiActivity::class.java)
+        scannerViewModel.fetchScannerResponse(imageFile)
+        scannerViewModel.liveDataResponseScanner.observe(this@ScannerActivity){ result->
+            result.onSuccess {
+                var resultScanner = ""
+                if(it.error == null){
+                    it.result.forEach { baris->
+                        baris.forEach {
+                            resultScanner += it
+                        }
+                    }
+                    intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
+                    intent.putExtra(TransliterasiActivity.STATUS, "berhasil")
+                }else{
+                    val status = "gagal"
+                    resultScanner = "Gagal terdapat kesalahan pada sistem"
+                    intent.putExtra(TransliterasiActivity.STATUS, status)
+                    intent.putExtra(TransliterasiActivity.HASIL, resultScanner)
+                }
+            }
+            result.onFailure {
+                val status = "gagal"
+                val resultFail = "Gagal terdapat kesalahan pada sistem"
+                intent.putExtra(TransliterasiActivity.STATUS, status)
+                intent.putExtra(TransliterasiActivity.HASIL, resultFail)
+            }
+        }
+        startActivity(intent)
+    }
+
     fun createFile(application: Application): File {
-        val FILENAME_FORMAT = "dd-MMM-yyyy"
+
+        val FILENAME_FORMAT = "dd_MMM_yyyy"
 
         val timeStamp: String = SimpleDateFormat(
             FILENAME_FORMAT,
@@ -264,21 +289,9 @@ class ScannerActivity : AppCompatActivity() {
             mediaDir != null && mediaDir.exists()
         ) mediaDir else application.filesDir
 
-        return File(outputDirectory, "$timeStamp.jpg")
+        return File(outputDirectory, "$timeStamp.png")
     }
 
-    private fun hideSystemUI() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
-    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
