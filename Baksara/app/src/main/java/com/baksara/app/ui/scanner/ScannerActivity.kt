@@ -7,24 +7,17 @@ import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
 import android.icu.text.SimpleDateFormat
 import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
-import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -249,27 +242,6 @@ class ScannerActivity : AppCompatActivity() {
         return null
     }
 
-    @Throws(IOException::class)
-    private fun createImageFile(): File {
-        // Create an image file name
-        val imageFileName = "JPEG_" + System.currentTimeMillis() + ".jpg"
-
-        // Get the directory to save the image
-        val storageDir =
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-
-        // Create the directory if it doesn't exist
-        if (!storageDir.exists()) {
-            storageDir.mkdirs()
-        }
-
-        // Create the image file
-        val imageFile = File(storageDir, imageFileName)
-        imageFile.createNewFile()
-
-        return imageFile
-    }
-
     fun performNetworkRequest(imageFile: File){
         val intent = Intent(this@ScannerActivity, TransliterasiActivity::class.java)
         scannerViewModel.fetchScannerResponse(imageFile)
@@ -297,8 +269,8 @@ class ScannerActivity : AppCompatActivity() {
                 intent.putExtra(TransliterasiActivity.STATUS, status)
                 intent.putExtra(TransliterasiActivity.HASIL, resultFail)
             }
+            startActivity(intent)
         }
-        startActivity(intent)
     }
 
     fun createFile(application: Application): File {
