@@ -23,7 +23,7 @@
 
 # How to Install
 You can install this application by click this link and download it. After finish downloading you can install it on your Android device. In order to use our application you must create account first. This application only support android ver 5.0 or latest
-Link to download : https://drive.google.com/file/d/1lPZ1-myMcaI2LMCvC1KXyoD34jJ86B_T/view?usp=drive_link
+Link to download : [https://drive.google.com/file/d/1lPZ1-myMcaI2LMCvC1KXyoD34jJ86B_T/view?usp=drive_link](https://s.id/baksara-apk-install)
 
 # Preview
 
