@@ -77,6 +77,7 @@ class PencapaianActivity : AppCompatActivity() {
     }
 
     fun setupAkun(user:User){
+        binding.tvTotalExpPencapaian.text = "Total XP"
         binding.tvCurrentLevel.text = user.level.toString()
         val currentEXP = user.exp ?: 0
         binding.tvCurrentAccountExp.text = currentEXP.toString()

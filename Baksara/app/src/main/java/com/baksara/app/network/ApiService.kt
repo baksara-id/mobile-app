@@ -28,7 +28,7 @@ interface ApiService {
         @Body body: TranslatorRequest
     ) : TranslatorResponse
 
-    @POST("insidemyhead")
+    @POST("reversetrans")
     suspend fun translator_tuan_scanner(
         @Body body: Translatorv2Request
     ) : Translatorv2Response

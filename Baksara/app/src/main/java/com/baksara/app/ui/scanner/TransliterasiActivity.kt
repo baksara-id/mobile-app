@@ -1,12 +1,9 @@
 package com.baksara.app.ui.scanner
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Html
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.baksara.app.utils.ViewModelFactory
 import com.baksara.app.databinding.ActivityTransliterasiBinding
@@ -93,8 +90,6 @@ class TransliterasiActivity : AppCompatActivity() {
         }
 
         binding.btnDeteksiUlang.setOnClickListener {
-            val intent = Intent(this@TransliterasiActivity, ScannerActivity::class.java)
-            startActivity(intent)
             finish()
         }
     }

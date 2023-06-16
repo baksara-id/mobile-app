@@ -12,6 +12,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowInsets
@@ -82,6 +83,10 @@ class ScannerActivity : AppCompatActivity() {
                 startGallery()
             }
 
+        }
+
+        scannerViewModel.liveDataIsLoading.observe(this){
+            showLoading(it)
         }
 
         binding.btnScantips.setOnClickListener {
@@ -291,6 +296,11 @@ class ScannerActivity : AppCompatActivity() {
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
+    fun showLoading(isLoading: Boolean){
+        binding.cvLoading.visibility = if(isLoading) View.VISIBLE else View.GONE
+        binding.darkBackground.visibility = if(isLoading) View.VISIBLE else View.GONE
     }
 
     private fun showMaxLimitScanDialog(context: Context) {

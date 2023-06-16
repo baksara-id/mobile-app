@@ -18,6 +18,8 @@ import com.baksara.app.database.Modul
 import com.baksara.app.databinding.ItemDialogInformationBinding
 import com.baksara.app.databinding.ItemModuleBinding
 import com.baksara.app.ui.kelas.KelasActivity
+import com.baksara.app.ui.profil.langganan.LanggananActivity
+import com.baksara.app.ui.pustaka.ContohKamusActivity
 
 class ListModulAdapter(private val moduls: List<Modul>): RecyclerView.Adapter<ListModulAdapter.ListViewHolder>() {
     inner class ListViewHolder(private val binding: ItemModuleBinding) :
@@ -34,7 +36,7 @@ class ListModulAdapter(private val moduls: List<Modul>): RecyclerView.Adapter<Li
                 binding.constraintModul.background =
                     ContextCompat.getDrawable(itemView.context, R.drawable.bg_locked_module)
                 binding.root.setOnClickListener {
-                    showLockedModuleDialog(itemView.context, modul.selesai, modul.terkunci)
+                    showLockedModuleDialog(itemView.context, moduls[position-1].selesai, modul.terkunci)
                 }
             } else {
                 binding.root.setOnClickListener {
@@ -74,22 +76,24 @@ class ListModulAdapter(private val moduls: List<Modul>): RecyclerView.Adapter<Li
         imgInformation.setImageResource(R.drawable.img_logo_information)
         textTitle.text = "Pesan Informasi"
 
+        builder.setView(dialogView)
+        val dialog: AlertDialog = builder.create()
 
         if (!selesai) {
             textDesc.text = "Selesaikan modul sebelumnya untuk memulai modul ini."
             buttonInformation.text = "Mengerti"
-
+            buttonInformation.setOnClickListener {
+                dialog.dismiss()
+            }
         } else if (terkunci) {
             textDesc.text = "Lakukan pembelian langganan untuk melanjutkan modul ini."
             buttonInformation.text = "Beli Langganan"
+            buttonInformation.setOnClickListener {
+                val intent = Intent(context, LanggananActivity::class.java)
+                dialog.dismiss()
+                context.startActivity(intent)
+            }
         }
-
-        builder.setView(dialogView)
-        val dialog: AlertDialog = builder.create()
-        buttonInformation.setOnClickListener {
-            dialog.dismiss()
-        }
-
         dialog.show()
     }
 }

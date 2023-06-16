@@ -1,5 +1,6 @@
 package com.baksara.app.ui.scanner
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,6 +16,8 @@ class ScannerViewModel(private val baksaraRepository: BaksaraRepository): ViewMo
     val liveDataResponseUpdateUser: MutableLiveData<Result<GraphQLResponse>> = MutableLiveData()
     val liveDataResponseScanner: MutableLiveData<Result<ScannerResponse>> = MutableLiveData()
     val liveDataTranslatorResponse: MutableLiveData<Result<Translatorv2Response>> = MutableLiveData()
+    private val _liveDataIsLoading:MutableLiveData<Boolean> = MutableLiveData()
+    val liveDataIsLoading: LiveData<Boolean> = _liveDataIsLoading
 
     fun fetchUserResponse(newJumlahScan: Int, userId: Int){
         viewModelScope.launch {
@@ -25,9 +28,11 @@ class ScannerViewModel(private val baksaraRepository: BaksaraRepository): ViewMo
     }
 
     fun fetchScannerResponse(img:File){
+        _liveDataIsLoading.value = true
         viewModelScope.launch {
             performScanner(img).collect{ response->
                 liveDataResponseScanner.value = response
+                _liveDataIsLoading.value = false
             }
         }
     }

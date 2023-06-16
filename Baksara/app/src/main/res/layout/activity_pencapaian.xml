@@ -14,7 +14,7 @@
         android:layout_marginTop="52dp"
         android:elevation="8dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/arjunadummy2"
+        android:src="@drawable/profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -78,7 +78,7 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/tv_total_exp"
+                android:id="@+id/tv_totalExp_Pencapaian"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -101,7 +101,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_total_exp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_totalExp_Pencapaian"
                 tools:text="@string/current_exp" />
 
             <TextView

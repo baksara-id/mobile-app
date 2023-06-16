@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +35,7 @@ class ProfilFragment : Fragment() {
     private val binding get() = _binding ?: throw IllegalStateException("Binding is null. Fragment is not attached or onDestroyView() has been called.")
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var userPref: SharedPreferences
+    private lateinit var userLogin: User
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -58,29 +60,6 @@ class ProfilFragment : Fragment() {
         val viewModelFactory = ViewModelFactory.getInstance(requireContext())
         profileViewModel = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
         userPref = requireActivity().getSharedPreferences(MainActivity.PREF, Context.MODE_PRIVATE)
-        val userLogin = getUser()
-
-        if(userLogin.langganan?.id != 1){
-            // User Premium
-            binding.cvBadgeUser.backgroundTintList = ContextCompat.getColorStateList(requireActivity(), R.color.light_premium)
-            binding.badgeUser.text = "User Premium"
-            binding.badgeUser.setBackgroundResource(R.drawable.bg_border_premium)
-            binding.badgeUser.setTextColor(ContextCompat.getColor(requireActivity(), R.color.premium))
-        }
-        else{
-            // User Standard
-            binding.cvBadgeUser.backgroundTintList = ContextCompat.getColorStateList(requireActivity(), R.color.light_standard)
-            binding.badgeUser.text = "User Standard"
-            binding.badgeUser.setBackgroundResource(R.drawable.bg_border_standard)
-            binding.badgeUser.setTextColor(ContextCompat.getColor(requireActivity(), R.color.neutral_300))
-
-        }
-
-        Glide.with(this)
-            .load(userLogin.avatar)
-            .placeholder(R.drawable.arjunadummy2)
-            .centerCrop()
-            .into(binding.imgProfile);
 
         binding.btnUbah.setOnClickListener {
 
@@ -109,6 +88,31 @@ class ProfilFragment : Fragment() {
         binding.btnLogout.setOnClickListener {
             showDialogLogout(requireContext())
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        userLogin = getUser()
+        if(userLogin.langganan?.id != 1){
+            // User Premium
+            binding.cvBadgeUser.backgroundTintList = ContextCompat.getColorStateList(requireActivity(), R.color.light_premium)
+            binding.badgeUser.text = "User Premium"
+            binding.badgeUser.setBackgroundResource(R.drawable.bg_border_premium)
+            binding.badgeUser.setTextColor(ContextCompat.getColor(requireActivity(), R.color.premium))
+        }
+        else{
+            // User Standard
+            binding.cvBadgeUser.backgroundTintList = ContextCompat.getColorStateList(requireActivity(), R.color.light_standard)
+            binding.badgeUser.text = "User Standard"
+            binding.badgeUser.setBackgroundResource(R.drawable.bg_border_standard)
+            binding.badgeUser.setTextColor(ContextCompat.getColor(requireActivity(), R.color.neutral_300))
+
+        }
+        Glide.with(this)
+            .load(userLogin.avatar)
+            .placeholder(R.drawable.profile)
+            .centerCrop()
+            .into(binding.imgProfile);
     }
 
     private fun showDialogLogout(context: Context) {

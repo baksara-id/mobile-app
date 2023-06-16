@@ -208,7 +208,7 @@
         android:layout_marginTop="40dp"
         android:elevation="8dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/arjunadummy2"
+        android:src="@drawable/profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
