@@ -7,17 +7,26 @@
     android:background="@color/accent_light"
     tools:context=".ui.profil.pencapaian.PencapaianActivity">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img_profile_pencapaian"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_img_profile_pencapaian"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="52dp"
-        android:elevation="8dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/profile"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_profile_pencapaian"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:elevation="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_person_placeholder" />
+    </androidx.cardview.widget.CardView>
 
 
     <androidx.cardview.widget.CardView
@@ -29,7 +38,7 @@
         app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_profile_pencapaian" >
+        app:layout_constraintTop_toBottomOf="@+id/cv_img_profile_pencapaian">
 
         <TextView
             android:id="@+id/badge_user_pencapaian"

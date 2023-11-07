@@ -57,11 +57,11 @@ class LanggananActivity : AppCompatActivity() {
             binding.badgeUserPencapaianLangganan.setTextColor(ContextCompat.getColor(this, R.color.neutral_300))
         }
 
-        Glide.with(this)
-            .load(userLogin.avatar)
-            .placeholder(R.drawable.profile)
-            .centerCrop()
-            .into(binding.imgProfilePencapaianLangganan);
+//        Glide.with(this)
+//            .load(userLogin.avatar)
+//            .placeholder(R.drawable.img_person_placeholder)
+//            .centerCrop()
+//            .into(binding.imgProfileLangganan);
 
         profileViewModel.liveDataLangganan.observe(this){ result->
             result.onSuccess {

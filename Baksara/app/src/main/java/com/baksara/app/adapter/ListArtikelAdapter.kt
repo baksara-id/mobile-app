@@ -25,7 +25,7 @@ class ListArtikelAdapter(private var artikels: List<Artikel>): RecyclerView.Adap
 
             Glide.with(this.itemView)
                 .load(artikel.url_gambar)
-                .placeholder(R.drawable.arjunadummy2)
+                .placeholder(R.drawable.img_placeholder)
                 .fitCenter()
                 .into(binding.imageView);
 

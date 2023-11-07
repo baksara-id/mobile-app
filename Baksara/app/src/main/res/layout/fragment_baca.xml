@@ -55,7 +55,6 @@
                     android:layout_height="176dp"
                     android:fontFamily="@font/poppins_bold"
                     android:gravity="center|top"
-                    android:text="@string/hancaraka_placeholder"
                     android:textColor="@color/main_300"
                     android:textSize="144sp" />
 
@@ -65,7 +64,6 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="center"
-                    android:text="@string/ha_placeholder"
                     android:textColor="@color/main_300"
                     android:textSize="48sp" />
 

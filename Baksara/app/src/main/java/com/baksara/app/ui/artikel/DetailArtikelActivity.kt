@@ -50,7 +50,7 @@ class DetailArtikelActivity : AppCompatActivity() {
 
                 Glide.with(this)
                     .load(detailArtikel.data?.detailArtikel?.url_gambar)
-                    .placeholder(R.drawable.arjunadummy2)
+                    .placeholder(R.drawable.img_placeholder)
                     .fitCenter()
                     .into(binding.ivPlaceholder2)
                 showVisibility()

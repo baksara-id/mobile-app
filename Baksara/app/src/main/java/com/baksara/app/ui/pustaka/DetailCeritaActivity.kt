@@ -33,7 +33,7 @@ class DetailCeritaActivity : AppCompatActivity() {
             result.onSuccess { detailCerita->
                 Glide.with(this)
                     .load(detailCerita.data?.detailCerita?.url_gambar)
-                    .placeholder(R.drawable.arjunadummy2)
+                    .placeholder(R.drawable.img_placeholder)
                     .fitCenter()
                     .into(binding.ivPlaceholder)
                 Glide.with(this)

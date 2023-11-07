@@ -17,17 +17,26 @@
             android:layout_height="match_parent"
             android:backgroundTint="@color/accent_white_hover">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/img_profile"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_img_profile"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="52dp"
-                android:elevation="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/profile"
+                app:cardCornerRadius="50dp"
+                app:cardElevation="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="0dp"
+                    android:elevation="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_person_placeholder" />
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_badge_user"
@@ -38,7 +47,7 @@
                 app:cardCornerRadius="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_profile" >
+                app:layout_constraintTop_toBottomOf="@+id/cv_img_profile">
 
                 <TextView
                     android:id="@+id/badge_user"
@@ -130,6 +139,7 @@
                         android:text="Ubah Data"
                         android:textAllCaps="false"
                         android:textColor="@color/neutral_800"
+                        android:visibility="gone"
                         app:icon="@drawable/ic_arrow_forward"
                         app:iconGravity="end"
                         app:iconSize="16dp"
@@ -146,6 +156,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
                         android:background="@color/neutral_100"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"

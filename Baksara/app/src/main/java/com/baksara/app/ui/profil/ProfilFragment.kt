@@ -108,11 +108,11 @@ class ProfilFragment : Fragment() {
             binding.badgeUser.setTextColor(ContextCompat.getColor(requireActivity(), R.color.neutral_300))
 
         }
-        Glide.with(this)
-            .load(userLogin.avatar)
-            .placeholder(R.drawable.profile)
-            .centerCrop()
-            .into(binding.imgProfile);
+//        Glide.with(this)
+//            .load(userLogin.avatar)
+//            .placeholder(R.drawable.img_person_placeholder)
+//            .centerCrop()
+//            .into(binding.imgProfile);
     }
 
     private fun showDialogLogout(context: Context) {

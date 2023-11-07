@@ -37,9 +37,11 @@
             android:text="@string/hancaraka_placeholder"
             android:textColor="@color/main_300"
             android:textSize="96sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@+id/tv_deskripsi_soal_pilihan"
             app:layout_constraintStart_toStartOf="@+id/tv_deskripsi_soal_pilihan"
-            app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi_soal_pilihan" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi_soal_pilihan"
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/btn_pilihan1"
@@ -59,12 +61,14 @@
             android:textAllCaps="false"
             android:textColor="@color/main_300"
             android:textSize="24sp"
+            android:visibility="invisible"
             app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_aksara_soal_pilihan"
             app:strokeColor="@color/main_300"
-            app:strokeWidth="1dp" />
+            app:strokeWidth="1dp"
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/btn_pilihan2"
@@ -84,13 +88,15 @@
             android:textAllCaps="false"
             android:textColor="@color/main_300"
             android:textSize="24sp"
+            android:visibility="invisible"
             app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_pilihan1"
             app:strokeColor="@color/main_300"
-            app:strokeWidth="1dp" />
+            app:strokeWidth="1dp"
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/btn_pilihan3"
@@ -110,13 +116,15 @@
             android:textAllCaps="false"
             android:textColor="@color/main_300"
             android:textSize="24sp"
+            android:visibility="invisible"
             app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_pilihan2"
             app:strokeColor="@color/main_300"
-            app:strokeWidth="1dp" />
+            app:strokeWidth="1dp"
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/btn_pilihan4"
@@ -136,13 +144,15 @@
             android:textAllCaps="false"
             android:textColor="@color/main_300"
             android:textSize="24sp"
+            android:visibility="invisible"
             app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_pilihan3"
             app:strokeColor="@color/main_300"
-            app:strokeWidth="1dp" />
+            app:strokeWidth="1dp"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

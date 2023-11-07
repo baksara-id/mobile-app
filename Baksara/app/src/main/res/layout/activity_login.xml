@@ -92,6 +92,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="24dp"
                     android:background="@drawable/bg_input_editor"
+                    android:fontFamily="@font/poppins_light"
                     android:hint="password"
                     app:endIconMode="password_toggle"
                     app:endIconTint="@color/main_300"
